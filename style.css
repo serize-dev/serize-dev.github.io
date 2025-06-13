@@ -247,4 +247,7 @@ footer {
     .project-grid {
         grid-template-columns: 1fr;
     }
+    .project {
+    margin-bottom: 60px;  /* Adds space after each project */
+    }
 }
