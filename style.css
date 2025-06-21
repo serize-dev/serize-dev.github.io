@@ -1,426 +1,219 @@
-/* Reset and Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f8f9fa;
-}
-
-/* Container */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Header */
-header {
-    background-color: #2c3e50;
-    color: white;
-    padding: 2rem 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.tagline {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    color: #ecf0f1;
-}
-
-/* Navigation */
-nav {
-    margin-top: 1.5rem;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-right: 2rem;
-    font-weight: 500;
-    transition: all 0.3s;
-    position: relative;
-}
-
-nav a:hover {
-    opacity: 0.8;
-}
-
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #3498db;
-    transition: width 0.3s;
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
-/* Hero Section */
-#hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 6rem 0;
-    text-align: center;
-}
-
-#hero h2 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    animation: fadeInUp 1s ease;
-}
-
-.lead {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-    animation: fadeInUp 1s ease 0.2s;
-    animation-fill-mode: both;
-}
-
-.cta-button {
-    display: inline-block;
-    background-color: white;
-    color: #667eea;
-    padding: 14px 35px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s;
-    animation: fadeInUp 1s ease 0.4s;
-    animation-fill-mode: both;
-}
-
-.cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Sections */
-section {
-    padding: 4rem 0;
-}
-
-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #2c3e50;
-    text-align: center;
-}
-
-/* About Section */
-.about-content p {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Stats Container */
-.stats-container {
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
-    margin-top: 3rem;
-}
-
-.stat {
-    text-align: center;
-}
-
-.stat h3 {
-    font-size: 3rem;
-    color: #667eea;
-    margin-bottom: 0.5rem;
-}
-
-.stat p {
-    color: #666;
-    font-size: 1rem;
-}
-
-/* Projects Section */
-#projects {
-    background-color: white;
-}
-
-.project {
-    max-width: 900px;
-    margin: 0 auto 4rem auto;
-    padding: 2.5rem;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    transition: transform 0.3s;
-}
-
-.project:hover {
-    transform: translateY(-5px);
-}
-
-.project h3 {
-    color: #2c3e50;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.project-image {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin: 1rem 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-}
-
-.project-image:hover {
-    transform: scale(1.02);
-}
-
-.project-status {
-    display: inline-block;
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-}
-
-.tech-tags {
-    margin: 1.5rem 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.tech-tags span {
-    background-color: #e3f2fd;
-    color: #1976d2;
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 0.85rem;
-}
-
-.demo-link {
-    color: #667eea;
-    font-weight: bold;
-    margin-top: 1rem;
-}
-
-.demo-link a {
-    color: #667eea;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.demo-link a:hover {
-    color: #764ba2;
-    text-decoration: underline;
-}
-
-/* Tech Stack Section */
-#tech-stack {
-    background-color: #f8f9fa;
-}
-
-.section-intro {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 3rem;
-}
-
-.tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.tech-category {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-
-.tech-category h3 {
-    color: #667eea;
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-}
-
-.tech-category ul {
-    list-style: none;
-}
-
-.tech-category li {
-    padding: 0.5rem 0;
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-.tech-category li:before {
-    content: "▸";
-    position: absolute;
-    left: 0;
-    color: #667eea;
-}
-
-/* Approach Section */
-.approach-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.principle {
-    text-align: center;
-    padding: 2rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    transition: transform 0.3s;
-}
-
-.principle:hover {
-    transform: translateY(-5px);
-}
-
-.principle-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.principle h3 {
-    color: #667eea;
-    margin-bottom: 1rem;
-}
-
-/* Contact Section */
-#contact {
-    background-color: #2c3e50;
-    color: white;
-    text-align: center;
-}
-
-#contact h2 {
-    color: white;
-}
-
-.contact-intro {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.contact-info {
-    margin-top: 2rem;
-}
-
-.contact-button {
-    display: inline-block;
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    padding: 12px 30px;
-    margin: 0.5rem;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-.contact-button:hover {
-    background-color: white;
-    color: #2c3e50;
-    transform: translateY(-2px);
-}
-
-/* Footer */
-footer {
-    background-color: #1a1a1a;
-    color: white;
-    text-align: center;
-    padding: 2rem 0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 1.8rem;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arturo Serize - Clinical Systems Developer | From Bedside to Code</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Arturo E. Serize, MPH, PA-C</h1>
+            <p class="tagline">Clinical Systems Developer | From Bedside to Code | Healthcare Data Analytics | Agile EHR Engineer</p>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#tech-stack">Tech Stack</a>
+                <a href="#approach">Approach</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
     
-    .tagline {
-        font-size: 0.9rem;
-    }
+    <section id="hero">
+        <div class="container">
+            <h2>I Build Healthcare Systems That Actually Work</h2>
+            <p class="lead">From bedside to code: Transforming clinical frustration into technical innovation.</p>
+            <a href="#projects" class="cta-button">View My Solutions</a>
+        </div>
+    </section>
     
-    #hero h2 {
-        font-size: 2rem;
-    }
+    <section id="about">
+        <div class="container">
+            <h2>From Clinical Frustration to Technical Innovation</h2>
+            <div class="about-content">
+                <p>
+                    I transform broken clinical workflows into elegant technical solutions. From bedside to code, I build healthcare systems that actually work.
+                </p>
+                <p>
+                    With over a decade in neonatology and infectious disease medicine, I've seen firsthand how poor system design affects patient outcomes. 
+                    I've managed NIH multicenter trials that outperformed Harvard's data quality, and engineered fixes for medical device trials that eluded sponsors.
+                </p>
+                <p>
+                    My approach is unique: I don't just understand the technical requirements—I've lived the clinical 
+                    workflows. Every system I design comes from firsthand experience with the problems it solves.
+                </p>
+                <div class="stats-container">
+                    <div class="stat">
+                        <h3>10+</h3>
+                        <p>Years Clinical Experience</p>
+                    </div>
+                    <div class="stat">
+                        <h3>3</h3>
+                        <p>Clinical Systems Built</p>
+                    </div>
+                    <div class="stat">
+                        <h3>0</h3>
+                        <p>Critical Deviations in Trials</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
-    nav {
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-    }
+    <section id="projects">
+        <div class="container">
+            <h2>Healthcare Solutions in Production</h2>
+            
+            <div class="project">
+                <h3>NICSTEM - NICU-Centric EHR Interface</h3>
+                <div class="project-status">🚀 Live System</div>
+                <img src="images/nicstem-screenshot.png" alt="NICSTEM Interface" class="project-image">
+                <p>Revolutionary EHR interface designed around how neonatologists actually think. Instead of clicking through endless menus, clinicians interact with an anatomical baby diagram for system-by-system assessment. Real-time protocol compliance tracking ensures ELGAN guidelines are followed without disrupting workflow.</p>
+                <p><strong>Key Innovation:</strong> Reduced documentation time from 45 minutes to 10 minutes per patient by matching interface to clinical thought patterns.</p>
+                <div class="tech-tags">
+                    <span>React</span>
+                    <span>Real-time Data</span>
+                    <span>Clinical Workflow Optimization</span>
+                    <span>FHIR Integration</span>
+                </div>
+                <p class="demo-link"><strong>Live demo available upon request</strong></p>
+            </div>
+
+            <div class="project">
+                <h3>NICSPORT - Neonatal Transport Documentation System</h3>
+                <div class="project-status">🚀 In Production Use</div>
+                <img src="images/nicsport-screenshot.png" alt="NICSPORT Transport System" class="project-image">
+                <p>Offline-capable documentation platform built for the reality of neonatal transport. Features automated vital signs reminders (because remembering q15 minute checks in a speeding ambulance is nearly impossible) and seamless handoff between nursing and practitioner modules. Digital consent capture ensures legal compliance even without connectivity.</p>
+                <p><strong>Key Innovation:</strong> First transport documentation system designed by someone who's actually been in the back of a transport unit at 3 AM.</p>
+                <div class="tech-tags">
+                    <span>Offline-First PWA</span>
+                    <span>JavaScript</span>
+                    <span>LocalStorage</span>
+                    <span>PDF Generation</span>
+                </div>
+                <p class="demo-link"><a href="https://github.com/serize-dev/neonatal-transport-documentation-system" target="_blank"><strong>View on GitHub</strong></a> | <strong>Live demo available</strong></p>
+            </div>
+
+            <div class="project">
+                <h3>NPRA-MBTTA Algorithm - NEC Prediction Tool</h3>
+                <div class="project-status">📊 Clinical Validation Phase</div>
+                <img src="images/nec-tool-screenshot.png" alt="NEC Prediction Tool" class="project-image">
+                <p>Predictive algorithm based on original clinical observation: progressive neutropenia precedes necrotizing enterocolitis by 24-48 hours. Tracks 9 biomarkers temporally to identify NEC before clinical symptoms appear. Dual-mode interface serves both clinical decision-making and resident education.</p>
+                <p><strong>Key Innovation:</strong> Transforms pattern recognition from "art" to algorithm - potentially reducing NEC mortality by enabling earlier intervention.</p>
+                <div class="tech-tags">
+                    <span>Predictive Analytics</span>
+                    <span>Chart.js</span>
+                    <span>Temporal Data Analysis</span>
+                    <span>Clinical AI/ML</span>
+                </div>
+                <p class="demo-link"><strong>Publication forthcoming</strong> | <strong>Demo available</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech-stack">
+        <div class="container">
+            <h2>Technology Stack</h2>
+            <p class="section-intro">Building bridges between clinical needs and technical solutions</p>
+            
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h3>Clinical Systems</h3>
+                    <ul>
+                        <li>Epic & Cerner Integration</li>
+                        <li>REDCap Administration</li>
+                        <li>EDC Platforms (Rave, Medrio)</li>
+                        <li>HL7/FHIR Standards</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category">
+                    <h3>Data & Analytics</h3>
+                    <ul>
+                        <li>SQL & Clinical Databases</li>
+                        <li>R Statistical Analysis</li>
+                        <li>Python (Learning)</li>
+                        <li>Clinical Trial Analytics</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category">
+                    <h3>Development</h3>
+                    <ul>
+                        <li>JavaScript/React</li>
+                        <li>Offline-First Architecture</li>
+                        <li>Responsive Design</li>
+                        <li>API Integration</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category">
+                    <h3>Methodologies</h3>
+                    <ul>
+                        <li>Agile/Scrum</li>
+                        <li>Clinical Workflow Analysis</li>
+                        <li>User-Centered Design</li>
+                        <li>Regulatory Compliance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
     
-    nav a {
-        margin-right: 1rem;
-    }
+    <section id="approach">
+        <div class="container">
+            <h2>My Development Approach</h2>
+            <div class="approach-grid">
+                <div class="principle">
+                    <div class="principle-icon">🏥</div>
+                    <h3>Clinical First</h3>
+                    <p>Every feature starts with understanding the clinical need, not the technical possibility.</p>
+                </div>
+                <div class="principle">
+                    <div class="principle-icon">🚀</div>
+                    <h3>Rapid Iteration</h3>
+                    <p>Build, test with actual clinicians, refine. No solution survives first contact with a busy NICU.</p>
+                </div>
+                <div class="principle">
+                    <div class="principle-icon">💪</div>
+                    <h3>Bulletproof Design</h3>
+                    <p>If it doesn't work at 3 AM with a crying baby and stressed staff, it doesn't work.</p>
+                </div>
+                <div class="principle">
+                    <div class="principle-icon">📊</div>
+                    <h3>Data-Driven</h3>
+                    <p>Measure everything. If we can't prove it improves outcomes, it doesn't ship.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     
-    .stats-container {
-        flex-direction: column;
-        gap: 2rem;
-    }
+    <section id="contact">
+        <div class="container">
+            <h2>Let's Build Something Better</h2>
+            <p class="contact-intro">
+                I'm passionate about solving healthcare's hardest technical challenges. 
+                Whether you need someone who can translate between clinicians and developers, 
+                or build the solution directly, let's talk.
+            </p>
+            <div class="contact-info">
+                <a href="mailto:serize@tuta.com" class="contact-button">Email Me</a>
+                <a href="https://linkedin.com/in/arturo-serize" class="contact-button">LinkedIn</a>
+                <a href="https://github.com/serize-dev" class="contact-button">GitHub</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.8;">
+                Specialties: NICU clinical systems • Antimicrobial stewardship • REDCap/EDC optimization • 
+                Agile healthcare product development • Turning 'that's how we've always done it' into 'I can't believe we worked without this'
+            </p>
+        </div>
+    </section>
     
-    .tech-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .approach-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .contact-button {
-        display: block;
-        margin: 0.5rem auto;
-        max-width: 200px;
-    }
-}
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Arturo Serize. Building the future of healthcare, one system at a time.</p>
+        </div>
+    </footer>
+</body>
+</html>
