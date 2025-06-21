@@ -195,6 +195,20 @@ section h2 {
     margin-bottom: 1rem;
 }
 
+.project-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.project-image:hover {
+    transform: scale(1.02);
+}
+
 .project-status {
     display: inline-block;
     background-color: #e8f5e9;
@@ -224,6 +238,17 @@ section h2 {
     color: #667eea;
     font-weight: bold;
     margin-top: 1rem;
+}
+
+.demo-link a {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.demo-link a:hover {
+    color: #764ba2;
+    text-decoration: underline;
 }
 
 /* Tech Stack Section */
