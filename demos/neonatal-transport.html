@@ -1,0 +1,3250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neonatal Transport Documentation System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.6/dist/signature_pad.umd.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #5692ce;
+            --secondary-color: #3498db;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --light-bg: #ecf0f1;
+            --dark-text: #2c3e50;
+            --light-text: #ffffff;
+            --border-color: #bdc3c7;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark-text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .status-offline {
+            background-color: var(--warning-color);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .module-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .module-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .module-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .module-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: 2% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.3s;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .close-modal {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .close-modal:hover {
+            color: var(--danger-color);
+        }
+        
+        .module-header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 15px 20px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .module-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .module-content {
+            padding: 20px;
+        }
+        
+        .form-section {
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #fafbfc;
+        }
+        
+        .form-section-header {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 10px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background-color: #e67e22;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .vitals-display {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-top: 10px;
+        }
+        
+        .vital-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .vital-item label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .vital-value {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 3px;
+        }
+        
+        .vital-unit {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .vitals-timestamp {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
+        .vitals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        
+        .timer-component {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .timer-display {
+            font-family: monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .timer-controls {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .timer-btn {
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: white;
+        }
+        
+        .timer-btn.start {
+            background-color: var(--success-color);
+        }
+        
+        .timer-btn.pause {
+            background-color: var(--warning-color);
+        }
+        
+        .timer-btn.reset {
+            background-color: var(--danger-color);
+        }
+        
+        .vitals-reminder {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--warning-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 2000;
+            display: none;
+            animation: attention 2s infinite;
+        }
+        
+        @keyframes attention {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .vitals-reminder-header {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .vitals-reminder-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+            gap: 10px;
+        }
+        
+        .vitals-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vitals-table th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        .vitals-table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .vitals-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .vitals-history-toggle {
+            color: var(--primary-color);
+            background: none;
+            border: none;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .vitals-history {
+            display: none;
+            margin-top: 15px;
+        }
+        
+        .quick-select-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .quick-select-btn {
+            background-color: #f1f2f6;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quick-select-btn:hover {
+            background-color: #e8eaf2;
+        }
+        
+        .quick-select-btn.selected {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+        
+        .normal-exam-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #e3f2fd;
+            border-radius: 5px;
+            border: 1px solid #90caf9;
+        }
+        
+        .normal-exam-checkbox {
+            margin-right: 10px;
+            transform: scale(1.5);
+            cursor: pointer;
+        }
+        
+        .normal-exam-label {
+            font-weight: bold;
+            color: #1976d2;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .normal-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 15px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .abnormal-button {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 15px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .diagnosis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .diagnosis-section {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+        
+        .diagnosis-section:hover {
+            background-color: #f5f5f5;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .diagnosis-section label {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        
+        .diagnosis-header {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .diagnosis-section input[type="checkbox"] {
+            margin-right: 0;
+        }
+        
+        .medication-panel {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 6px;
+            display: none;
+            border: 1px solid #eee;
+        }
+        
+        .medication-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .medication-item.selected {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            box-shadow: 0 2px 4px rgba(76, 175, 80, 0.1);
+        }
+        
+        .medication-item strong {
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+        
+        .route-options {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .route-btn {
+            padding: 5px 12px;
+            background-color: #f1f3f5;
+            color: #495057;
+            border: 1px solid #dee2e6;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        
+        .route-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+        
+        .feedback-message {
+            color: #28a745;
+            margin-top: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .treatment-summary {
+            margin-top: 25px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .treatment-summary h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .treatment-item {
+            margin-bottom: 10px;
+            padding: 12px;
+            background-color: white;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #e9ecef;
+            transition: all 0.2s ease;
+        }
+        
+        .treatment-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .treatment-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .treatment-medication {
+            font-weight: 600;
+            color: #212529;
+            font-size: 1rem;
+        }
+        
+        .treatment-details {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .treatment-route {
+            display: inline-block;
+            background-color: #e9ecef;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-left: 8px;
+            color: #495057;
+        }
+        
+        .remove-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        
+        .remove-btn:hover {
+            background-color: #c82333;
+        }
+        
+        .custom-med {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f9ff;
+            border-radius: 6px;
+            border: 1px solid #b6effb;
+        }
+        
+        .custom-med h4 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+        
+        .custom-med input, .custom-med select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        
+        .custom-med button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 500;
+        }
+        
+        .custom-med button:hover {
+            background-color: #2980b9;
+        }
+        
+        .custom-route-input {
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .custom-diagnosis-input {
+            margin-top: 10px;
+            padding: 12px;
+            background-color: #f0f9ff;
+            border-radius: 6px;
+            border: 1px solid #b6effb;
+        }
+        
+        .custom-diagnosis-input input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        
+        .diagnosis-count {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 8px;
+        }
+        
+        .respiratory-support-section {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .respiratory-support-section h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .respiratory-category {
+            margin-bottom: 15px;
+        }
+        
+        .respiratory-category label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .respiratory-category select,
+        .respiratory-category textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        
+        .respiratory-category textarea {
+            resize: vertical;
+        }
+        
+        .report-preview {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.5;
+        }
+        
+        .report-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+        }
+        
+        .report-section {
+            margin-bottom: 15px;
+        }
+        
+        .report-section-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .shared-data {
+            background-color: #edf7ed;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .sync-status {
+            color: var(--success-color);
+            font-size: 0.9rem;
+            margin-left: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes dataSync {
+            0% { background-color: #e8f5e9; }
+            50% { background-color: #c8e6c9; }
+            100% { background-color: #e8f5e9; }
+        }
+        
+        .syncing {
+            animation: dataSync 1s ease-in-out;
+        }
+        
+        #signature-pad {
+            border: 1px solid #ccc;
+            background: #fff;
+        }
+        
+        .diagnostic-category {
+            margin-bottom: 20px;
+        }
+        
+        .diagnostic-category h3 {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .lab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .lab-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            transition: all 0.2s ease;
+        }
+        
+        .lab-item:hover {
+            background-color: #e9ecef;
+        }
+        
+        .lab-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            cursor: pointer;
+        }
+        
+        .lab-item label {
+            cursor: pointer;
+            margin: 0;
+            flex: 1;
+            font-size: 0.95rem;
+        }
+        
+        .lab-item.selected {
+            background-color: #e8f5e9;
+            border-color: #c8e6c9;
+        }
+        
+        .diagnostic-section {
+            margin-bottom: 25px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .module-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media print {
+            .btn-group,
+            .module-header,
+            .close-modal {
+                display: none !important;
+            }
+            
+            .report-preview {
+                border: none;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-title">Neonatal Transport Documentation System</div>
+        <div class="connection-status">
+            <span id="connection-text">Offline Mode</span>
+            <span class="status-indicator status-offline" id="connection-indicator"></span>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Main Navigation Grid -->
+        <div class="module-grid">
+            <div class="module-card" onclick="openModal('nursing-modal')">
+                <div class="module-icon">🏥</div>
+                <div class="module-title">Nursing Documentation</div>
+                <div class="module-description">Record vital signs and patient info</div>
+            </div>
+            
+            <div class="module-card" onclick="openModal('practitioner-modal')">
+                <div class="module-icon">👨‍⚕️</div>
+                <div class="module-title">Practitioner Documentation</div>
+                <div class="module-description">Assessment, plan, and medical interventions</div>
+            </div>
+            
+            <div class="module-card" onclick="openModal('physical-exam-modal')">
+                <div class="module-icon">🩺</div>
+                <div class="module-title">Physical Examination</div>
+                <div class="module-description">System-by-system physical exam documentation</div>
+            </div>
+            
+            <div class="module-card" onclick="openModal('diagnosis-modal')">
+                <div class="module-icon">📋</div>
+                <div class="module-title">Diagnosis & Medications</div>
+                <div class="module-description">Working diagnosis and treatment plans</div>
+            </div>
+            
+            <div class="module-card" onclick="openModal('diagnostics-modal')">
+                <div class="module-icon">🔬</div>
+                <div class="module-title">Diagnostic Tests</div>
+                <div class="module-description">Laboratory and imaging studies</div>
+            </div>
+            
+            <div class="module-card" onclick="openModal('consent-modal')">
+                <div class="module-icon">✍️</div>
+                <div class="module-title">Consents</div>
+                <div class="module-description">Consent forms and signatures</div>
+            </div>
+            
+            <div class="module-card" onclick="openModal('report-modal')">
+                <div class="module-icon">📑</div>
+                <div class="module-title">Transport Report</div>
+                <div class="module-description">Generate final transport documentation</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Popups for Each Module -->
+    <div id="nursing-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="nursing-modal">&times;</span>
+            <div class="module-header">
+                <h2>Nursing Documentation</h2>
+                <div class="sync-status">Last saved: <span id="nursing-last-save">Never</span></div>
+            </div>
+            <div class="module-content">
+                <!-- Patient Information Section -->
+                <div class="form-section">
+                    <div class="form-section-header">Patient Information</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nursing-patient-name">Patient Name</label>
+                            <input type="text" id="nursing-patient-name" class="shared-field" placeholder="Last, First">
+                        </div>
+                        <div class="form-group">
+                            <label for="nursing-dob">Date of Birth</label>
+                            <input type="date" id="nursing-dob" class="shared-field">
+                        </div>
+                        <div class="form-group">
+                            <label for="nursing-mrn">Medical Record Number</label>
+                            <input type="text" id="nursing-mrn" class="shared-field" placeholder="MRN">
+                        </div>
+                        <div class="form-group">
+                            <label for="nursing-fin">FIN</label>
+                            <input type="text" id="nursing-fin" class="shared-field" placeholder="FIN">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nursing-weight">Weight (g)</label>
+                            <input type="number" id="nursing-weight" class="shared-field" placeholder="Weight in grams">
+                        </div>
+                        <div class="form-group">
+                            <label>Gestational Age</label>
+                            <div style="display: flex; gap: 10px;">
+                                <select id="nursing-gestational-weeks" class="shared-field" style="flex: 1;">
+                                    <option value="">Weeks</option>
+                                </select>
+                                <select id="nursing-gestational-days" class="shared-field" style="flex: 1;">
+                                    <option value="">Days</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vital Signs Section -->
+                <div class="form-section">
+                    <div class="form-section-header">Vital Signs</div>
+                    
+                    <!-- Timer for vital signs intervals -->
+                    <div class="timer-component">
+                        <div>Vitals Timer:</div>
+                        <div class="timer-display" id="vitals-timer">00:00:00</div>
+                        <div class="timer-controls">
+                            <button class="timer-btn start" id="start-timer">Start</button>
+                            <button class="timer-btn pause" id="pause-timer">Pause</button>
+                            <button class="timer-btn reset" id="reset-timer">Reset</button>
+                        </div>
+                        <div style="margin-left: 15px;">
+                            <label for="vitals-interval">Reminder interval:</label>
+                            <select id="vitals-interval" style="width: auto; margin-left: 5px;">
+                                <option value="5">5 minutes (demo)</option>
+                                <option value="15" selected>15 minutes</option>
+                                <option value="30">30 minutes</option>
+                                <option value="60">60 minutes</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="vitals-grid">
+                        <div class="form-group">
+                            <label for="nursing-heart-rate">Heart Rate (bpm)</label>
+                            <input type="number" id="nursing-heart-rate" placeholder="BPM">
+                        </div>
+                        <div class="form-group">
+                            <label for="nursing-systolic">Systolic BP (mmHg)</label>
+                            <input type="number" id="nursing-systolic" placeholder="Systolic" onchange="offlineSystem.calculateMAP()">
+                        </div>
+                        <div class="form-group">
+                            <label for="nursing-diastolic">Diastolic BP (mmHg)</label>
+                            <input type="number" id="nursing-diastolic" placeholder="Diastolic" onchange="offlineSystem.calculateMAP()">
+                        </div>
+                        <div class="form-group">
+                            <label for="nursing-map">MAP (mmHg)</label>
+                            <input type="number" id="nursing-map" placeholder="MAP" readonly style="background-color: #f5f5f5;">
+                        </div>
+                        <div class="form-group">
+                            <label for="nursing-temp">Temperature (°C)</label>
+                            <input type="number" id="nursing-temp" step="0.1" placeholder="Celsius">
+                        </div>
+                        <div class="form-group">
+                            <label for="nursing-resp-rate">Respiratory Rate</label>
+                            <input type="number" id="nursing-resp-rate" placeholder="Breaths/min">
+                        </div>
+                        <div class="form-group">
+                            <label for="nursing-spo2">SpO2 (%)</label>
+                            <input type="number" id="nursing-spo2" placeholder="Oxygen saturation" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="nursing-fio2">FiO2 (%)</label>
+                            <input type="number" id="nursing-fio2" placeholder="FiO2" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="nursing-etco2">ETCO2 (if applicable)</label>
+                            <input type="number" id="nursing-etco2" placeholder="mmHg">
+                        </div>
+                    </div>
+                    
+                    <button class="vitals-history-toggle" id="toggle-vitals-history">Show Vitals History</button>
+                    <div class="vitals-history" id="vitals-history">
+                        <table class="vitals-table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>HR</th>
+                                    <th>BP</th>
+                                    <th>MAP</th>
+                                    <th>SpO2</th>
+                                    <th>Temp</th>
+                                    <th>RR</th>
+                                    <th>FiO2</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vitals-history-body">
+                                <!-- Vitals history will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="btn-group" style="margin-top: 15px;">
+                        <button class="btn btn-primary" id="record-vitals">Record Vitals</button>
+                        <button class="btn btn-success" id="share-vitals">Share with Practitioner</button>
+                    </div>
+                </div>
+                
+                <!-- Nursing Assessment Section -->
+                <div class="form-section">
+                    <div class="form-section-header">Nursing Assessment</div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nursing-overall-assessment">Overall Assessment</label>
+                            <textarea id="nursing-overall-assessment" rows="4" placeholder="General appearance, behavior, activity level"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-select-container">
+                        <div style="width: 100%; margin-bottom: 5px; font-weight: bold;">Quick Assessment Templates</div>
+                        <button class="quick-select-btn" data-assessment="respiratory">Respiratory</button>
+                        <button class="quick-select-btn" data-assessment="skin">Skin/Perfusion</button>
+                        <button class="quick-select-btn" data-assessment="feeding">Feeding/GI</button>
+                        <button class="quick-select-btn" data-assessment="neuro">Neuro/Activity</button>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nursing-respiratory-assessment">Respiratory Assessment</label>
+                            <textarea id="nursing-respiratory-assessment" rows="3" placeholder="Work of breathing, retractions, breath sounds, secretions"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nursing-skin-assessment">Skin/Perfusion Assessment</label>
+                            <textarea id="nursing-skin-assessment" rows="3" placeholder="Color, temperature, capillary refill, skin integrity"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nursing-feeding-assessment">Feeding/GI Assessment</label>
+                            <textarea id="nursing-feeding-assessment" rows="3" placeholder="Feeding tolerance, abdomen, bowel sounds, urine output"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nursing-neuro-assessment">Neurological/Activity Assessment</label>
+                            <textarea id="nursing-neuro-assessment" rows="3" placeholder="Tone, activity, responsiveness, cry, consolability"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nursing-intervention-notes">Nursing Interventions/Notes</label>
+                            <textarea id="nursing-intervention-notes" rows="4" placeholder="Interventions provided, response to interventions, additional concerns"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sync-controls">
+                    <button class="btn btn-primary" id="nursing-save-btn">Save Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="practitioner-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="practitioner-modal">&times;</span>
+            <div class="module-header">
+                <h2>Practitioner Documentation</h2>
+                <div class="sync-status">
+                    Last saved: <span id="practitioner-last-save">Never</span>
+                    <span class="sync-indicator" id="practitioner-sync-status"></span>
+                </div>
+            </div>
+            <div class="module-content">
+                <!-- Patient Information (Read-only from Nursing) -->
+                <div class="form-section">
+                    <div class="form-section-header">Patient Information</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Patient Name</label>
+                            <input type="text" id="practitioner-patient-name" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" id="practitioner-dob" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Medical Record Number</label>
+                            <input type="text" id="practitioner-mrn" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>FIN</label>
+                            <input type="text" id="practitioner-fin" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Weight (g)</label>
+                            <input type="number" id="practitioner-weight" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Gestational Age</label>
+                            <div style="display: flex; gap: 10px;">
+                                <select id="practitioner-gestational-weeks" disabled style="flex: 1;">
+                                    <option value="">Weeks</option>
+                                </select>
+                                <select id="practitioner-gestational-days" disabled style="flex: 1;">
+                                    <option value="">Days</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sync-controls">
+                    <button class="btn btn-primary" id="practitioner-save-btn">Save Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="physical-exam-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="physical-exam-modal">&times;</span>
+            <div class="module-header">
+                <h2>Physical Examination</h2>
+            </div>
+            <div class="module-content">
+                <!-- Vital Signs from Nursing -->
+                <div class="form-section">
+                    <div class="form-section-header">Current Vital Signs (from Nursing)</div>
+                    <div id="physical-exam-vitals" class="vitals-display">
+                        <div class="vitals-grid">
+                            <div class="vital-item">
+                                <label>Heart Rate</label>
+                                <div id="exam-hr" class="vital-value">--</div>
+                                <span class="vital-unit">bpm</span>
+                            </div>
+                            <div class="vital-item">
+                                <label>Blood Pressure</label>
+                                <div id="exam-bp" class="vital-value">--/--</div>
+                                <span class="vital-unit">mmHg</span>
+                            </div>
+                            <div class="vital-item">
+                                <label>MAP</label>
+                                <div id="exam-map" class="vital-value">--</div>
+                                <span class="vital-unit">mmHg</span>
+                            </div>
+                            <div class="vital-item">
+                                <label>SpO2</label>
+                                <div id="exam-spo2" class="vital-value">--</div>
+                                <span class="vital-unit">%</span>
+                            </div>
+                            <div class="vital-item">
+                                <label>Temperature</label>
+                                <div id="exam-temp" class="vital-value">--</div>
+                                <span class="vital-unit">°C</span>
+                            </div>
+                            <div class="vital-item">
+                                <label>Respiratory Rate</label>
+                                <div id="exam-rr" class="vital-value">--</div>
+                                <span class="vital-unit">breaths/min</span>
+                            </div>
+                            <div class="vital-item">
+                                <label>FiO2</label>
+                                <div id="exam-fio2" class="vital-value">--</div>
+                                <span class="vital-unit">%</span>
+                            </div>
+                        </div>
+                        <div class="vitals-timestamp" id="exam-vitals-timestamp">Last recorded: Never</div>
+                    </div>
+                </div>
+                
+                <div class="normal-exam-container">
+                    <input class="normal-exam-checkbox" id="normal-exam-checkbox" onclick="handleCheckboxClick()" type="checkbox"/>
+                    <label class="normal-exam-label" for="normal-exam-checkbox">Normal Exam</label>
+                </div>
+                <div class="form-group">
+                    <label>HEENT:</label>
+                    <div class="button-group">
+                        <button class="normal-button" onclick="setNormal('heent-field', 'normocephalic, AFOSF, eyes well in size and position, normal set ears, mucus membranes moist and pink, no cleft lip or palate')" type="button">Normal</button>
+                        <button class="abnormal-button" onclick="setAbnormal('heent-field')" type="button">Abnormal</button>
+                    </div>
+                    <textarea class="form-field" id="heent-field" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Neck and Spine:</label>
+                    <div class="button-group">
+                        <button class="normal-button" onclick="setNormal('neck_and_spine-field', 'no coccygeal pit or dimple')" type="button">Normal</button>
+                        <button class="abnormal-button" onclick="setAbnormal('neck_and_spine-field')" type="button">Abnormal</button>
+                    </div>
+                    <textarea class="form-field" id="neck_and_spine-field" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Respiratory:</label>
+                    <div class="button-group">
+                        <button class="normal-button" onclick="setNormal('respiratory-field', 'clear breath sounds bilaterally')" type="button">Normal</button>
+                        <button class="abnormal-button" onclick="setAbnormal('respiratory-field')" type="button">Abnormal</button>
+                    </div>
+                    <textarea class="form-field" id="respiratory-field" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Cardiovascular:</label>
+                    <div class="button-group">
+                        <button class="normal-button" onclick="setNormal('cardiovascular-field', 'RRR, no murmur auscultated')" type="button">Normal</button>
+                        <button class="abnormal-button" onclick="setAbnormal('cardiovascular-field')" type="button">Abnormal</button>
+                    </div>
+                    <textarea class="form-field" id="cardiovascular-field" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Gastrointestinal:</label>
+                    <div class="button-group">
+                        <button class="normal-button" onclick="setNormal('gastrointestinal-field', 'abdomen soft, non-tender, no discoloration, no distention, normal bowel sounds in all four quadrants')" type="button">Normal</button>
+                        <button class="abnormal-button" onclick="setAbnormal('gastrointestinal-field')" type="button">Abnormal</button>
+                    </div>
+                    <textarea class="form-field" id="gastrointestinal-field" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Neurological:</label>
+                    <div class="button-group">
+                        <button class="normal-button" onclick="setNormal('neurological-field', 'good muscle tone, active and alert, no focal deficits')" type="button">Normal</button>
+                        <button class="abnormal-button" onclick="setAbnormal('neurological-field')" type="button">Abnormal</button>
+                    </div>
+                    <textarea class="form-field" id="neurological-field" rows="2"></textarea>
+                </div>
+                <div class="btn-group" style="margin-top: 15px;">
+                    <button class="btn btn-primary" id="save-exam">Save Examination</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="diagnosis-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="diagnosis-modal">&times;</span>
+            <div class="module-header">
+                <h2>Diagnosis & Medications</h2>
+            </div>
+            <div class="module-content">
+                <div class="form-section">
+                    <div class="form-section-header">Working Diagnoses</div>
+                    <div class="diagnosis-grid" id="diagnosis-container">
+                        <!-- Diagnoses will be added here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="form-section-header">Treatment Summary</div>
+                    <div class="treatment-summary" id="treatment-summary">
+                        <p style="text-align: center; color: #6c757d;">No treatments selected</p>
+                    </div>
+                </div>
+                
+                <div class="btn-group" style="margin-top: 15px;">
+                    <button class="btn btn-primary" id="save-diagnosis">Save Diagnosis & Medications</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="diagnostics-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="diagnostics-modal">&times;</span>
+            <div class="module-header">
+                <h2>Diagnostic Tests</h2>
+            </div>
+            <div class="module-content">
+                <!-- Laboratory Tests Section -->
+                <div class="form-section">
+                    <div class="form-section-header">Laboratory Tests</div>
+                    <div class="diagnostic-category">
+                        <h3>Hematology</h3>
+                        <div class="lab-grid">
+                            <div class="lab-item">
+                                <input type="checkbox" id="lab-cbc">
+                                <label for="lab-cbc">Complete Blood Count (CBC)</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="lab-blood-culture">
+                                <label for="lab-blood-culture">Blood Culture</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="lab-coags">
+                                <label for="lab-coags">Coagulation Studies</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="lab-type-screen">
+                                <label for="lab-type-screen">Type & Screen</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="diagnostic-category">
+                        <h3>Chemistry</h3>
+                        <div class="lab-grid">
+                            <div class="lab-item">
+                                <input type="checkbox" id="lab-bmp">
+                                <label for="lab-bmp">Basic Metabolic Panel</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="lab-cmp">
+                                <label for="lab-cmp">Comprehensive Metabolic Panel</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="lab-bilirubin">
+                                <label for="lab-bilirubin">Bilirubin (Total/Direct)</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="lab-lactate">
+                                <label for="lab-lactate">Lactate</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="diagnostic-category">
+                        <h3>Blood Gas</h3>
+                        <div class="lab-grid">
+                            <div class="lab-item">
+                                <input type="checkbox" id="lab-abg">
+                                <label for="lab-abg">Arterial Blood Gas</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="lab-vbg">
+                                <label for="lab-vbg">Venous Blood Gas</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="lab-cbg">
+                                <label for="lab-cbg">Capillary Blood Gas</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="diagnostic-category">
+                        <h3>Other Laboratory Tests</h3>
+                        <div class="form-group">
+                            <textarea id="other-labs" rows="3" placeholder="Enter other laboratory tests..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Imaging Studies Section -->
+                <div class="form-section">
+                    <div class="form-section-header">Imaging Studies</div>
+                    <div class="diagnostic-category">
+                        <h3>Radiographic Studies</h3>
+                        <div class="lab-grid">
+                            <div class="lab-item">
+                                <input type="checkbox" id="imaging-cxr">
+                                <label for="imaging-cxr">Chest X-Ray</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="imaging-abdomen">
+                                <label for="imaging-abdomen">Abdominal X-Ray</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="imaging-babygram">
+                                <label for="imaging-babygram">Babygram</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="diagnostic-category">
+                        <h3>Ultrasound Studies</h3>
+                        <div class="lab-grid">
+                            <div class="lab-item">
+                                <input type="checkbox" id="imaging-echo">
+                                <label for="imaging-echo">Echocardiogram</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="imaging-hus">
+                                <label for="imaging-hus">Head Ultrasound</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="imaging-renal">
+                                <label for="imaging-renal">Renal Ultrasound</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="imaging-abdominal">
+                                <label for="imaging-abdominal">Abdominal Ultrasound</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="diagnostic-category">
+                        <h3>Advanced Imaging</h3>
+                        <div class="lab-grid">
+                            <div class="lab-item">
+                                <input type="checkbox" id="imaging-ct">
+                                <label for="imaging-ct">CT Scan</label>
+                            </div>
+                            <div class="lab-item">
+                                <input type="checkbox" id="imaging-mri">
+                                <label for="imaging-mri">MRI</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="diagnostic-category">
+                        <h3>Other Imaging Studies</h3>
+                        <div class="form-group">
+                            <textarea id="other-imaging" rows="3" placeholder="Enter other imaging studies..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Results Summary Section -->
+                <div class="form-section">
+                    <div class="form-section-header">Results Summary</div>
+                    <div class="form-group">
+                        <label for="diagnostic-summary">Summary of Significant Findings</label>
+                        <textarea id="diagnostic-summary" rows="4" placeholder="Enter summary of significant laboratory and imaging findings..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="btn-group" style="margin-top: 15px;">
+                    <button class="btn btn-primary" id="save-diagnostics">Save Diagnostic Tests</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="consent-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="consent-modal">&times;</span>
+            <div class="module-header">
+                <h2>Consents</h2>
+            </div>
+            <div class="module-content">
+                <div class="form-section">
+                    <div class="form-section-header">Parent Information</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="motherName">Mother's Name:</label>
+                            <input id="motherName" name="motherName" type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="fatherName">Father's Name:</label>
+                            <input id="fatherName" name="fatherName" type="text"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="motherPhone">Mother's Phone Number:</label>
+                            <input id="motherPhone" name="motherPhone" type="tel"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="fatherPhone">Father's Phone Number:</label>
+                            <input id="fatherPhone" name="fatherPhone" type="tel"/>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="form-section-header">Consent Type</div>
+                    <div class="form-group">
+                        <label for="consentType">Select Consent Type:</label>
+                        <select id="consentType" name="consentType">
+                            <option value="">Select Consent Type</option>
+                            <option value="consent1">Assignment and Release</option>
+                            <option value="consent2">Blood Transfusion Consent</option>
+                            <option value="consent3">Consent for PICC Placement</option>
+                            <option value="consent4">Consent to Access Hospital Camera System</option>
+                            <option value="consent5">Consent to Transfer</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="signature-pad-section" style="margin-top: 20px;">
+                    <label style="font-weight:bold;">Parent/Guardian Signature:</label>
+                    <br/>
+                    <canvas height="120" id="signature-pad" style="border:1px solid #ccc; background:#fff; width:100%; max-width:400px;"></canvas>
+                    <br/>
+                    <button class="btn btn-warning" onclick="clearSignature()" type="button">Clear</button>
+                    <button class="btn btn-success" onclick="saveSignature()" type="button">Save Signature</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="report-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="report-modal">&times;</span>
+            <div class="module-header">
+                <h2>Transport Report</h2>
+            </div>
+            <div class="module-content">
+                <div class="report-preview">
+                    <div class="report-header">
+                        <h2>Neonatal Transport Report</h2>
+                        <p>Kidz Medical Services Transport Team</p>
+                        <p id="report-date">Date: <span id="current-date"></span></p>
+                    </div>
+                    
+                    <div class="report-section">
+                        <div class="report-section-title">Patient Information</div>
+                        <p>Name: <span id="report-patient-name"></span></p>
+                        <p>DOB: <span id="report-dob"></span></p>
+                        <p>MRN: <span id="report-mrn"></span></p>
+                        <p>Weight: <span id="report-weight"></span></p>
+                        <p>Gestational Age: <span id="report-gestational-age"></span></p>
+                    </div>
+                    
+                    <div class="report-section">
+                        <div class="report-section-title">Vital Signs</div>
+                        <div id="report-vitals"></div>
+                    </div>
+                    
+                    <div class="report-section">
+                        <div class="report-section-title">Physical Examination</div>
+                        <div id="report-physical-exam"></div>
+                    </div>
+                    
+                    <div class="report-section">
+                        <div class="report-section-title">Diagnosis & Medications</div>
+                        <div id="report-diagnosis"></div>
+                    </div>
+                    
+                    <div class="report-section">
+                        <div class="report-section-title">Diagnostic Tests</div>
+                        <div id="report-diagnostics"></div>
+                    </div>
+                    
+                    <div class="report-section">
+                        <div class="report-section-title">Assessment & Plan</div>
+                        <div id="report-assessment"></div>
+                    </div>
+                </div>
+                
+                <div class="btn-group" style="margin-top: 15px;">
+                    <button class="btn btn-primary" id="generate-report">Generate Report</button>
+                    <button class="btn btn-success" id="print-report">Print Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Vitals Reminder Notification -->
+    <div class="vitals-reminder" id="vitals-reminder">
+        <div class="vitals-reminder-header">
+            <i class="fas fa-heartbeat"></i> Time to record vitals
+        </div>
+        <div class="vitals-reminder-content">
+            It's been <span id="minutes-since-last-vitals">15</span> minutes since the last vitals were recorded. Please update patient vitals now.
+        </div>
+        <div class="vitals-reminder-actions">
+            <button class="btn btn-primary" id="open-vitals-now">Record Vitals Now</button>
+            <button class="btn btn-warning" id="remind-later">Remind in 5 minutes</button>
+        </div>
+    </div>
+    
+    <script>
+    // Modal management functions (global scope for onclick handlers)
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = 'block';
+            
+            // If opening physical exam module, automatically update vitals
+            if (modalId === 'physical-exam-modal' && offlineSystem) {
+                offlineSystem.updatePhysicalExamVitals();
+            }
+        }
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+        }
+    }
+
+    // Physical exam functions
+    function handleCheckboxClick() {
+        const checkbox = document.getElementById('normal-exam-checkbox');
+        if (checkbox.checked) {
+            setNormal('heent-field', 'normocephalic, AFOSF, eyes well in size and position, normal set ears, mucus membranes moist and pink, no cleft lip or palate');
+            setNormal('neck_and_spine-field', 'no coccygeal pit or dimple');
+            setNormal('respiratory-field', 'clear breath sounds bilaterally');
+            setNormal('cardiovascular-field', 'RRR, no murmur auscultated');
+            setNormal('gastrointestinal-field', 'abdomen soft, non-tender, no discoloration, no distention, normal bowel sounds in all four quadrants');
+            setNormal('neurological-field', 'good muscle tone, active and alert, no focal deficits');
+        }
+    }
+
+    function setNormal(fieldId, normalText) {
+        document.getElementById(fieldId).value = normalText;
+    }
+
+    function setAbnormal(fieldId) {
+        document.getElementById(fieldId).value = '';
+        document.getElementById(fieldId).focus();
+    }
+
+    // Signature functions
+    function clearSignature() {
+        if (offlineSystem.signaturePad) {
+            offlineSystem.signaturePad.clear();
+        }
+    }
+
+    function saveSignature() {
+        if (offlineSystem.signaturePad && !offlineSystem.signaturePad.isEmpty()) {
+            const dataURL = offlineSystem.signaturePad.toDataURL();
+            localStorage.setItem('consentSignature', dataURL);
+            alert('Signature saved successfully!');
+        } else {
+            alert('Please sign before saving.');
+        }
+    }
+
+    // Offline Neonatal Transport Documentation System
+    class OfflineTransportSystem {
+        constructor() {
+            this.timerInterval = null;
+            this.vitalsTimerInterval = null;
+            this.elapsedSeconds = 0;
+            this.lastVitalsTime = Date.now();
+            this.signaturePad = null;
+            this.vitalsHistory = [];
+            this.selectedTreatments = [];
+            
+            this.initializeSystem();
+        }
+
+        initializeSystem() {
+            this.initializeEventListeners();
+            this.initializeSignaturePad();
+            this.initializeTimers();
+            this.initializeGestationalAgeDropdowns();
+            this.loadSavedData();
+            this.setupSharedDataHandlers();
+            this.initializeDiagnosisSystem();
+        }
+
+        initializeGestationalAgeDropdowns() {
+            // Populate nursing weeks dropdown (21-50 weeks)
+            const weeksSelect = document.getElementById('nursing-gestational-weeks');
+            if (weeksSelect) {
+                for (let week = 21; week <= 50; week++) {
+                    const option = document.createElement('option');
+                    option.value = week;
+                    option.textContent = week;
+                    weeksSelect.appendChild(option);
+                }
+            }
+
+            // Populate nursing days dropdown (0-6 days)
+            const daysSelect = document.getElementById('nursing-gestational-days');
+            if (daysSelect) {
+                for (let day = 0; day <= 6; day++) {
+                    const option = document.createElement('option');
+                    option.value = day;
+                    option.textContent = `${day}/7`;
+                    daysSelect.appendChild(option);
+                }
+            }
+            
+            // Populate practitioner weeks dropdown (21-50 weeks)
+            const practWeeksSelect = document.getElementById('practitioner-gestational-weeks');
+            if (practWeeksSelect) {
+                for (let week = 21; week <= 50; week++) {
+                    const option = document.createElement('option');
+                    option.value = week;
+                    option.textContent = week;
+                    practWeeksSelect.appendChild(option);
+                }
+            }
+
+            // Populate practitioner days dropdown (0-6 days)
+            const practDaysSelect = document.getElementById('practitioner-gestational-days');
+            if (practDaysSelect) {
+                for (let day = 0; day <= 6; day++) {
+                    const option = document.createElement('option');
+                    option.value = day;
+                    option.textContent = `${day}/7`;
+                    practDaysSelect.appendChild(option);
+                }
+            }
+        }
+
+        initializeEventListeners() {
+            // Modal controls
+            document.querySelectorAll('.close-modal').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const modalId = e.target.getAttribute('data-modal');
+                    closeModal(modalId);
+                });
+            });
+
+            // Nursing module
+            document.getElementById('record-vitals')?.addEventListener('click', () => this.recordVitals());
+            document.getElementById('share-vitals')?.addEventListener('click', () => this.shareVitalsToPractitioner());
+            document.getElementById('nursing-save-btn')?.addEventListener('click', () => this.saveNursingData());
+
+            // Practitioner module
+            document.getElementById('practitioner-save-btn')?.addEventListener('click', () => this.savePractitionerData());
+
+            // Physical exam module
+            document.getElementById('save-exam')?.addEventListener('click', () => this.savePhysicalExam());
+
+            // Diagnosis module
+            document.getElementById('save-diagnosis')?.addEventListener('click', () => this.saveDiagnosis());
+
+            // Diagnostic tests module
+            document.getElementById('save-diagnostics')?.addEventListener('click', () => this.saveDiagnosticTests());
+
+            // Report module
+            document.getElementById('generate-report')?.addEventListener('click', () => this.generateReport());
+            document.getElementById('print-report')?.addEventListener('click', () => window.print());
+
+            // Timer controls
+            document.getElementById('start-timer')?.addEventListener('click', () => this.startTimer());
+            document.getElementById('pause-timer')?.addEventListener('click', () => this.pauseTimer());
+            document.getElementById('reset-timer')?.addEventListener('click', () => this.resetTimer());
+
+            // Vitals reminder
+            document.getElementById('open-vitals-now')?.addEventListener('click', () => this.openVitalsModal());
+            document.getElementById('remind-later')?.addEventListener('click', () => this.snoozeVitalsReminder());
+
+            // Quick select buttons
+            document.querySelectorAll('.quick-select-btn').forEach(button => {
+                button.addEventListener('click', (e) => this.handleQuickSelect(e));
+            });
+            
+            // Quick assessment buttons for nursing
+            document.querySelectorAll('.quick-select-btn[data-assessment]').forEach(button => {
+                button.addEventListener('click', (e) => this.handleNursingAssessmentTemplate(e));
+            });
+
+            // Toggle vitals history
+            document.getElementById('toggle-vitals-history')?.addEventListener('click', () => this.toggleVitalsHistory());
+        }
+
+        openVitalsModal() {
+            openModal('nursing-modal');
+            this.snoozeVitalsReminder();
+        }
+
+        initializeSignaturePad() {
+            const canvas = document.getElementById('signature-pad');
+            if (canvas) {
+                this.signaturePad = new SignaturePad(canvas, {
+                    backgroundColor: 'rgb(255, 255, 255)',
+                    penColor: 'rgb(0, 0, 0)'
+                });
+                
+                // Resize canvas to fit its container
+                function resizeCanvas() {
+                    const ratio = Math.max(window.devicePixelRatio || 1, 1);
+                    canvas.width = canvas.offsetWidth * ratio;
+                    canvas.height = canvas.offsetHeight * ratio;
+                    canvas.getContext("2d").scale(ratio, ratio);
+                }
+                
+                resizeCanvas();
+                window.addEventListener("resize", resizeCanvas);
+            }
+        }
+
+        initializeTimers() {
+            this.startVitalsReminder();
+        }
+
+        setupSharedDataHandlers() {
+            // When nursing data changes, update practitioner view
+            document.querySelectorAll('.shared-field').forEach(field => {
+                field.addEventListener('change', () => this.handleSharedDataChange());
+            });
+        }
+
+        handleSharedDataChange() {
+            // Update practitioner fields with nursing data - real-time sync
+            document.getElementById('practitioner-patient-name').value = document.getElementById('nursing-patient-name').value;
+            document.getElementById('practitioner-dob').value = document.getElementById('nursing-dob').value;
+            document.getElementById('practitioner-mrn').value = document.getElementById('nursing-mrn').value;
+            document.getElementById('practitioner-fin').value = document.getElementById('nursing-fin').value;
+            document.getElementById('practitioner-weight').value = document.getElementById('nursing-weight').value;
+            
+            // Sync gestational age dropdowns
+            const weeksValue = document.getElementById('nursing-gestational-weeks').value;
+            const daysValue = document.getElementById('nursing-gestational-days').value;
+            
+            const practWeeks = document.getElementById('practitioner-gestational-weeks');
+            const practDays = document.getElementById('practitioner-gestational-days');
+            
+            practWeeks.value = weeksValue;
+            practDays.value = daysValue;
+            
+            // Add visual feedback for sync
+            const practitionerSection = document.querySelector('#practitioner-modal .form-section');
+            if (practitionerSection) {
+                practitionerSection.classList.add('syncing');
+                setTimeout(() => {
+                    practitionerSection.classList.remove('syncing');
+                }, 1000);
+            }
+            
+            // Update sync status message
+            const syncStatus = document.getElementById('practitioner-sync-status');
+            if (syncStatus) {
+                syncStatus.textContent = ' • Data synced from nursing';
+                syncStatus.style.color = 'var(--success-color)';
+                setTimeout(() => {
+                    syncStatus.textContent = '';
+                }, 3000);
+            }
+        }
+
+        // Timer methods
+        startTimer() {
+            if (!this.timerInterval) {
+                this.timerInterval = setInterval(() => {
+                    this.elapsedSeconds++;
+                    this.updateTimerDisplay();
+                }, 1000);
+            }
+        }
+
+        pauseTimer() {
+            if (this.timerInterval) {
+                clearInterval(this.timerInterval);
+                this.timerInterval = null;
+            }
+        }
+
+        resetTimer() {
+            this.pauseTimer();
+            this.elapsedSeconds = 0;
+            this.updateTimerDisplay();
+        }
+
+        updateTimerDisplay() {
+            const hours = Math.floor(this.elapsedSeconds / 3600);
+            const minutes = Math.floor((this.elapsedSeconds % 3600) / 60);
+            const seconds = this.elapsedSeconds % 60;
+            const display = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('vitals-timer').textContent = display;
+        }
+
+        // Vitals reminder functionality
+        startVitalsReminder() {
+            const interval = parseInt(document.getElementById('vitals-interval')?.value || '15') * 60000;
+            
+            if (this.vitalsTimerInterval) {
+                clearInterval(this.vitalsTimerInterval);
+            }
+
+            this.vitalsTimerInterval = setInterval(() => {
+                this.checkVitalsReminder();
+            }, 60000); // Check every minute
+        }
+
+        checkVitalsReminder() {
+            const now = Date.now();
+            const interval = parseInt(document.getElementById('vitals-interval')?.value || '15') * 60000;
+            
+            if (now - this.lastVitalsTime >= interval) {
+                this.showVitalsReminder();
+            }
+        }
+
+        showVitalsReminder() {
+            const reminder = document.getElementById('vitals-reminder');
+            const minutesSince = Math.floor((Date.now() - this.lastVitalsTime) / 60000);
+            
+            if (reminder) {
+                document.getElementById('minutes-since-last-vitals').textContent = minutesSince;
+                reminder.style.display = 'block';
+            }
+        }
+
+        snoozeVitalsReminder() {
+            const reminder = document.getElementById('vitals-reminder');
+            if (reminder) {
+                reminder.style.display = 'none';
+            }
+            // Snooze for 5 minutes
+            setTimeout(() => this.checkVitalsReminder(), 300000);
+        }
+
+        // Vitals recording and history
+        recordVitals() {
+            const vitalsData = {
+                timestamp: new Date().toLocaleString(),
+                hr: document.getElementById('nursing-heart-rate')?.value || '',
+                systolic: document.getElementById('nursing-systolic')?.value || '',
+                diastolic: document.getElementById('nursing-diastolic')?.value || '',
+                map: document.getElementById('nursing-map')?.value || '',
+                bp: `${document.getElementById('nursing-systolic')?.value}/${document.getElementById('nursing-diastolic')?.value}`,
+                temp: document.getElementById('nursing-temp')?.value || '',
+                rr: document.getElementById('nursing-resp-rate')?.value || '',
+                spo2: document.getElementById('nursing-spo2')?.value || '',
+                fio2: document.getElementById('nursing-fio2')?.value || '',
+                etco2: document.getElementById('nursing-etco2')?.value || ''
+            };
+
+            this.vitalsHistory.push(vitalsData);
+            this.updateVitalsHistoryTable();
+            this.lastVitalsTime = Date.now();
+            
+            // Hide reminder if shown
+            const reminder = document.getElementById('vitals-reminder');
+            if (reminder) {
+                reminder.style.display = 'none';
+            }
+
+            // Save to localStorage
+            localStorage.setItem('vitalsHistory', JSON.stringify(this.vitalsHistory));
+            
+            alert('Vitals recorded successfully!');
+        }
+
+        updateVitalsHistoryTable() {
+            const tbody = document.getElementById('vitals-history-body');
+            if (!tbody) return;
+
+            tbody.innerHTML = '';
+            this.vitalsHistory.forEach(vital => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${vital.timestamp}</td>
+                    <td>${vital.hr}</td>
+                    <td>${vital.bp}</td>
+                    <td>${vital.map}</td>
+                    <td>${vital.spo2}</td>
+                    <td>${vital.temp}</td>
+                    <td>${vital.rr}</td>
+                    <td>${vital.fio2}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        toggleVitalsHistory() {
+            const history = document.getElementById('vitals-history');
+            const toggle = document.getElementById('toggle-vitals-history');
+            
+            if (history && toggle) {
+                if (history.style.display === 'none' || !history.style.display) {
+                    history.style.display = 'block';
+                    toggle.textContent = 'Hide Vitals History';
+                } else {
+                    history.style.display = 'none';
+                    toggle.textContent = 'Show Vitals History';
+                }
+            }
+        }
+
+        getCurrentVitals() {
+            if (this.vitalsHistory.length > 0) {
+                return this.vitalsHistory[this.vitalsHistory.length - 1];
+            }
+            return null;
+        }
+
+        calculateMAP() {
+            const systolic = parseInt(document.getElementById('nursing-systolic').value) || 0;
+            const diastolic = parseInt(document.getElementById('nursing-diastolic').value) || 0;
+            
+            if (systolic > 0 && diastolic > 0) {
+                // MAP = Diastolic + (1/3 * (Systolic - Diastolic))
+                const map = Math.round(diastolic + ((systolic - diastolic) / 3));
+                document.getElementById('nursing-map').value = map;
+            } else {
+                document.getElementById('nursing-map').value = '';
+            }
+        }
+
+        updatePhysicalExamVitals() {
+            const currentVitals = this.getCurrentVitals();
+            if (currentVitals) {
+                document.getElementById('exam-hr').textContent = currentVitals.hr || '--';
+                document.getElementById('exam-bp').textContent = currentVitals.bp || '--/--';
+                document.getElementById('exam-map').textContent = currentVitals.map || '--';
+                document.getElementById('exam-spo2').textContent = currentVitals.spo2 || '--';
+                document.getElementById('exam-temp').textContent = currentVitals.temp || '--';
+                document.getElementById('exam-rr').textContent = currentVitals.rr || '--';
+                document.getElementById('exam-fio2').textContent = currentVitals.fio2 || '--';
+                document.getElementById('exam-vitals-timestamp').textContent = `Last recorded: ${currentVitals.timestamp}`;
+            } else {
+                document.getElementById('exam-hr').textContent = '--';
+                document.getElementById('exam-bp').textContent = '--/--';
+                document.getElementById('exam-map').textContent = '--';
+                document.getElementById('exam-spo2').textContent = '--';
+                document.getElementById('exam-temp').textContent = '--';
+                document.getElementById('exam-rr').textContent = '--';
+                document.getElementById('exam-fio2').textContent = '--';
+                document.getElementById('exam-vitals-timestamp').textContent = 'Last recorded: Never';
+            }
+        }
+
+        // Share vitals with practitioner
+        shareVitalsToPractitioner() {
+            const currentVitals = this.getCurrentVitals();
+            if (currentVitals) {
+                // Update physical exam module with vitals
+                document.getElementById('exam-hr').textContent = currentVitals.hr || '--';
+                document.getElementById('exam-bp').textContent = currentVitals.bp || '--/--';
+                document.getElementById('exam-map').textContent = currentVitals.map || '--';
+                document.getElementById('exam-spo2').textContent = currentVitals.spo2 || '--';
+                document.getElementById('exam-temp').textContent = currentVitals.temp || '--';
+                document.getElementById('exam-rr').textContent = currentVitals.rr || '--';
+                document.getElementById('exam-fio2').textContent = currentVitals.fio2 || '--';
+                document.getElementById('exam-vitals-timestamp').textContent = `Last recorded: ${currentVitals.timestamp}`;
+                
+                alert('Vitals shared successfully!');
+            } else {
+                alert('No vitals data to share. Please record vitals first.');
+            }
+        }
+
+        handleNursingAssessmentTemplate(e) {
+            const button = e.target;
+            const assessmentType = button.dataset.assessment;
+            
+            switch(assessmentType) {
+                case 'respiratory':
+                    document.getElementById('nursing-respiratory-assessment').value = 
+                        'Respiratory effort: No increased work of breathing. Breath sounds clear bilaterally. No retractions noted. Minimal secretions, easily managed.';
+                    break;
+                case 'skin':
+                    document.getElementById('nursing-skin-assessment').value = 
+                        'Skin pink, warm, and dry. Capillary refill less than 2 seconds. No rashes or breakdown noted. Good skin turgor.';
+                    break;
+                case 'feeding':
+                    document.getElementById('nursing-feeding-assessment').value = 
+                        'Tolerating feeds well. Abdomen soft, non-distended. Bowel sounds present. No emesis. Urine output appropriate.';
+                    break;
+                case 'neuro':
+                    document.getElementById('nursing-neuro-assessment').value = 
+                        'Alert and active. Normal muscle tone. Moving all extremities. Appropriate cry. Easily consoled. Responsive to stimuli.';
+                    break;
+            }
+            
+            // Visual feedback
+            button.classList.add('selected');
+            setTimeout(() => button.classList.remove('selected'), 500);
+        }
+
+        handleQuickSelect(e) {
+            const button = e.target;
+            const system = button.dataset.system;
+            
+            if (system) {
+                const assessmentField = document.getElementById('assessment-findings');
+                switch(system) {
+                    case 'respiratory':
+                        assessmentField.value = 'Respiratory: Tachypneic with mild subcostal retractions. Breath sounds equal bilaterally. SpO2 stable on current support.';
+                        break;
+                    case 'cardiovascular':
+                        assessmentField.value = 'Cardiovascular: Regular rate and rhythm. No murmurs appreciated. Capillary refill < 2 seconds.';
+                        break;
+                    case 'neurological':
+                        assessmentField.value = 'Neurological: Alert and active. Moving all extremities. Anterior fontanelle soft and flat. Normal primitive reflexes present.';
+                        break;
+                    case 'gi':
+                        assessmentField.value = 'GI/Nutrition: Abdomen soft, non-distended. Normal bowel sounds. On TPN/lipids. Minimal gastric aspirates.';
+                        break;
+                }
+            }
+            
+            // Visual feedback
+            button.classList.add('selected');
+            setTimeout(() => button.classList.remove('selected'), 500);
+        }
+
+        // Save data methods
+        saveNursingData() {
+            const nursingData = {
+                patientInfo: {
+                    name: document.getElementById('nursing-patient-name').value,
+                    dob: document.getElementById('nursing-dob').value,
+                    mrn: document.getElementById('nursing-mrn').value,
+                    fin: document.getElementById('nursing-fin').value,
+                    weight: document.getElementById('nursing-weight').value,
+                    gestationalWeeks: document.getElementById('nursing-gestational-weeks').value,
+                    gestationalDays: document.getElementById('nursing-gestational-days').value
+                },
+                vitalsHistory: this.vitalsHistory,
+                assessment: {
+                    overall: document.getElementById('nursing-overall-assessment').value,
+                    respiratory: document.getElementById('nursing-respiratory-assessment').value,
+                    skin: document.getElementById('nursing-skin-assessment').value,
+                    feeding: document.getElementById('nursing-feeding-assessment').value,
+                    neuro: document.getElementById('nursing-neuro-assessment').value,
+                    interventions: document.getElementById('nursing-intervention-notes').value
+                }
+            };
+            
+            localStorage.setItem('nursingData', JSON.stringify(nursingData));
+            document.getElementById('nursing-last-save').textContent = new Date().toLocaleString();
+            alert('Nursing data saved successfully!');
+        }
+
+        savePractitionerData() {
+            const practitionerData = {
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('practitionerData', JSON.stringify(practitionerData));
+            document.getElementById('practitioner-last-save').textContent = new Date().toLocaleString();
+            alert('Practitioner data saved successfully!');
+        }
+
+        savePhysicalExam() {
+            const examData = {
+                heent: document.getElementById('heent-field').value,
+                neckSpine: document.getElementById('neck_and_spine-field').value,
+                respiratory: document.getElementById('respiratory-field').value,
+                cardiovascular: document.getElementById('cardiovascular-field').value,
+                gastrointestinal: document.getElementById('gastrointestinal-field').value,
+                neurological: document.getElementById('neurological-field').value
+            };
+            
+            localStorage.setItem('physicalExam', JSON.stringify(examData));
+            alert('Physical examination saved successfully!');
+        }
+
+        saveDiagnosis() {
+            // Save diagnosis and medications with all details
+            const selectedDiagnoses = [];
+            const diagnosisCheckboxes = document.querySelectorAll('[id^="diagnosis-"]');
+            
+            diagnosisCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const diagnosisId = checkbox.id.replace('diagnosis-', '');
+                    const diagnosisLabel = checkbox.nextElementSibling.textContent;
+                    selectedDiagnoses.push({
+                        id: diagnosisId,
+                        name: diagnosisLabel
+                    });
+                }
+            });
+            
+            const diagnosisData = {
+                diagnoses: selectedDiagnoses,
+                treatments: this.selectedTreatments,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('diagnosisData', JSON.stringify(diagnosisData));
+            alert('Diagnosis and medications saved successfully!');
+        }
+
+        loadSavedData() {
+            // Load nursing data
+            const nursingData = localStorage.getItem('nursingData');
+            if (nursingData) {
+                const data = JSON.parse(nursingData);
+                document.getElementById('nursing-patient-name').value = data.patientInfo.name || '';
+                document.getElementById('nursing-dob').value = data.patientInfo.dob || '';
+                document.getElementById('nursing-mrn').value = data.patientInfo.mrn || '';
+                document.getElementById('nursing-fin').value = data.patientInfo.fin || '';
+                document.getElementById('nursing-weight').value = data.patientInfo.weight || '';
+                document.getElementById('nursing-gestational-weeks').value = data.patientInfo.gestationalWeeks || '';
+                document.getElementById('nursing-gestational-days').value = data.patientInfo.gestationalDays || '';
+                this.vitalsHistory = data.vitalsHistory || [];
+                this.updateVitalsHistoryTable();
+                
+                // Load nursing assessment data
+                if (data.assessment) {
+                    document.getElementById('nursing-overall-assessment').value = data.assessment.overall || '';
+                    document.getElementById('nursing-respiratory-assessment').value = data.assessment.respiratory || '';
+                    document.getElementById('nursing-skin-assessment').value = data.assessment.skin || '';
+                    document.getElementById('nursing-feeding-assessment').value = data.assessment.feeding || '';
+                    document.getElementById('nursing-neuro-assessment').value = data.assessment.neuro || '';
+                    document.getElementById('nursing-intervention-notes').value = data.assessment.interventions || '';
+                }
+                
+                // After loading nursing data, update practitioner fields
+                this.handleSharedDataChange();
+            }
+            
+            // Load practitioner data
+            const practitionerData = localStorage.getItem('practitionerData');
+            if (practitionerData) {
+                const data = JSON.parse(practitionerData);
+                // Currently no specific data to load for practitioner
+            }
+            
+            // Load physical exam data
+            const examData = localStorage.getItem('physicalExam');
+            if (examData) {
+                const data = JSON.parse(examData);
+                document.getElementById('heent-field').value = data.heent || '';
+                document.getElementById('neck_and_spine-field').value = data.neckSpine || '';
+                document.getElementById('respiratory-field').value = data.respiratory || '';
+                document.getElementById('cardiovascular-field').value = data.cardiovascular || '';
+                document.getElementById('gastrointestinal-field').value = data.gastrointestinal || '';
+                document.getElementById('neurological-field').value = data.neurological || '';
+            }
+            
+            // Load diagnosis data
+            const diagnosisData = localStorage.getItem('diagnosisData');
+            if (diagnosisData) {
+                const data = JSON.parse(diagnosisData);
+                
+                // Restore selected diagnoses
+                data.diagnoses.forEach(diagnosis => {
+                    const checkbox = document.getElementById(`diagnosis-${diagnosis.id}`);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                        this.toggleDiagnosis(diagnosis.id);
+                    }
+                });
+                
+                // Restore treatments
+                this.selectedTreatments = data.treatments || [];
+                this.updateTreatmentSummary();
+                
+                // Restore medication selections and routes
+                data.treatments.forEach(treatment => {
+                    const medCheckboxes = document.querySelectorAll('[id^="med-"]');
+                    medCheckboxes.forEach(checkbox => {
+                        const label = checkbox.nextElementSibling;
+                        if (label && label.querySelector('strong') && 
+                            label.querySelector('strong').textContent === treatment.medication) {
+                            checkbox.checked = true;
+                            const medId = checkbox.id.split('-');
+                            const diagnosisIndex = medId[1];
+                            const medIndex = medId[2];
+                            const routeOptions = document.getElementById(`route-${diagnosisIndex}-${medIndex}`);
+                            if (routeOptions) {
+                                routeOptions.style.display = 'flex';
+                                // Set selected route style
+                                const routeButtons = routeOptions.querySelectorAll('.route-btn');
+                                routeButtons.forEach(btn => {
+                                    if (btn.textContent === treatment.route) {
+                                        btn.style.backgroundColor = 'var(--secondary-color)';
+                                        btn.style.color = 'white';
+                                    }
+                                });
+                            }
+                            const medItem = document.getElementById(`med-item-${diagnosisIndex}-${medIndex}`);
+                            if (medItem) medItem.classList.add('selected');
+                        }
+                    });
+                    this.updateDiagnosisCount(treatment.diagnosisIndex);
+                });
+            }
+            
+            // Load diagnostic tests data
+            const diagnosticData = localStorage.getItem('diagnosticData');
+            if (diagnosticData) {
+                const data = JSON.parse(diagnosticData);
+                
+                // Load laboratory tests
+                if (data.labs) {
+                    // Hematology
+                    document.getElementById('lab-cbc').checked = data.labs.hematology?.cbc || false;
+                    document.getElementById('lab-blood-culture').checked = data.labs.hematology?.bloodCulture || false;
+                    document.getElementById('lab-coags').checked = data.labs.hematology?.coags || false;
+                    document.getElementById('lab-type-screen').checked = data.labs.hematology?.typeScreen || false;
+                    
+                    // Chemistry
+                    document.getElementById('lab-bmp').checked = data.labs.chemistry?.bmp || false;
+                    document.getElementById('lab-cmp').checked = data.labs.chemistry?.cmp || false;
+                    document.getElementById('lab-bilirubin').checked = data.labs.chemistry?.bilirubin || false;
+                    document.getElementById('lab-lactate').checked = data.labs.chemistry?.lactate || false;
+                    
+                    // Blood Gas
+                    document.getElementById('lab-abg').checked = data.labs.bloodGas?.abg || false;
+                    document.getElementById('lab-vbg').checked = data.labs.bloodGas?.vbg || false;
+                    document.getElementById('lab-cbg').checked = data.labs.bloodGas?.cbg || false;
+                    
+                    document.getElementById('other-labs').value = data.labs.other || '';
+                }
+                
+                // Load imaging studies
+                if (data.imaging) {
+                    // Radiographic
+                    document.getElementById('imaging-cxr').checked = data.imaging.radiographic?.cxr || false;
+                    document.getElementById('imaging-abdomen').checked = data.imaging.radiographic?.abdomen || false;
+                    document.getElementById('imaging-babygram').checked = data.imaging.radiographic?.babygram || false;
+                    
+                    // Ultrasound
+                    document.getElementById('imaging-echo').checked = data.imaging.ultrasound?.echo || false;
+                    document.getElementById('imaging-hus').checked = data.imaging.ultrasound?.headUS || false;
+                    document.getElementById('imaging-renal').checked = data.imaging.ultrasound?.renal || false;
+                    document.getElementById('imaging-abdominal').checked = data.imaging.ultrasound?.abdominal || false;
+                    
+                    // Advanced
+                    document.getElementById('imaging-ct').checked = data.imaging.advanced?.ct || false;
+                    document.getElementById('imaging-mri').checked = data.imaging.advanced?.mri || false;
+                    
+                    document.getElementById('other-imaging').value = data.imaging.other || '';
+                }
+                
+                document.getElementById('diagnostic-summary').value = data.summary || '';
+            }
+        }
+
+        initializeDiagnosisSystem() {
+            // Initialize diagnosis and medication system with full functionality
+            const diagnoses = [
+                { 
+                    name: 'Prematurity', 
+                    medications: [
+                        { name: 'Caffeine Citrate', dose: '20 mg/kg loading, 5 mg/kg daily', routes: ['IV', 'PO'] },
+                        { name: 'Vitamin K', dose: '0.5-1 mg IM', routes: ['IM'] }
+                    ]
+                },
+                { 
+                    name: 'Respiratory Distress Syndrome',
+                    medications: [
+                        { name: 'Surfactant', dose: 'As per specific product guidelines', routes: ['ET'] },
+                        { name: 'Dexamethasone', dose: '0.15-0.6 mg/kg/day', routes: ['IV', 'PO'] }
+                    ],
+                    hasRespiratorySupport: true
+                },
+                { 
+                    name: 'Patent Ductus Arteriosus',
+                    medications: [
+                        { name: 'Indomethacin', dose: '0.2 mg/kg x 3 doses', routes: ['IV'] },
+                        { name: 'Ibuprofen', dose: '10 mg/kg, then 5 mg/kg x 2', routes: ['IV', 'PO'] },
+                        { name: 'Acetaminophen', dose: '15 mg/kg q6h', routes: ['IV', 'PO', 'PR'] }
+                    ]
+                },
+                { 
+                    name: 'Sepsis',
+                    medications: [
+                        { name: 'Ampicillin', dose: '50-100 mg/kg/dose q8-12h', routes: ['IV', 'IM'] },
+                        { name: 'Gentamicin', dose: '4-5 mg/kg q24-48h', routes: ['IV', 'IM'] },
+                        { name: 'Cefotaxime', dose: '50 mg/kg/dose q8-12h', routes: ['IV', 'IM'] },
+                        { name: 'Vancomycin', dose: '10-15 mg/kg/dose q8-12h', routes: ['IV'] }
+                    ]
+                },
+                { 
+                    name: 'Apnea of Prematurity',
+                    medications: [
+                        { name: 'Caffeine Citrate', dose: '20 mg/kg loading, 5 mg/kg daily', routes: ['IV', 'PO'] },
+                        { name: 'Theophylline', dose: '4-6 mg/kg loading, 1-3 mg/kg maintenance', routes: ['IV', 'PO'] }
+                    ]
+                },
+                { 
+                    name: 'Hypoglycemia',
+                    medications: [
+                        { name: 'D10W Infusion', dose: '60-80 ml/kg/day', routes: ['IV'] },
+                        { name: 'D5W/D10W Bolus', dose: '2-4 ml/kg', routes: ['IV'] },
+                        { name: 'Diazoxide', dose: '5-15 mg/kg/day', routes: ['PO'] },
+                        { name: 'Hydrocortisone', dose: '5-10 mg/kg/day', routes: ['IV', 'PO'] }
+                    ]
+                },
+                {
+                    name: 'Neonatal Abstinence Syndrome',
+                    medications: [
+                        { name: 'Morphine', dose: '0.03-0.1 mg/kg q3-4h', routes: ['PO', 'IV'] },
+                        { name: 'Methadone', dose: '0.05-0.1 mg/kg q6-12h', routes: ['PO'] },
+                        { name: 'Clonidine', dose: '0.5-1 mcg/kg q4-6h', routes: ['PO'] }
+                    ]
+                }
+            ];
+            
+            const container = document.getElementById('diagnosis-container');
+            if (container) {
+                container.innerHTML = ''; // Clear existing content
+                
+                diagnoses.forEach((diagnosis, index) => {
+                    const diagnosisSection = document.createElement('div');
+                    diagnosisSection.className = 'diagnosis-section';
+                    diagnosisSection.innerHTML = `
+                        <div class="diagnosis-header">
+                            <input type="checkbox" id="diagnosis-${index}" onchange="offlineSystem.toggleDiagnosis(${index})">
+                            <label for="diagnosis-${index}">${diagnosis.name}</label>
+                            <span class="diagnosis-count" id="count-${index}" style="display: none;">0</span>
+                        </div>
+                        <div class="medication-panel" id="med-panel-${index}">
+                            ${diagnosis.medications.map((med, medIndex) => `
+                                <div class="medication-item" id="med-item-${index}-${medIndex}">
+                                    <input type="checkbox" id="med-${index}-${medIndex}" 
+                                           onchange="offlineSystem.toggleMedication(${index}, ${medIndex}, '${med.name}', '${med.dose}')">
+                                    <label for="med-${index}-${medIndex}">
+                                        <strong>${med.name}</strong>
+                                        <br>
+                                        <span style="font-size: 0.9em; color: #666;">Standard dose: ${med.dose}</span>
+                                    </label>
+                                    <div class="route-options" id="route-${index}-${medIndex}" style="display: none;">
+                                        ${med.routes.map(route => `
+                                            <button class="route-btn" onclick="offlineSystem.selectRoute(${index}, ${medIndex}, '${med.name}', '${route}')">${route}</button>
+                                        `).join('')}
+                                    </div>
+                                    <div class="feedback-message" id="feedback-${index}-${medIndex}" style="display: none;"></div>
+                                </div>
+                            `).join('')}
+                            
+                            ${diagnosis.hasRespiratorySupport ? `
+                                <div class="respiratory-support-section">
+                                    <h3>Respiratory Support</h3>
+                                    <div class="respiratory-category">
+                                        <label for="respiratory-modality-${index}">Respiratory Modality:</label>
+                                        <select id="respiratory-modality-${index}" onchange="offlineSystem.updateRespiratorySupportSettings(${index}, this.value)">
+                                            <option value="">Select modality</option>
+                                            <option value="room_air">Room Air</option>
+                                            <option value="nasal_cannula">Nasal Cannula</option>
+                                            <option value="high_flow">High Flow Nasal Cannula</option>
+                                            <option value="cpap">CPAP</option>
+                                            <option value="nippv">NIPPV</option>
+                                            <option value="conventional">Conventional Ventilation</option>
+                                            <option value="hfov">High Frequency Oscillatory Ventilation</option>
+                                            <option value="hfjv">High Frequency Jet Ventilation</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div id="respiratory-settings-${index}" style="display: none;">
+                                        <div class="respiratory-category">
+                                            <label for="respiratory-fio2-${index}">FiO2 (%):</label>
+                                            <select id="respiratory-fio2-${index}">
+                                                <option value="">Select FiO2</option>
+                                                <option value="21">21%</option>
+                                                <option value="25">25%</option>
+                                                <option value="30">30%</option>
+                                                <option value="35">35%</option>
+                                                <option value="40">40%</option>
+                                                <option value="50">50%</option>
+                                                <option value="60">60%</option>
+                                                <option value="70">70%</option>
+                                                <option value="80">80%</option>
+                                                <option value="90">90%</option>
+                                                <option value="100">100%</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div id="ventilator-settings-${index}" style="display: none;">
+                                            <div class="respiratory-category">
+                                                <label for="respiratory-rate-${index}">Rate (breaths/min):</label>
+                                                <select id="respiratory-rate-${index}">
+                                                    <option value="">Select rate</option>
+                                                    ${Array.from({length: 61}, (_, i) => i + 10).map(rate => 
+                                                        `<option value="${rate}">${rate}</option>`
+                                                    ).join('')}
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="respiratory-category">
+                                                <label for="respiratory-pip-${index}">PIP (cmH2O):</label>
+                                                <select id="respiratory-pip-${index}">
+                                                    <option value="">Select PIP</option>
+                                                    ${Array.from({length: 31}, (_, i) => i + 10).map(pip => 
+                                                        `<option value="${pip}">${pip}</option>`
+                                                    ).join('')}
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="respiratory-category">
+                                                <label for="respiratory-peep-${index}">PEEP (cmH2O):</label>
+                                                <select id="respiratory-peep-${index}">
+                                                    <option value="">Select PEEP</option>
+                                                    ${Array.from({length: 13}, (_, i) => i + 2).map(peep => 
+                                                        `<option value="${peep}">${peep}</option>`
+                                                    ).join('')}
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="respiratory-category">
+                                                <label for="respiratory-itime-${index}">I-Time (sec):</label>
+                                                <select id="respiratory-itime-${index}">
+                                                    <option value="">Select I-Time</option>
+                                                    <option value="0.3">0.3</option>
+                                                    <option value="0.35">0.35</option>
+                                                    <option value="0.4">0.4</option>
+                                                    <option value="0.45">0.45</option>
+                                                    <option value="0.5">0.5</option>
+                                                    <option value="0.55">0.55</option>
+                                                    <option value="0.6">0.6</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="cpap-settings-${index}" style="display: none;">
+                                            <div class="respiratory-category">
+                                                <label for="respiratory-cpap-${index}">CPAP Level (cmH2O):</label>
+                                                <select id="respiratory-cpap-${index}">
+                                                    <option value="">Select CPAP</option>
+                                                    ${Array.from({length: 11}, (_, i) => i + 4).map(cpap => 
+                                                        `<option value="${cpap}">${cpap}</option>`
+                                                    ).join('')}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="hfnc-settings-${index}" style="display: none;">
+                                            <div class="respiratory-category">
+                                                <label for="respiratory-flow-${index}">Flow Rate (L/min):</label>
+                                                <select id="respiratory-flow-${index}">
+                                                    <option value="">Select flow rate</option>
+                                                    ${Array.from({length: 15}, (_, i) => i + 1).map(flow => 
+                                                        `<option value="${flow}">${flow}</option>`
+                                                    ).join('')}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="respiratory-category">
+                                            <label for="respiratory-comments-${index}">Additional Comments:</label>
+                                            <textarea id="respiratory-comments-${index}" placeholder="Enter any additional respiratory support notes"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            ` : ''}
+                            
+                            <div class="custom-med">
+                                <h4>Add Custom Medication</h4>
+                                <input type="text" id="custom-med-name-${index}" placeholder="Medication name">
+                                <input type="text" id="custom-med-dose-${index}" placeholder="Dose">
+                                <select id="custom-med-route-${index}">
+                                    <option value="IV">IV</option>
+                                    <option value="PO">PO</option>
+                                    <option value="IM">IM</option>
+                                    <option value="SC">SC</option>
+                                    <option value="PR">PR</option>
+                                    <option value="ET">ET</option>
+                                    <option value="IN">IN</option>
+                                </select>
+                                <button onclick="offlineSystem.addCustomMedication(${index})">Add Medication</button>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(diagnosisSection);
+                });
+                
+                // Add custom diagnosis section
+                const customDiagnosisSection = document.createElement('div');
+                customDiagnosisSection.className = 'diagnosis-section';
+                customDiagnosisSection.innerHTML = `
+                    <div class="custom-diagnosis-input">
+                        <h4>Add Custom Diagnosis</h4>
+                        <input type="text" id="custom-diagnosis-name" placeholder="Diagnosis name">
+                        <button class="btn btn-primary" onclick="offlineSystem.addCustomDiagnosis()">Add Diagnosis</button>
+                    </div>
+                `;
+                container.appendChild(customDiagnosisSection);
+            }
+        }
+
+        toggleDiagnosis(diagnosisIndex) {
+            const panel = document.getElementById(`med-panel-${diagnosisIndex}`);
+            const checkbox = document.getElementById(`diagnosis-${diagnosisIndex}`);
+            const countSpan = document.getElementById(`count-${diagnosisIndex}`);
+            
+            if (checkbox.checked) {
+                panel.style.display = 'block';
+            } else {
+                panel.style.display = 'none';
+                // Clear all medications for this diagnosis
+                const medCheckboxes = panel.querySelectorAll('input[type="checkbox"]');
+                medCheckboxes.forEach(cb => {
+                    cb.checked = false;
+                    const medIndex = cb.id.split('-')[2];
+                    const routeOptions = document.getElementById(`route-${diagnosisIndex}-${medIndex}`);
+                    if (routeOptions) routeOptions.style.display = 'none';
+                });
+                countSpan.style.display = 'none';
+                this.updateTreatmentSummary();
+            }
+        }
+
+        toggleMedication(diagnosisIndex, medIndex, medName, dose) {
+            const checkbox = document.getElementById(`med-${diagnosisIndex}-${medIndex}`);
+            const routeOptions = document.getElementById(`route-${diagnosisIndex}-${medIndex}`);
+            const medItem = document.getElementById(`med-item-${diagnosisIndex}-${medIndex}`);
+            
+            if (checkbox.checked) {
+                routeOptions.style.display = 'flex';
+                medItem.classList.add('selected');
+            } else {
+                routeOptions.style.display = 'none';
+                medItem.classList.remove('selected');
+                // Remove from selected treatments
+                this.selectedTreatments = this.selectedTreatments.filter(t => 
+                    t.medication !== medName || t.diagnosisIndex !== diagnosisIndex
+                );
+                this.updateTreatmentSummary();
+                this.updateDiagnosisCount(diagnosisIndex);
+            }
+        }
+
+        selectRoute(diagnosisIndex, medIndex, medName, route) {
+            const feedbackDiv = document.getElementById(`feedback-${diagnosisIndex}-${medIndex}`);
+            const doseInfo = document.querySelector(`#med-${diagnosisIndex}-${medIndex} + label span`);
+            const dose = doseInfo ? doseInfo.textContent.replace('Standard dose: ', '') : '';
+            
+            // Add to selected treatments
+            const existingIndex = this.selectedTreatments.findIndex(t => 
+                t.medication === medName && t.diagnosisIndex === diagnosisIndex
+            );
+            
+            if (existingIndex > -1) {
+                this.selectedTreatments[existingIndex].route = route;
+            } else {
+                this.selectedTreatments.push({
+                    medication: medName,
+                    dose: dose,
+                    route: route,
+                    diagnosisIndex: diagnosisIndex
+                });
+            }
+            
+            feedbackDiv.textContent = `${medName} - ${route} route selected`;
+            feedbackDiv.style.display = 'block';
+            
+            // Update route button styles
+            const routeButtons = document.querySelectorAll(`#route-${diagnosisIndex}-${medIndex} .route-btn`);
+            routeButtons.forEach(btn => {
+                btn.style.backgroundColor = btn.textContent === route ? 'var(--secondary-color)' : '#f1f3f5';
+                btn.style.color = btn.textContent === route ? 'white' : '#495057';
+            });
+            
+            this.updateTreatmentSummary();
+            this.updateDiagnosisCount(diagnosisIndex);
+        }
+
+        addCustomMedication(diagnosisIndex) {
+            const nameInput = document.getElementById(`custom-med-name-${diagnosisIndex}`);
+            const doseInput = document.getElementById(`custom-med-dose-${diagnosisIndex}`);
+            const routeSelect = document.getElementById(`custom-med-route-${diagnosisIndex}`);
+            
+            if (nameInput.value && doseInput.value) {
+                this.selectedTreatments.push({
+                    medication: nameInput.value,
+                    dose: doseInput.value,
+                    route: routeSelect.value,
+                    diagnosisIndex: diagnosisIndex,
+                    custom: true
+                });
+                
+                this.updateTreatmentSummary();
+                this.updateDiagnosisCount(diagnosisIndex);
+                
+                // Clear inputs
+                nameInput.value = '';
+                doseInput.value = '';
+                routeSelect.selectedIndex = 0;
+            } else {
+                alert('Please enter both medication name and dose');
+            }
+        }
+
+        addCustomDiagnosis() {
+            const nameInput = document.getElementById('custom-diagnosis-name');
+            
+            if (nameInput.value) {
+                const container = document.getElementById('diagnosis-container');
+                const customIndex = 'custom-' + Date.now();
+                
+                const diagnosisSection = document.createElement('div');
+                diagnosisSection.className = 'diagnosis-section';
+                diagnosisSection.innerHTML = `
+                    <div class="diagnosis-header">
+                        <input type="checkbox" id="diagnosis-${customIndex}" onchange="offlineSystem.toggleDiagnosis('${customIndex}')">
+                        <label for="diagnosis-${customIndex}">${nameInput.value}</label>
+                        <span class="diagnosis-count" id="count-${customIndex}" style="display: none;">0</span>
+                    </div>
+                    <div class="medication-panel" id="med-panel-${customIndex}">
+                        <div class="custom-med">
+                            <h4>Add Medication</h4>
+                            <input type="text" id="custom-med-name-${customIndex}" placeholder="Medication name">
+                            <input type="text" id="custom-med-dose-${customIndex}" placeholder="Dose">
+                            <select id="custom-med-route-${customIndex}">
+                                <option value="IV">IV</option>
+                                <option value="PO">PO</option>
+                                <option value="IM">IM</option>
+                                <option value="SC">SC</option>
+                                <option value="PR">PR</option>
+                                <option value="ET">ET</option>
+                                <option value="IN">IN</option>
+                            </select>
+                            <button onclick="offlineSystem.addCustomMedication('${customIndex}')">Add Medication</button>
+                        </div>
+                    </div>
+                `;
+                
+                container.insertBefore(diagnosisSection, container.lastElementChild);
+                nameInput.value = '';
+            } else {
+                alert('Please enter a diagnosis name');
+            }
+        }
+
+        updateDiagnosisCount(diagnosisIndex) {
+            const countSpan = document.getElementById(`count-${diagnosisIndex}`);
+            const medCount = this.selectedTreatments.filter(t => t.diagnosisIndex === diagnosisIndex).length;
+            
+            if (medCount > 0) {
+                countSpan.textContent = medCount;
+                countSpan.style.display = 'inline-block';
+            } else {
+                countSpan.style.display = 'none';
+            }
+        }
+
+        updateRespiratorySupportSettings(diagnosisIndex, modality) {
+            const settingsContainer = document.getElementById(`respiratory-settings-${diagnosisIndex}`);
+            const ventilatorSettings = document.getElementById(`ventilator-settings-${diagnosisIndex}`);
+            const cpapSettings = document.getElementById(`cpap-settings-${diagnosisIndex}`);
+            const hfncSettings = document.getElementById(`hfnc-settings-${diagnosisIndex}`);
+            
+            // Show the main settings container
+            if (modality) {
+                settingsContainer.style.display = 'block';
+            } else {
+                settingsContainer.style.display = 'none';
+                return;
+            }
+            
+            // Hide all specific settings first
+            if (ventilatorSettings) ventilatorSettings.style.display = 'none';
+            if (cpapSettings) cpapSettings.style.display = 'none';
+            if (hfncSettings) hfncSettings.style.display = 'none';
+            
+            // Show appropriate settings based on modality
+            switch(modality) {
+                case 'conventional':
+                case 'hfov':
+                case 'hfjv':
+                    if (ventilatorSettings) ventilatorSettings.style.display = 'block';
+                    break;
+                case 'cpap':
+                case 'nippv':
+                    if (cpapSettings) cpapSettings.style.display = 'block';
+                    break;
+                case 'high_flow':
+                    if (hfncSettings) hfncSettings.style.display = 'block';
+                    break;
+            }
+            
+            // Save respiratory support data
+            this.saveRespiratorySupport(diagnosisIndex);
+        }
+
+        saveRespiratorySupport(diagnosisIndex) {
+            const modality = document.getElementById(`respiratory-modality-${diagnosisIndex}`)?.value;
+            const fio2 = document.getElementById(`respiratory-fio2-${diagnosisIndex}`)?.value;
+            const comments = document.getElementById(`respiratory-comments-${diagnosisIndex}`)?.value;
+            
+            let settings = {
+                modality: modality,
+                fio2: fio2,
+                comments: comments
+            };
+            
+            // Add specific settings based on modality
+            if (modality === 'conventional' || modality === 'hfov' || modality === 'hfjv') {
+                settings.rate = document.getElementById(`respiratory-rate-${diagnosisIndex}`)?.value;
+                settings.pip = document.getElementById(`respiratory-pip-${diagnosisIndex}`)?.value;
+                settings.peep = document.getElementById(`respiratory-peep-${diagnosisIndex}`)?.value;
+                settings.itime = document.getElementById(`respiratory-itime-${diagnosisIndex}`)?.value;
+            } else if (modality === 'cpap' || modality === 'nippv') {
+                settings.cpap = document.getElementById(`respiratory-cpap-${diagnosisIndex}`)?.value;
+            } else if (modality === 'high_flow') {
+                settings.flow = document.getElementById(`respiratory-flow-${diagnosisIndex}`)?.value;
+            }
+            
+            // Save to selectedTreatments
+            const existingIndex = this.selectedTreatments.findIndex(t => 
+                t.type === 'respiratory' && t.diagnosisIndex === diagnosisIndex
+            );
+            
+            if (existingIndex > -1) {
+                this.selectedTreatments[existingIndex].settings = settings;
+            } else {
+                this.selectedTreatments.push({
+                    type: 'respiratory',
+                    diagnosisIndex: diagnosisIndex,
+                    settings: settings
+                });
+            }
+            
+            this.updateTreatmentSummary();
+        }
+
+        updateTreatmentSummary() {
+            const summary = document.getElementById('treatment-summary');
+            if (this.selectedTreatments.length === 0) {
+                summary.innerHTML = '<p style="text-align: center; color: #6c757d;">No treatments selected</p>';
+            } else {
+                summary.innerHTML = `
+                    <h3>Selected Treatments</h3>
+                    ${this.selectedTreatments.map((treatment, index) => {
+                        if (treatment.type === 'respiratory' && treatment.settings) {
+                            const settings = treatment.settings;
+                            let settingsText = `${settings.modality}, FiO2: ${settings.fio2}%`;
+                            
+                            // Add specific settings based on modality
+                            if (settings.modality === 'conventional' || settings.modality === 'hfov' || settings.modality === 'hfjv') {
+                                settingsText += `, Rate: ${settings.rate}, PIP: ${settings.pip}, PEEP: ${settings.peep}, I-Time: ${settings.itime}`;
+                            } else if (settings.modality === 'cpap' || settings.modality === 'nippv') {
+                                settingsText += `, CPAP: ${settings.cpap}`;
+                            } else if (settings.modality === 'high_flow') {
+                                settingsText += `, Flow: ${settings.flow} L/min`;
+                            }
+                            
+                            if (settings.comments) {
+                                settingsText += ` - ${settings.comments}`;
+                            }
+                            
+                            return `
+                                <div class="treatment-item">
+                                    <div class="treatment-info">
+                                        <span class="treatment-medication">Respiratory Support</span>
+                                        <span class="treatment-details">${settingsText}</span>
+                                    </div>
+                                    <button class="remove-btn" onclick="offlineSystem.removeTreatment(${index})">Remove</button>
+                                </div>
+                            `;
+                        } else {
+                            // Regular medication treatment
+                            return `
+                                <div class="treatment-item">
+                                    <div class="treatment-info">
+                                        <span class="treatment-medication">${treatment.medication}</span>
+                                        <span class="treatment-details">${treatment.dose}
+                                            <span class="treatment-route">${treatment.route}</span>
+                                        </span>
+                                    </div>
+                                    <button class="remove-btn" onclick="offlineSystem.removeTreatment(${index})">Remove</button>
+                                </div>
+                            `;
+                        }
+                    }).join('')}
+                `;
+            }
+            
+            // Save treatments to localStorage
+            localStorage.setItem('selectedTreatments', JSON.stringify(this.selectedTreatments));
+        }
+
+        removeTreatment(index) {
+            const treatment = this.selectedTreatments[index];
+            this.selectedTreatments.splice(index, 1);
+            
+            // Uncheck the corresponding checkbox
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const label = cb.nextElementSibling;
+                if (label && label.querySelector('strong') && label.querySelector('strong').textContent === treatment.medication) {
+                    cb.checked = false;
+                    const medId = cb.id.split('-');
+                    const diagnosisIndex = medId[1];
+                    const medIndex = medId[2];
+                    const routeOptions = document.getElementById(`route-${diagnosisIndex}-${medIndex}`);
+                    if (routeOptions) routeOptions.style.display = 'none';
+                    const medItem = document.getElementById(`med-item-${diagnosisIndex}-${medIndex}`);
+                    if (medItem) medItem.classList.remove('selected');
+                }
+            });
+            
+            this.updateTreatmentSummary();
+            this.updateDiagnosisCount(treatment.diagnosisIndex);
+        }
+
+        saveDiagnosticTests() {
+            const diagnosticData = {
+                labs: {
+                    hematology: {
+                        cbc: document.getElementById('lab-cbc').checked,
+                        bloodCulture: document.getElementById('lab-blood-culture').checked,
+                        coags: document.getElementById('lab-coags').checked,
+                        typeScreen: document.getElementById('lab-type-screen').checked
+                    },
+                    chemistry: {
+                        bmp: document.getElementById('lab-bmp').checked,
+                        cmp: document.getElementById('lab-cmp').checked,
+                        bilirubin: document.getElementById('lab-bilirubin').checked,
+                        lactate: document.getElementById('lab-lactate').checked
+                    },
+                    bloodGas: {
+                        abg: document.getElementById('lab-abg').checked,
+                        vbg: document.getElementById('lab-vbg').checked,
+                        cbg: document.getElementById('lab-cbg').checked
+                    },
+                    other: document.getElementById('other-labs').value
+                },
+                imaging: {
+                    radiographic: {
+                        cxr: document.getElementById('imaging-cxr').checked,
+                        abdomen: document.getElementById('imaging-abdomen').checked,
+                        babygram: document.getElementById('imaging-babygram').checked
+                    },
+                    ultrasound: {
+                        echo: document.getElementById('imaging-echo').checked,
+                        headUS: document.getElementById('imaging-hus').checked,
+                        renal: document.getElementById('imaging-renal').checked,
+                        abdominal: document.getElementById('imaging-abdominal').checked
+                    },
+                    advanced: {
+                        ct: document.getElementById('imaging-ct').checked,
+                        mri: document.getElementById('imaging-mri').checked
+                    },
+                    other: document.getElementById('other-imaging').value
+                },
+                summary: document.getElementById('diagnostic-summary').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('diagnosticData', JSON.stringify(diagnosticData));
+            alert('Diagnostic tests saved successfully!');
+        }
+
+        generateReport() {
+            // Set current date
+            document.getElementById('current-date').textContent = new Date().toLocaleDateString();
+            
+            // Patient information
+            document.getElementById('report-patient-name').textContent = document.getElementById('nursing-patient-name').value;
+            document.getElementById('report-dob').textContent = document.getElementById('nursing-dob').value;
+            document.getElementById('report-mrn').textContent = document.getElementById('nursing-mrn').value;
+            document.getElementById('report-weight').textContent = document.getElementById('nursing-weight').value + 'g';
+            
+            // Format gestational age
+            const weeks = document.getElementById('nursing-gestational-weeks').value;
+            const days = document.getElementById('nursing-gestational-days').value;
+            let gestationalAgeText = '';
+            if (weeks) {
+                gestationalAgeText = weeks + ' weeks';
+                if (days) {
+                    gestationalAgeText += ' ' + days + '/7 days';
+                }
+            }
+            document.getElementById('report-gestational-age').textContent = gestationalAgeText;
+            
+            // Vital signs
+            const currentVitals = this.getCurrentVitals();
+            const vitalsDiv = document.getElementById('report-vitals');
+            if (currentVitals) {
+                vitalsDiv.innerHTML = `
+                    <p>HR: ${currentVitals.hr} bpm, BP: ${currentVitals.bp} mmHg, MAP: ${currentVitals.map} mmHg</p>
+                    <p>SpO2: ${currentVitals.spo2}%, FiO2: ${currentVitals.fio2}%</p>
+                    <p>Temperature: ${currentVitals.temp}°C, RR: ${currentVitals.rr} breaths/min</p>
+                `;
+            } else {
+                vitalsDiv.innerHTML = '<p>No vital signs recorded</p>';
+            }
+            
+            // Physical exam
+            const examDiv = document.getElementById('report-physical-exam');
+            examDiv.innerHTML = `
+                <p><strong>HEENT:</strong> ${document.getElementById('heent-field').value}</p>
+                <p><strong>Neck and Spine:</strong> ${document.getElementById('neck_and_spine-field').value}</p>
+                <p><strong>Respiratory:</strong> ${document.getElementById('respiratory-field').value}</p>
+                <p><strong>Cardiovascular:</strong> ${document.getElementById('cardiovascular-field').value}</p>
+                <p><strong>Gastrointestinal:</strong> ${document.getElementById('gastrointestinal-field').value}</p>
+                <p><strong>Neurological:</strong> ${document.getElementById('neurological-field').value}</p>
+            `;
+            
+            // Diagnosis and medications
+            const diagnosisDiv = document.getElementById('report-diagnosis');
+            const diagnosisCheckboxes = document.querySelectorAll('[id^="diagnosis-"]');
+            const selectedDiagnoses = [];
+            
+            diagnosisCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const diagnosisName = checkbox.nextElementSibling.textContent;
+                    selectedDiagnoses.push(diagnosisName);
+                }
+            });
+            
+            if (selectedDiagnoses.length > 0 || this.selectedTreatments.length > 0) {
+                diagnosisDiv.innerHTML = '';
+                
+                if (selectedDiagnoses.length > 0) {
+                    diagnosisDiv.innerHTML += `
+                        <p><strong>Diagnoses:</strong> ${selectedDiagnoses.join(', ')}</p>
+                    `;
+                }
+                
+                // Check for respiratory support
+                const respiratorySupport = this.selectedTreatments.find(t => t.type === 'respiratory');
+                const medications = this.selectedTreatments.filter(t => t.type !== 'respiratory');
+                
+                if (respiratorySupport && respiratorySupport.settings) {
+                    const settings = respiratorySupport.settings;
+                    let settingsText = `${settings.modality}, FiO2: ${settings.fio2}%`;
+                    
+                    if (settings.modality === 'conventional' || settings.modality === 'hfov' || settings.modality === 'hfjv') {
+                        settingsText += `, Rate: ${settings.rate}, PIP: ${settings.pip}, PEEP: ${settings.peep}, I-Time: ${settings.itime}`;
+                    } else if (settings.modality === 'cpap' || settings.modality === 'nippv') {
+                        settingsText += `, CPAP: ${settings.cpap}`;
+                    } else if (settings.modality === 'high_flow') {
+                        settingsText += `, Flow: ${settings.flow} L/min`;
+                    }
+                    
+                    if (settings.comments) {
+                        settingsText += ` - ${settings.comments}`;
+                    }
+                    
+                    diagnosisDiv.innerHTML += `
+                        <p><strong>Respiratory Support:</strong> ${settingsText}</p>
+                    `;
+                }
+                
+                if (medications.length > 0) {
+                    diagnosisDiv.innerHTML += `
+                        <p><strong>Medications Administered:</strong></p>
+                        <ul>
+                            ${medications.map(treatment => `
+                                <li>${treatment.medication} - ${treatment.dose} (${treatment.route})</li>
+                            `).join('')}
+                        </ul>
+                    `;
+                }
+            } else {
+                diagnosisDiv.innerHTML = '<p>No diagnoses or medications documented</p>';
+            }
+            
+            // Diagnostic tests
+            const diagnosticsDiv = document.getElementById('report-diagnostics');
+            const diagnosticData = localStorage.getItem('diagnosticData');
+            if (diagnosticData) {
+                const data = JSON.parse(diagnosticData);
+                let diagnosticsHTML = '';
+                
+                // Laboratory tests
+                const selectedLabs = [];
+                if (data.labs) {
+                    if (data.labs.hematology?.cbc) selectedLabs.push('CBC');
+                    if (data.labs.hematology?.bloodCulture) selectedLabs.push('Blood Culture');
+                    if (data.labs.hematology?.coags) selectedLabs.push('Coagulation Studies');
+                    if (data.labs.hematology?.typeScreen) selectedLabs.push('Type & Screen');
+                    
+                    if (data.labs.chemistry?.bmp) selectedLabs.push('BMP');
+                    if (data.labs.chemistry?.cmp) selectedLabs.push('CMP');
+                    if (data.labs.chemistry?.bilirubin) selectedLabs.push('Bilirubin');
+                    if (data.labs.chemistry?.lactate) selectedLabs.push('Lactate');
+                    
+                    if (data.labs.bloodGas?.abg) selectedLabs.push('ABG');
+                    if (data.labs.bloodGas?.vbg) selectedLabs.push('VBG');
+                    if (data.labs.bloodGas?.cbg) selectedLabs.push('CBG');
+                }
+                
+                if (selectedLabs.length > 0) {
+                    diagnosticsHTML += `<p><strong>Laboratory Tests:</strong> ${selectedLabs.join(', ')}</p>`;
+                }
+                
+                if (data.labs?.other) {
+                    diagnosticsHTML += `<p><strong>Other Labs:</strong> ${data.labs.other}</p>`;
+                }
+                
+                // Imaging studies
+                const selectedImaging = [];
+                if (data.imaging) {
+                    if (data.imaging.radiographic?.cxr) selectedImaging.push('Chest X-Ray');
+                    if (data.imaging.radiographic?.abdomen) selectedImaging.push('Abdominal X-Ray');
+                    if (data.imaging.radiographic?.babygram) selectedImaging.push('Babygram');
+                    
+                    if (data.imaging.ultrasound?.echo) selectedImaging.push('Echocardiogram');
+                    if (data.imaging.ultrasound?.headUS) selectedImaging.push('Head Ultrasound');
+                    if (data.imaging.ultrasound?.renal) selectedImaging.push('Renal Ultrasound');
+                    if (data.imaging.ultrasound?.abdominal) selectedImaging.push('Abdominal Ultrasound');
+                    
+                    if (data.imaging.advanced?.ct) selectedImaging.push('CT Scan');
+                    if (data.imaging.advanced?.mri) selectedImaging.push('MRI');
+                }
+                
+                if (selectedImaging.length > 0) {
+                    diagnosticsHTML += `<p><strong>Imaging Studies:</strong> ${selectedImaging.join(', ')}</p>`;
+                }
+                
+                if (data.imaging?.other) {
+                    diagnosticsHTML += `<p><strong>Other Imaging:</strong> ${data.imaging.other}</p>`;
+                }
+                
+                if (data.summary) {
+                    diagnosticsHTML += `<p><strong>Results Summary:</strong> ${data.summary}</p>`;
+                }
+                
+                diagnosticsDiv.innerHTML = diagnosticsHTML || '<p>No diagnostic tests documented</p>';
+            } else {
+                diagnosticsDiv.innerHTML = '<p>No diagnostic tests documented</p>';
+            }
+            
+            // Assessment and plan
+            const assessmentDiv = document.getElementById('report-assessment');
+            const nursingData = localStorage.getItem('nursingData');
+            if (nursingData) {
+                const data = JSON.parse(nursingData);
+                if (data.assessment) {
+                    assessmentDiv.innerHTML = `
+                        <p><strong>Overall Nursing Assessment:</strong> ${data.assessment.overall || 'No assessment provided'}</p>
+                        <p><strong>Respiratory Assessment:</strong> ${data.assessment.respiratory || 'No assessment provided'}</p>
+                        <p><strong>Skin/Perfusion Assessment:</strong> ${data.assessment.skin || 'No assessment provided'}</p>
+                        <p><strong>Feeding/GI Assessment:</strong> ${data.assessment.feeding || 'No assessment provided'}</p>
+                        <p><strong>Neurological/Activity Assessment:</strong> ${data.assessment.neuro || 'No assessment provided'}</p>
+                        <p><strong>Nursing Interventions/Notes:</strong> ${data.assessment.interventions || 'No interventions documented'}</p>
+                    `;
+                } else {
+                    assessmentDiv.innerHTML = '<p>No nursing assessment documented</p>';
+                }
+            } else {
+                assessmentDiv.innerHTML = '<p>No nursing assessment documented</p>';
+            }
+            
+            alert('Report generated successfully!');
+        }
+    }
+
+    // Initialize the system when the page loads
+    let offlineSystem;
+    document.addEventListener('DOMContentLoaded', () => {
+        offlineSystem = new OfflineTransportSystem();
+    });
+    </script>
+</body>
+</html>
