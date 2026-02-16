@@ -251,6 +251,72 @@ section h2 {
     text-decoration: underline;
 }
 
+/* ATLAS Featured Project */
+.featured-project {
+    border: 2px solid #667eea;
+    background: linear-gradient(135deg, #f8f9fa 0%, #eef2ff 100%);
+    position: relative;
+}
+
+.featured-project::before {
+    content: 'FLAGSHIP';
+    position: absolute;
+    top: -1px;
+    right: 2rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 4px 16px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border-radius: 0 0 6px 6px;
+}
+
+.atlas-modules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+.atlas-group {
+    background: white;
+    border-radius: 8px;
+    padding: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.atlas-group h4 {
+    color: #667eea;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid #eef2ff;
+}
+
+.atlas-group ul {
+    list-style: none;
+}
+
+.atlas-group li {
+    font-size: 0.88rem;
+    padding: 0.25rem 0;
+    color: #555;
+}
+
+.atlas-group li strong {
+    color: #2c3e50;
+}
+
+.featured-project code {
+    background: #e3e8f0;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
 /* Tech Stack Section */
 #tech-stack {
     background-color: #f8f9fa;
@@ -422,5 +488,9 @@ footer {
         display: block;
         margin: 0.5rem auto;
         max-width: 200px;
+    }
+
+    .atlas-modules {
+        grid-template-columns: 1fr;
     }
 }
