@@ -1,349 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arturo Serize - Clinical Systems Developer | From Bedside to Code</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Arturo E. Serize, MPH, PA-C</h1>
-            <p class="tagline">Clinical Systems Developer | From Bedside to Code | Healthcare Data Analytics | Agile EHR Engineer</p>
-            <nav>
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#tech-stack">Tech Stack</a>
-                <a href="#approach">Approach</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </div>
-    </header>
-    
-    <section id="hero">
-        <div class="container">
-            <h2>I Build Healthcare Systems That Actually Work</h2>
-            <p class="lead">From bedside to code: Transforming clinical frustration into technical innovation.</p>
-            <a href="#projects" class="cta-button">View My Solutions</a>
-        </div>
-    </section>
-    
-    <section id="about">
-        <div class="container">
-            <h2>From Clinical Frustration to Technical Innovation</h2>
-            <div class="about-content">
-                <p>
-                    I transform broken clinical workflows into elegant technical solutions. From bedside to code, I build healthcare systems that actually work.
-                </p>
-                <p>
-                    With over a decade in neonatology and infectious disease medicine, I've seen firsthand how poor system design affects patient outcomes. 
-                    I've managed NIH multicenter trials that outperformed Harvard's data quality, and engineered fixes for medical device trials that eluded sponsors.
-                </p>
-                <p>
-                    My approach is unique: I don't just understand the technical requirements—I've lived the clinical 
-                    workflows. Every system I design comes from firsthand experience with the problems it solves.
-                </p>
-                <div class="stats-container">
-                    <div class="stat">
-                        <h3>10+</h3>
-                        <p>Years Clinical Experience</p>
-                    </div>
-                    <div class="stat">
-                        <h3>10</h3>
-                        <p>Clinical Systems Built</p>
-                    </div>
-                    <div class="stat">
-                        <h3>0</h3>
-                        <p>Critical Deviations in Trials</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="projects">
-        <div class="container">
-            <h2>Healthcare Solutions Portfolio</h2>
-
-            <div class="project featured-project">
-                <h3>A.T.L.A.S. - Adaptive Trial Logistics & Assessment System</h3>
-                <div class="project-status">🚀 13 Modules | Active Development</div>
-                <p>A modular suite of clinical trial operations tools built as single-file HTML applications. No server, no database, no PHI, no IT department required. Each module is a self-contained <code>.html</code> file — open it in a browser and it works.</p>
-                <div class="atlas-modules">
-                    <div class="atlas-group">
-                        <h4>Enrollment & Screening</h4>
-                        <ul>
-                            <li><strong>SHERLO</strong> — Screening & History Eligibility Review Log</li>
-                            <li><strong>HIET</strong> — NICHD Modified Sarnat Examination Tool</li>
-                        </ul>
-                    </div>
-                    <div class="atlas-group">
-                        <h4>Operations</h4>
-                        <ul>
-                            <li><strong>GATE</strong> — Gated Assessment & Trial Eligibility</li>
-                            <li><strong>CHART</strong> — Clinical & Healthcare Activity Resource Tracker</li>
-                            <li><strong>VISTA</strong> — Visit Interval Scheduling & Timeline Advisor</li>
-                            <li><strong>DRIFT</strong> — Deviation Recording, Investigation & Follow-up Tracker</li>
-                            <li><strong>KITS</strong> — Kit Inventory Tracking System</li>
-                            <li><strong>B.I.O. Buddy</strong> — Biospecimen Input & Output Buddy</li>
-                        </ul>
-                    </div>
-                    <div class="atlas-group">
-                        <h4>Compliance & Team</h4>
-                        <ul>
-                            <li><strong>PREP</strong> — Protocol Readiness & Execution Planner</li>
-                            <li><strong>ROLES</strong> — Research Operations Lineup & Expertise System</li>
-                            <li><strong>WATSON</strong> — Workflow Assistance Tool for Study Operations Navigation</li>
-                            <li><strong>Portal</strong> — Read-only Sponsor Monitoring Dashboard</li>
-                        </ul>
-                    </div>
-                </div>
-                <p><strong>Key Innovation:</strong> "Hookware" — tools that hook into existing workflows without IT integration, network access, or institutional approval. Zero dependencies. Zero PHI. Just open the file.</p>
-                <div class="tech-tags">
-                    <span>Vanilla JavaScript</span>
-                    <span>Single-File Architecture</span>
-                    <span>localStorage</span>
-                    <span>Zero Dependencies</span>
-                    <span>Print-Ready Source Docs</span>
-                    <span>CSV Export</span>
-                </div>
-                <p class="demo-link"><a href="https://github.com/serize-dev/ATLAS" target="_blank"><strong>Source Code</strong></a></p>
-            </div>
-
-            <div class="project">
-                <h3>B.U.G. - MYCIN-Style Neonatal Sepsis Advisor</h3>
-                <div class="project-status">🚀 Functional Prototype</div>
-                <p>Clinical decision support tool inspired by the original MYCIN expert system. Guides clinicians through neonatal sepsis evaluation using rule-based reasoning, incorporating patient-specific factors to generate antibiotic recommendations with transparent confidence scoring.</p>
-                <p><strong>Key Innovation:</strong> Brings the rigor of expert system reasoning to bedside sepsis decisions, making the clinical logic visible and auditable.</p>
-                <div class="tech-tags">
-                    <span>React</span>
-                    <span>Expert Systems</span>
-                    <span>Clinical Decision Support</span>
-                    <span>Neonatal Infectious Disease</span>
-                </div>
-                <p class="demo-link"><a href="https://github.com/serize-dev/BUG" target="_blank"><strong>Source Code</strong></a></p>
-            </div>
-
-            <div class="project">
-                <h3>H.A.L. - Heuristic Antimicrobial Logic</h3>
-                <div class="project-status">🔬 Active Development</div>
-                <p>Antimicrobial stewardship engine with a retro terminal aesthetic. Provides evidence-based antimicrobial selection guidance, dosing calculations, and spectrum analysis to support institutional stewardship programs and reduce inappropriate antibiotic use.</p>
-                <p><strong>Key Innovation:</strong> Encodes institutional antibiogram data and stewardship protocols into an interactive decision engine that clinicians actually want to use.</p>
-                <div class="tech-tags">
-                    <span>JavaScript</span>
-                    <span>Antimicrobial Stewardship</span>
-                    <span>Clinical Algorithms</span>
-                    <span>Retro CRT Interface</span>
-                </div>
-                <p class="demo-link"><a href="https://github.com/serize-dev/HAL" target="_blank"><strong>Source Code</strong></a></p>
-            </div>
-
-            <div class="project">
-                <h3>O.R.O. - Oxygen Retinopathy Optimizer</h3>
-                <div class="project-status">🎯 Prototype System</div>
-                <p>Oxygen management tool designed to minimize retinopathy of prematurity (ROP) risk in neonatal patients. Tracks SpO2 targets, FiO2 adjustments, and exposure windows to help clinicians maintain optimal oxygenation while reducing cumulative oxidative stress.</p>
-                <p><strong>Key Innovation:</strong> Turns the complex relationship between oxygen exposure and ROP risk into actionable, real-time clinical guidance.</p>
-                <div class="tech-tags">
-                    <span>JavaScript</span>
-                    <span>Neonatal Oxygenation</span>
-                    <span>ROP Prevention</span>
-                    <span>Real-time Monitoring</span>
-                </div>
-                <p class="demo-link"><a href="https://github.com/serize-dev/ORO" target="_blank"><strong>Source Code</strong></a></p>
-            </div>
-
-            <div class="project">
-                <h3>M.I.N.D. - Multi-domain Integrated Neurocognitive Diagnostic</h3>
-                <div class="project-status">🎯 Prototype System</div>
-                <p>Rapid dementia classification tool that integrates multiple cognitive assessment domains into a unified diagnostic workflow. Streamlines the evaluation process from screening through classification, supporting clinicians with structured scoring and automated severity grading.</p>
-                <p><strong>Key Innovation:</strong> Consolidates fragmented neurocognitive assessments into a single, systematic diagnostic pathway with transparent classification logic.</p>
-                <div class="tech-tags">
-                    <span>Vanilla JavaScript</span>
-                    <span>Neurocognitive Assessment</span>
-                    <span>Diagnostic Classification</span>
-                    <span>Clinical Workflow</span>
-                </div>
-                <p class="demo-link"><a href="https://github.com/serize-dev/MIND" target="_blank"><strong>Source Code</strong></a></p>
-            </div>
-
-            <div class="project">
-                <h3>NICSTEM - NICU-Centric EHR Interface</h3>
-                <div class="project-status">🚀 Functional Prototype</div>
-                <img src="images/nicstem-screenshot.png" alt="NICSTEM Interface" class="project-image">
-                <p>Redesigned electronic health record interface that streamlines how neonatologists work. Replaced complex menu navigation with an intuitive visual approach using anatomical diagrams and drag-and-drop charting. Built to run on top of existing EHR backends without vendor lock-in.</p>
-                <p><strong>Key Innovation:</strong> Significantly reduces documentation time by matching interface design to natural clinical thought patterns.</p>
-                <div class="tech-tags">
-                    <span>React</span>
-                    <span>Real-time Data</span>
-                    <span>Clinical Workflow Optimization</span>
-                    <span>FHIR Integration</span>
-                </div>
-                <p class="demo-link"><a href="demos/nicstem.html" target="_blank"><strong>🚀 Live Demo</strong></a> | <strong>Contact for full system access</strong></p>
-            </div>
-
-            <div class="project">
-                <h3>NICSPORT - Neonatal Transport Documentation System</h3>
-                <div class="project-status">🚀 Working Prototype</div>
-                <img src="images/nicsport-screenshot.png" alt="NICSPORT Transport System" class="project-image">
-                <p>Mobile documentation platform designed for high-pressure transport situations. Features automated reminders for critical assessments and seamless workflow between medical team members. Designed for offline-first use with automatic sync when back online.</p>
-                <p><strong>Key Innovation:</strong> First transport documentation system designed by someone who's actually been in the back of a transport unit at 3 AM.</p>
-                <div class="tech-tags">
-                    <span>Offline-First PWA</span>
-                    <span>JavaScript</span>
-                    <span>LocalStorage</span>
-                    <span>PDF Generation</span>
-                </div>
-                <p class="demo-link"><a href="demos/neonatal-transport.html" target="_blank"><strong>🚀 Live Demo</strong></a> | <a href="https://github.com/serize-dev/neonatal-transport-documentation" target="_blank"><strong>Source Code</strong></a></p>
-            </div>
-
-            <div class="project">
-                <h3>NPRA-MBTTA Algorithm - NEC Prediction Tool</h3>
-                <div class="project-status">📊 Clinical Validation Phase</div>
-                <img src="images/nec-tool-screenshot.png" alt="NEC Prediction Tool" class="project-image">
-                <p>Early warning system that identifies critical conditions before symptoms appear. Monitors multiple health indicators to predict necrotizing enterocolitis 24-48 hours in advance, enabling rapid intervention.</p>
-                <p><strong>Key Innovation:</strong> Transforms clinical pattern recognition into systematic early warning alerts, enabling proactive intervention.</p>
-                <div class="tech-tags">
-                    <span>Predictive Analytics</span>
-                    <span>Chart.js</span>
-                    <span>Temporal Data Analysis</span>
-                    <span>Clinical AI/ML</span>
-                </div>
-                <p class="demo-link"><strong>Publication forthcoming</strong> | <strong>Demo available</strong></p>
-            </div>
-
-            <div class="project">
-                <h3>S.A.G.E. - System for Algorithmic Generation of Evaluations</h3>
-                <div class="project-status">🎯 Prototype System</div>
-                <img src="images/sage-screenshot.png" alt="S.A.G.E. Interface" class="project-image">
-                <p>Visual monitoring system that transforms complex vital signs into easy-to-read patterns using an engaging retro-style interface. Converts traditional measurements into dynamic visual displays that make patient status immediately clear to medical staff. Reduces cognitive load during critical patient assessments.</p>
-                <p><strong>Key Innovation:</strong> Makes complex vital sign patterns immediately recognizable through intuitive visual displays, supporting faster clinical decision-making.</p>
-                <div class="tech-tags">
-                    <span>JavaScript Canvas</span>
-                    <span>Real-time Visualization</span>
-                    <span>Pattern Recognition</span>
-                    <span>Retro Gaming UI/UX</span>
-                </div>
-                <p class="demo-link"><a href="demos/sage.html" target="_blank"><strong>🚀 Live Demo</strong></a> | <strong>Interactive Biorhythm Visualization</strong></p>
-            </div>
-
-            <div class="project">
-                <h3>WEAN-O - Intelligent FiO2 Weaning System</h3>
-                <div class="project-status">🔬 Active Development</div>
-                <p>Evidence-based clinical decision support tool for oxygen weaning in neonatal patients. Uses "God Particle" stability metrics including SpO2 Coefficient of Variation, SpO2/FiO2 ratio, and Time-in-Target-Range to generate safe, data-driven weaning recommendations. Features real-time data entry, transparent formula display, and trend visualization.</p>
-                <p><strong>Key Innovation:</strong> First weaning system to combine multiple stability metrics into a comprehensive readiness score, addressing the randomness of traditional FiO2 weaning practices and potentially reducing BPD/chronic lung disease progression.</p>
-                <div class="tech-tags">
-                    <span>Clinical Algorithms</span>
-                    <span>Chart.js Visualization</span>
-                    <span>Real-time Calculation</span>
-                    <span>Respiratory Medicine</span>
-                    <span>BPD Prevention</span>
-                </div>
-                <p class="demo-link"><a href="demos/wean-o.html" target="_blank"><strong>🚀 Live Demo</strong></a> | <strong>Publication in preparation</strong></p>
-            </div>
-        </div>
-    </section>
-
-    <section id="tech-stack">
-        <div class="container">
-            <h2>Technology Stack</h2>
-            <p class="section-intro">Building bridges between clinical needs and technical solutions</p>
-            
-            <div class="tech-grid">
-                <div class="tech-category">
-                    <h3>Clinical Systems</h3>
-                    <ul>
-                        <li>Epic & Cerner Integration</li>
-                        <li>REDCap Administration</li>
-                        <li>EDC Platforms (Rave, Medrio)</li>
-                        <li>HL7/FHIR Standards</li>
-                    </ul>
-                </div>
-                
-                <div class="tech-category">
-                    <h3>Data & Analytics</h3>
-                    <ul>
-                        <li>SQL & Clinical Databases</li>
-                        <li>R Statistical Analysis</li>
-                        <li>Python</li>
-                        <li>Clinical Trial Analytics</li>
-                    </ul>
-                </div>
-                
-                <div class="tech-category">
-                    <h3>Development</h3>
-                    <ul>
-                        <li>JavaScript/React</li>
-                        <li>Offline-First Architecture</li>
-                        <li>Responsive Design</li>
-                        <li>API Integration</li>
-                    </ul>
-                </div>
-                
-                <div class="tech-category">
-                    <h3>Methodologies</h3>
-                    <ul>
-                        <li>Agile/Scrum</li>
-                        <li>Clinical Workflow Analysis</li>
-                        <li>User-Centered Design</li>
-                        <li>Regulatory Compliance</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="approach">
-        <div class="container">
-            <h2>My Development Approach</h2>
-            <div class="approach-grid">
-                <div class="principle">
-                    <div class="principle-icon">🏥</div>
-                    <h3>Clinical First</h3>
-                    <p>Every feature starts with understanding the clinical need, not the technical possibility.</p>
-                </div>
-                <div class="principle">
-                    <div class="principle-icon">🚀</div>
-                    <h3>Rapid Iteration</h3>
-                    <p>Build, test with actual clinicians, refine. No solution survives first contact with a busy NICU.</p>
-                </div>
-                <div class="principle">
-                    <div class="principle-icon">💪</div>
-                    <h3>Bulletproof Design</h3>
-                    <p>If it doesn't work at 3 AM with a crying baby and stressed staff, it doesn't work.</p>
-                </div>
-                <div class="principle">
-                    <div class="principle-icon">📊</div>
-                    <h3>Data-Driven</h3>
-                    <p>If it can't improve clinical outcomes, it's not worth creating.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="contact">
-        <div class="container">
-            <h2>Let's Build Something Better</h2>
-            <p class="contact-intro">
-                I'm passionate about solving healthcare's biggest challenges through technology. 
-                Whether you need someone who can bridge clinical and technical teams, 
-                or develop solutions directly, let's discuss how I can contribute to your organization.
-            </p>
-            <div class="contact-info">
-                <a href="mailto:arturo@serize.dev" class="contact-button">Email Me</a>
-                <a href="https://github.com/serize-dev" class="contact-button">Project Details</a>
-            </div>
-            <p style="margin-top: 2rem; opacity: 0.8;">
-                Specialties: NICU clinical systems • Antimicrobial stewardship • REDCap/EDC optimization • 
-                Agile healthcare product development • Turning 'that's how we've always done it' into 'I can't believe we worked without this'
-            </p>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Arturo Serize. Building the future of healthcare, one system at a time.</p>
-        </div>
-    </footer>
-</body>
-</html>
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="From bedside to code. 15+ years in critical care, building the healthcare tools that should already exist."><meta name="generator" content="Astro v5.18.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"><title>Arturo Serize | Clinical Systems Builder</title><link rel="stylesheet" href="/_astro/index.R6rFYImy.css"></head> <body class="min-h-screen antialiased"> <div id="splash" class="fixed inset-0 z-[10000] bg-void flex items-center justify-center" data-astro-cid-mlbag6b5> <div class="w-full max-w-2xl px-8" data-astro-cid-mlbag6b5> <!-- CRT phosphor warmup glow --> <div id="phosphor" class="absolute inset-0 bg-purple-glow/0 transition-opacity duration-1000 pointer-events-none" data-astro-cid-mlbag6b5></div> <div class="font-mono text-sm leading-relaxed" data-astro-cid-mlbag6b5> <!-- BIOS-style header --> <div id="boot-header" class="text-text-muted mb-6 opacity-0" data-astro-cid-mlbag6b5> <span class="text-purple-bright" data-astro-cid-mlbag6b5>SERIZE SYSTEMS</span> BIOS v3.05<br data-astro-cid-mlbag6b5>
+Copyright (C) 2010-2026 Arturo Serize, MPH, PA-C<br data-astro-cid-mlbag6b5> <span class="text-text-muted/50" data-astro-cid-mlbag6b5>All clinical workflows reserved.</span> </div> <!-- Boot lines --> <div id="boot-lines" class="space-y-1" data-astro-cid-mlbag6b5> <!-- Lines will be added by JS --> </div> <!-- Final prompt --> <div id="boot-prompt" class="mt-6 opacity-0" data-astro-cid-mlbag6b5> <span class="text-green-term" data-astro-cid-mlbag6b5>serize@dev</span><span class="text-text-muted" data-astro-cid-mlbag6b5>:</span><span class="text-purple-bright" data-astro-cid-mlbag6b5>~</span><span class="text-text-muted" data-astro-cid-mlbag6b5>$</span> <span id="boot-cmd" class="text-text-bright" data-astro-cid-mlbag6b5></span> <span id="boot-cursor" class="text-purple-glow animate-pulse" data-astro-cid-mlbag6b5>_</span> </div> </div> </div> <!-- Scanlines on splash too --> <div class="pointer-events-none absolute inset-0" style="background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px); opacity: 0.5;" data-astro-cid-mlbag6b5></div> </div>  <script type="module">const y=[{text:"POST check...",color:"text-muted",delay:200},{text:"RAM: 15 years clinical experience .......... OK",color:"dim",delay:300},{text:"ROM: 12 peer-reviewed publications ......... OK",color:"dim",delay:250},{text:"I/O: Epic, Cerner, REDCap, FHIR ........... OK",color:"dim",delay:200},{text:"",color:"dim",delay:150},{text:"Loading clinical modules:",color:"muted",delay:300},{text:"  ATLAS    .... Trial Operations Suite       [LOADED]",color:"green",delay:180},{text:"  PRISM    .... Biomarker Intelligence        [LOADED]",color:"green",delay:150},{text:"  NANO     .... Nanopore HSV Detection        [LOADED]",color:"green",delay:140},{text:"  BUG      .... Sepsis Decision Support       [LOADED]",color:"green",delay:130},{text:"  HAL      .... Antimicrobial Logic           [LOADED]",color:"green",delay:130},{text:"  NICSTEM  .... EHR Interface                 [LOADED]",color:"green",delay:120},{text:"  NICSPORT .... Transport Documentation       [LOADED]",color:"green",delay:120},{text:"  SAGE     .... Vitals Visualization          [LOADED]",color:"green",delay:110},{text:"  BLOOM    .... BPD Lung Optimization         [LOADED]",color:"green",delay:110},{text:"  REFLUX   .... Neonatal GERD Assessment      [LOADED]",color:"green",delay:110},{text:"  ORO      .... Oxygen Retinopathy Optimizer  [LOADED]",color:"green",delay:100},{text:"  MIND     .... Neurocognitive Diagnostic     [LOADED]",color:"green",delay:100},{text:"  NICUFlex .... Staffing Optimizer            [LOADED]",color:"green",delay:100},{text:"  NEC Tool .... Perez-Serize Predictive        [LOADED]",color:"green",delay:100},{text:"",color:"dim",delay:100},{text:"14 systems loaded. 0 critical deviations.",color:"purple",delay:400},{text:"",color:"dim",delay:100},{text:"All systems nominal.",color:"green-bright",delay:500}],r={muted:"color: #64748b",dim:"color: #94a3b8",green:"color: #4ade80","green-bright":"color: #4ade80; text-shadow: 0 0 8px rgba(74, 222, 128, 0.5)",purple:"color: #c084fc; text-shadow: 0 0 8px rgba(192, 132, 252, 0.4)"},i="startx ./portfolio";async function e(l){return new Promise(n=>setTimeout(n,l))}async function c(){const l=document.getElementById("splash"),n=document.getElementById("boot-header"),s=document.getElementById("boot-lines"),a=document.getElementById("boot-prompt"),d=document.getElementById("boot-cmd"),m=document.getElementById("boot-cursor");if(sessionStorage.getItem("splash-seen")){l.remove();return}await e(400),n.style.opacity="1",n.style.transition="opacity 0.3s ease",await e(600);for(const t of y){const o=document.createElement("div");o.className="boot-line",o.style.cssText=r[t.color]||r.dim,o.style.fontFamily="var(--font-mono)",o.style.fontSize="0.8rem",o.textContent=t.text||" ",s.appendChild(o),await e(t.delay),o.classList.add("visible")}await e(400),a.style.opacity="1",a.style.transition="opacity 0.2s ease",await e(300);for(let t=0;t<i.length;t++)d.textContent=i.slice(0,t+1),await e(45);await e(300),m.style.display="none",await e(500),l.classList.add("fade-out"),sessionStorage.setItem("splash-seen","1"),await e(800),l.remove()}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",c):c();</script> <div class="crt-overlay"></div> <!-- Navigation --> <nav class="fixed top-0 w-full z-50 bg-void/80 backdrop-blur-md border-b border-crt-border"> <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"> <a href="/" class="font-mono text-purple-glow font-bold tracking-wider text-sm">
+serize<span class="text-green-term">@</span>dev<span class="text-text-muted">:~$</span> </a> <div class="flex gap-6 text-sm"> <a href="#about" class="nav-link">about</a> <a href="#projects" class="nav-link">projects</a> <a href="#stack" class="nav-link">stack</a> <a href="#publications" class="nav-link">publications</a> <a href="#contact" class="nav-link">contact</a> </div> </div> </nav> <main>   <section class="pt-32 pb-20 px-6"> <div class="max-w-4xl mx-auto"> <div class="font-mono text-sm text-green-term mb-6 animate-in"> <span class="text-text-muted">$</span> whoami
+</div> <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-in glow-text leading-tight">
+Arturo Serize
+<span class="block text-2xl md:text-3xl text-text-dim font-normal mt-3">
+MPH, PA-C
+</span> </h1> <p class="text-xl md:text-2xl text-text-dim leading-relaxed max-w-3xl animate-in mb-8">
+15 years at the bedside. I got tired of broken workflows, so I started building the tools that should already exist.
+</p> <div class="font-mono text-sm text-text-muted animate-in"> <span class="text-green-term">$</span> cat /etc/motd<br> <span class="text-purple-bright">Clinical systems builder</span> &#183;
+<span class="text-purple-bright">Healthcare UX</span> &#183;
+<span class="text-purple-bright">Workflow engineer</span> &#183;
+<span class="text-purple-bright">Published clinical researcher</span> </div> <div class="mt-10 flex gap-4 animate-in"> <a href="#projects" class="px-6 py-3 bg-purple-deep hover:bg-purple-soft text-white font-mono text-sm rounded-lg transition-all hover:shadow-lg hover:shadow-purple-glow/20">
+ls ./projects
+</a> <a href="#contact" class="px-6 py-3 border border-crt-border hover:border-purple-soft text-text-dim hover:text-purple-bright font-mono text-sm rounded-lg transition-all">
+./contact.sh
+</a> </div> </div> </section> <div class="section-line max-w-6xl mx-auto"></div>  <section id="about" class="py-20 px-6"> <div class="max-w-4xl mx-auto"> <h2 class="font-mono text-sm text-green-term mb-2"> <span class="text-text-muted">$</span> cat about.md
+</h2> <h3 class="text-3xl font-bold mb-8 glow-text">From Clinical Frustration to Technical Innovation</h3> <div class="space-y-6 text-text-dim leading-relaxed"> <p>
+I've spent over a decade in neonatology and infectious disease medicine.
+          In every single setting, every single unit, the same pattern repeats: clinicians
+          working against their own tools every single shift.
+</p> <p>
+Every system I build comes from a real problem I've lived. I don't design from a
+          spec sheet &mdash; I design from the bedside, where a bad interface costs
+          minutes you don't have.
+</p> <p>
+My approach: identify the broken workflow, design the fix, build a working prototype,
+          and prove it works. No committee. No 18-month sprint. Just solutions.
+</p> </div> <!-- Stats --> <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12"> <div class="bg-crt-panel rounded-xl p-5 text-center glow-border"> <div class="text-3xl font-bold text-purple-glow font-mono">15+</div> <div class="text-text-muted text-sm mt-1">Years Clinical</div> </div> <div class="bg-crt-panel rounded-xl p-5 text-center glow-border"> <div class="text-3xl font-bold text-purple-glow font-mono">14+</div> <div class="text-text-muted text-sm mt-1">Systems Built</div> </div> <div class="bg-crt-panel rounded-xl p-5 text-center glow-border"> <div class="text-3xl font-bold text-purple-glow font-mono">12</div> <div class="text-text-muted text-sm mt-1">Publications</div> </div> <div class="bg-crt-panel rounded-xl p-5 text-center glow-border"> <div class="text-3xl font-bold text-purple-glow font-mono">0</div> <div class="text-text-muted text-sm mt-1">Critical Deviations</div> </div> </div> </div> </section> <div class="section-line max-w-6xl mx-auto"></div>  <section id="projects" class="py-20 px-6"> <div class="max-w-5xl mx-auto"> <h2 class="font-mono text-sm text-green-term mb-2"> <span class="text-text-muted">$</span> ls -la ./projects/
+</h2> <h3 class="text-3xl font-bold mb-12 glow-text">Healthcare Solutions</h3> <div class="space-y-8"> <div class="project-card rounded-xl p-6 border-purple-soft/50 relative"> <div class="absolute -top-px right-6"> <span class="badge-flagship">FLAGSHIP</span> </div> <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">A.T.L.A.S.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Adaptive Trial Logistics &amp; Assessment System</span> </h3> <span class="status-active font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Active Development </span> </div> <div class="carousel relative mb-4" data-carousel="a-t-l-a-s-"><div class="overflow-hidden rounded-lg border border-crt-border"><div class="carousel-track flex transition-transform duration-300 ease-in-out"><img src="/images/Atlas Main Menu.png" alt="ATLAS main landing — 12 modules, 0 PHI, 0 dependencies" class="w-full flex-shrink-0" loading="eager"><img src="/images/ATLAS - modal screen.png" alt="ATLAS module dashboard — operations, compliance, and team tools" class="w-full flex-shrink-0" loading="lazy"><img src="/images/ATLAS - CHART.png" alt="CHART — interactive Schedule of Activities with visit tracking" class="w-full flex-shrink-0" loading="lazy"><img src="/images/ATLAS - Bio-Buddy.png" alt="B.I.O. Buddy — biospecimen collection worksheet with source documents" class="w-full flex-shrink-0" loading="lazy"></div></div><!-- Controls --><button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-void/80 border border-crt-border text-purple-bright hover:border-purple-soft hover:text-purple-glow transition-all flex items-center justify-center text-sm font-mono" aria-label="Previous image">
+&lt;
+</button><button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-void/80 border border-crt-border text-purple-bright hover:border-purple-soft hover:text-purple-glow transition-all flex items-center justify-center text-sm font-mono" aria-label="Next image">
+&gt;
+</button><!-- Dots --><div class="flex justify-center gap-2 mt-3"><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-purple-glow" data-index="0" aria-label="Go to image 1"></button><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-crt-border hover:bg-purple-muted" data-index="1" aria-label="Go to image 2"></button><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-crt-border hover:bg-purple-muted" data-index="2" aria-label="Go to image 3"></button><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-crt-border hover:bg-purple-muted" data-index="3" aria-label="Go to image 4"></button></div></div><script type="module">document.querySelectorAll("[data-carousel]").forEach(r=>{const o=r.querySelector(".carousel-track"),l=r.querySelectorAll(".carousel-dot"),d=r.querySelector(".carousel-prev"),u=r.querySelector(".carousel-next"),s=(o?.querySelectorAll("img")||[]).length;let t=0;function n(e){o&&(t=(e+s)%s,o.style.transform=`translateX(-${t*100}%)`,l.forEach((c,i)=>{c.classList.toggle("bg-purple-glow",i===t),c.classList.toggle("bg-crt-border",i!==t)}))}d?.addEventListener("click",()=>n(t-1)),u?.addEventListener("click",()=>n(t+1)),l.forEach((e,c)=>{e.addEventListener("click",()=>n(c))});let a=0;r.addEventListener("touchstart",e=>{a=e.touches[0].clientX}),r.addEventListener("touchend",e=>{const c=a-e.changedTouches[0].clientX;Math.abs(c)>50&&n(c>0?t+1:t-1)})});</script> <p class="text-text-dim leading-relaxed mb-4">Modular clinical trial operations suite built as single-file HTML applications. No server, no database, no PHI, no IT department required. Each module is a self-contained .html file — open it in a browser and it works.</p> <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4"> <div class="bg-crt-dark/60 rounded-lg p-3 border border-crt-border/50"> <h4 class="font-mono text-purple-bright text-xs uppercase tracking-wider mb-2 pb-1 border-b border-crt-border/50"> Enrollment &amp; Screening </h4> <ul class="space-y-1"> <li class="text-xs text-text-dim">SHERLO — Screening &amp; History Eligibility Review Log</li><li class="text-xs text-text-dim">HIET — NICHD Modified Sarnat Examination Tool</li> </ul> </div><div class="bg-crt-dark/60 rounded-lg p-3 border border-crt-border/50"> <h4 class="font-mono text-purple-bright text-xs uppercase tracking-wider mb-2 pb-1 border-b border-crt-border/50"> Operations </h4> <ul class="space-y-1"> <li class="text-xs text-text-dim">GATE — Gated Assessment &amp; Trial Eligibility</li><li class="text-xs text-text-dim">CHART — Clinical Activity Resource Tracker</li><li class="text-xs text-text-dim">VISTA — Visit Interval Scheduling &amp; Timeline Advisor</li><li class="text-xs text-text-dim">DRIFT — Deviation Recording &amp; Follow-up Tracker</li><li class="text-xs text-text-dim">KITS — Kit Inventory Tracking System</li><li class="text-xs text-text-dim">B.I.O. Buddy — Biospecimen Input &amp; Output</li> </ul> </div><div class="bg-crt-dark/60 rounded-lg p-3 border border-crt-border/50"> <h4 class="font-mono text-purple-bright text-xs uppercase tracking-wider mb-2 pb-1 border-b border-crt-border/50"> Compliance &amp; Team </h4> <ul class="space-y-1"> <li class="text-xs text-text-dim">PREP — Protocol Readiness &amp; Execution Planner</li><li class="text-xs text-text-dim">ROLES — Research Operations Lineup &amp; Expertise System</li><li class="text-xs text-text-dim">WATSON — Workflow Assistance Tool for Study Operations</li><li class="text-xs text-text-dim">Portal — Sponsor Monitoring Dashboard</li> </ul> </div> </div> <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>&quot;Sneakerware&quot; — walk it in on a thumb drive. No IT integration, no network access, no institutional approval. Zero dependencies. Zero PHI. Just open the file. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">Vanilla JavaScript</span><span class="tag">Single-File Architecture</span><span class="tag">localStorage</span><span class="tag">Zero Dependencies</span><span class="tag">CSV Export</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/ATLAS" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/ATLAS/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">PRISM</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Pipeline for Real-time Infection Signal Mining</span> </h3> <span class="status-active font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Active Development </span> </div> <div class="carousel relative mb-4" data-carousel="prism"><div class="overflow-hidden rounded-lg border border-crt-border"><div class="carousel-track flex transition-transform duration-300 ease-in-out"><img src="/images/PRISM main.png" alt="PRISM — literature and API data integration panel" class="w-full flex-shrink-0" loading="eager"><img src="/images/PRISM Bay.png" alt="PRISM — Bayesian probability engine with ROC analysis" class="w-full flex-shrink-0" loading="lazy"></div></div><!-- Controls --><button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-void/80 border border-crt-border text-purple-bright hover:border-purple-soft hover:text-purple-glow transition-all flex items-center justify-center text-sm font-mono" aria-label="Previous image">
+&lt;
+</button><button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-void/80 border border-crt-border text-purple-bright hover:border-purple-soft hover:text-purple-glow transition-all flex items-center justify-center text-sm font-mono" aria-label="Next image">
+&gt;
+</button><!-- Dots --><div class="flex justify-center gap-2 mt-3"><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-purple-glow" data-index="0" aria-label="Go to image 1"></button><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-crt-border hover:bg-purple-muted" data-index="1" aria-label="Go to image 2"></button></div></div> <p class="text-text-dim leading-relaxed mb-4">Multi-API biomarker intelligence platform. Pulls from PubMed, ClinicalTrials.gov, UniProt, KEGG, and STRING, then runs Bayesian probability analysis with composite ROC curve generation. Embeds a full R runtime in the browser via WebR.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Bayesian diagnostic probability engine with real-time API integration and embedded R statistical computing — all client-side, zero backend. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">WebR</span><span class="tag">Bayesian Analysis</span><span class="tag">ROC Curves</span><span class="tag">REST APIs</span><span class="tag">PubMed</span><span class="tag">d-prime</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/PRISM" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/PRISM/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">NEC Tool</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Perez-Serize NEC Predictive Tool</span> </h3> <span class="status-research font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Research / Validation </span> </div> <img src="/images/NEC tool.png" alt="NEC Tool interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Dual-component clinical prediction engine for necrotizing enterocolitis. Monitors 9 biomarkers (ANC, WBC, platelets, CRP, fecal calprotectin, pH, lactate, base deficit, eosinophils), scoring both absolute abnormality and temporal trajectory to detect NEC 24-48 hours before clinical deterioration. Evidence-based thresholds from published literature with clinical pattern bonuses for multi-system co-occurring abnormalities. 5,900+ lines with animated demo walkthrough, algorithm explainer, and validation dashboard.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>No single biomarker diagnoses NEC. This tool combines 9 markers across time — trajectory analysis that creates a synergistic risk assessment where three high-priority markers dropping simultaneously is more predictive than any marker alone. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">Predictive Analytics</span><span class="tag">Temporal Trajectory Analysis</span><span class="tag">9-Biomarker Engine</span><span class="tag">Chart.js</span><span class="tag">Evidence-Based Thresholds</span><span class="tag">Clinical Validation</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/NEC-Tool" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/NEC-Tool/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">NICSTEM</span> <span class="text-text-muted mx-2">&mdash;</span> <span>NICU-Centric EHR Interface</span> </h3> <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype </span> </div> <img src="/images/NICSTEM.png" alt="NICSTEM interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Redesigned electronic health record interface. Replaced complex menu navigation with an intuitive visual approach using anatomical diagrams and drag-and-drop charting. Runs on top of existing EHR backends without vendor lock-in. 4,700+ lines.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Matches interface design to natural clinical thought patterns, dramatically reducing documentation time. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">React</span><span class="tag">Real-time Data</span><span class="tag">Clinical Workflow Optimization</span><span class="tag">FHIR Integration</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/NICSTEM" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/NICSTEM/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">N.A.N.O.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Nanopore Assay for Neonatal Organism Detection</span> </h3> <span class="status-research font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Research / Validation </span> </div> <img src="/images/NANO.png" alt="N.A.N.O. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Prospective concordance study comparing Oxford Nanopore MinION metagenomic sequencing to standard PCR and viral culture for rapid neonatal HSV detection. Full clinical protocol with custom 1,300+ line tracking dashboard: enrollment management, specimen workflow, sequencing QC metrics, turnaround time analytics, and concordance reporting.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Clinician-designed translational research — wrote the science AND built the operational tooling. From clinical question to protocol to dashboard, end to end. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">Nanopore Sequencing</span><span class="tag">Translational Research</span><span class="tag">Clinical Protocol</span><span class="tag">Study Dashboard</span><span class="tag">Metagenomics</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/NANO" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/NANO/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">B.U.G.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>MYCIN-Style Neonatal Sepsis Advisor</span> </h3> <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype </span> </div> <img src="/images/BUG.png" alt="B.U.G. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Clinical decision support tool inspired by the original MYCIN expert system. Guides clinicians through neonatal sepsis evaluation using rule-based reasoning, incorporating patient-specific factors to generate antibiotic recommendations with transparent confidence scoring.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Brings the rigor of expert system reasoning to bedside sepsis decisions, making the clinical logic visible and auditable. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">React</span><span class="tag">Expert Systems</span><span class="tag">Clinical Decision Support</span><span class="tag">Neonatal ID</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/BUG" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/BUG/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">H.A.L.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Heuristic Antimicrobial Logic</span> </h3> <span class="status-active font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Active Development </span> </div> <img src="/images/HAL.png" alt="H.A.L. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Antimicrobial stewardship engine with a retro terminal aesthetic. Evidence-based antimicrobial selection guidance, dosing calculations, and spectrum analysis to support institutional stewardship programs.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Encodes institutional antibiogram data and stewardship protocols into an interactive decision engine that clinicians actually want to use. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">JavaScript</span><span class="tag">Antimicrobial Stewardship</span><span class="tag">Clinical Algorithms</span><span class="tag">Retro CRT Interface</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/HAL" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/HAL/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">NICSPORT</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Neonatal Transport Documentation System</span> </h3> <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype </span> </div> <img src="/images/NICSPORT.png" alt="NICSPORT interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Mobile documentation platform for high-pressure transport. Offline persistence, smart exam toggles, vitals reminders, digital consent. 3,200+ lines. Designed by someone who&#39;s actually been in the back of a transport unit at 3 AM.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>First transport documentation system designed by a clinician who does the transports. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">Offline-First PWA</span><span class="tag">JavaScript</span><span class="tag">localStorage</span><span class="tag">PDF Generation</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/NICSPORT" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/NICSPORT/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">S.A.G.E.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>System for Algorithmic Generation of Evaluations</span> </h3> <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype </span> </div> <img src="/images/SAGE.png" alt="S.A.G.E. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Visual monitoring system that transforms complex vital signs into intuitive patterns using a retro-style interface. Converts traditional measurements into dynamic visual displays that make patient status immediately clear.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Makes complex vital sign patterns immediately recognizable through intuitive visual displays. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">JavaScript Canvas</span><span class="tag">Real-time Visualization</span><span class="tag">Pattern Recognition</span><span class="tag">Retro Gaming UI</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/SAGE" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/SAGE/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">B.L.O.O.M.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>BPD Lung Optimization &amp; Outcome Monitor</span> </h3> <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype </span> </div> <img src="/images/BLOOM.png" alt="B.L.O.O.M. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Comprehensive BPD weaning monitor that tracks ventilator parameters, calculates composite lung health scores, and visualizes trends over time. CRT-aesthetic dashboard with real-time scoring breakdown across oxygen burden, pressure support, and weaning trajectory.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Converts subjective &#39;how is the baby doing on the vent&#39; into a quantifiable, trackable BLOOM score with transparent component weighting. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">JavaScript</span><span class="tag">Canvas</span><span class="tag">CRT Interface</span><span class="tag">Respiratory Medicine</span><span class="tag">BPD Prevention</span><span class="tag">Real-time Monitoring</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/BLOOM" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/BLOOM/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">R.E.F.L.U.X.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Reflux Evidence Framework: Longitudinal Unit Exploration</span> </h3> <span class="status-research font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Research / Validation </span> </div> <img src="/images/REFLUX.png" alt="R.E.F.L.U.X. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Standardized bedside GERD assessment tool for neonatal patients. Structured observation protocol with assessment history, trend tracking, unit-level dashboards, and printable source documents. Built for a pilot study standardizing neonatal reflux evaluation.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Replaces subjective &#39;the baby looks refluxy&#39; with systematic, trackable bedside assessment data. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">JavaScript</span><span class="tag">Clinical Assessment</span><span class="tag">Neonatal GI</span><span class="tag">Pilot Study</span><span class="tag">Data Export</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/REFLUX" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/REFLUX/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">O.R.O.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Oxygen Retinopathy Optimizer</span> </h3> <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype </span> </div> <img src="/images/oro.png" alt="O.R.O. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Oxygen management tool to minimize ROP risk in neonatal patients. Tracks SpO2 targets, FiO2 adjustments, and exposure windows to maintain optimal oxygenation while reducing cumulative oxidative stress.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Turns the complex relationship between oxygen exposure and ROP risk into actionable, real-time clinical guidance. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">JavaScript</span><span class="tag">Neonatal Oxygenation</span><span class="tag">ROP Prevention</span><span class="tag">Real-time Monitoring</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/ORO" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/ORO/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">M.I.N.D.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Multi-domain Integrated Neurocognitive Diagnostic</span> </h3> <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype </span> </div> <img src="/images/MIND.png" alt="M.I.N.D. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Rapid dementia classification tool that integrates multiple cognitive assessment domains into a unified diagnostic workflow. Structured scoring and automated severity grading.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Consolidates fragmented neurocognitive assessments into a single, systematic diagnostic pathway. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">Vanilla JavaScript</span><span class="tag">Neurocognitive Assessment</span><span class="tag">Diagnostic Classification</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/MIND" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/MIND/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">NICUFlex</span> <span class="text-text-muted mx-2">&mdash;</span> <span>NICU Staffing Optimizer</span> </h3> <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype </span> </div> <img src="/images/NICUFlex.png" alt="NICUFlex interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Multi-site staffing allocation tool. Census-driven workload calculation with automated APP assignment recommendations across hospital sites. Color-coded acuity, real-time status tracking.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Operational workflow optimization — resource allocation meets clinical staffing intelligence. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">JavaScript</span><span class="tag">Operations</span><span class="tag">Workforce Management</span><span class="tag">Mobile-First</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/NICUFlex" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+[source]
+</a> <a href="https://serize-dev.github.io/NICUFlex/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+[live demo]
+</a> </div> </div> </div> </div> </section> <div class="section-line max-w-6xl mx-auto"></div>  <section id="stack" class="py-20 px-6"> <div class="max-w-5xl mx-auto"> <h2 class="font-mono text-sm text-green-term mb-2"> <span class="text-text-muted">$</span> cat /proc/stack
+</h2> <h3 class="text-3xl font-bold mb-12 glow-text">Technology Stack</h3> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border glow-border"> <h4 class="font-mono text-purple-bright text-sm uppercase tracking-wider mb-4">Clinical Systems</h4> <ul class="space-y-2 text-text-dim text-sm"> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Epic & Cerner</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> REDCap Administration</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> EDC Platforms (Rave, Medrio)</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> HL7 / FHIR Standards</li> </ul> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border glow-border"> <h4 class="font-mono text-purple-bright text-sm uppercase tracking-wider mb-4">Data & Analytics</h4> <ul class="space-y-2 text-text-dim text-sm"> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> SQL & Clinical Databases</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> R Statistical Analysis</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Python</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Clinical Trial Analytics</li> </ul> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border glow-border"> <h4 class="font-mono text-purple-bright text-sm uppercase tracking-wider mb-4">Development</h4> <ul class="space-y-2 text-text-dim text-sm"> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> JavaScript / React</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Offline-First Architecture</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Responsive Design</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> API Integration</li> </ul> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border glow-border"> <h4 class="font-mono text-purple-bright text-sm uppercase tracking-wider mb-4">Environment</h4> <ul class="space-y-2 text-text-dim text-sm"> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Linux (daily driver)</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Git / CLI-first workflow</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> cool-retro-term</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Vim / VS Code</li> </ul> </div> </div> </div> </section> <div class="section-line max-w-6xl mx-auto"></div>  <section id="publications" class="py-20 px-6"> <div class="max-w-4xl mx-auto"> <h2 class="font-mono text-sm text-green-term mb-2"> <span class="text-text-muted">$</span> grep -r "Serize" /pubmed/
+</h2> <h3 class="text-3xl font-bold mb-8 glow-text">Select Publications</h3> <div class="space-y-4"> <div class="bg-crt-panel rounded-lg p-4 border border-crt-border"> <p class="text-text-dim text-sm"> <span class="font-mono text-amber-term mr-2">Named Author</span>
+PDA-TOLERATE Trial &mdash; J Pediatr (2019) &bull; Am J Hum Genet (2024) &bull; HGG Advances (2025) &bull; J Pediatr (2021) &bull; J Perinatol (2019)
+</p> </div> <div class="bg-crt-panel rounded-lg p-4 border border-crt-border"> <p class="text-text-dim text-sm"> <span class="font-mono text-cyan-term mr-2">Consortium</span>
+PENUT Trial &mdash; N Engl J Med (2020) &bull; JAMA Netw Open (2022) &bull; Pediatr Res (2023) &bull; Am J Kidney Dis (2024)
+</p> </div> </div> <p class="font-mono text-text-dim text-sm mt-6"> <span class="text-green-term">$</span> open
+<a href="https://pubmed.ncbi.nlm.nih.gov/?term=Serize" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+pubmed.ncbi.nlm.nih.gov/?term=Serize
+</a> </p> </div> </section> <div class="section-line max-w-6xl mx-auto"></div>  <section class="py-20 px-6"> <div class="max-w-5xl mx-auto"> <h2 class="font-mono text-sm text-green-term mb-2"> <span class="text-text-muted">$</span> cat philosophy.md
+</h2> <h3 class="text-3xl font-bold mb-12 glow-text">Development Approach</h3> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center"> <div class="text-3xl mb-3">&#9764;</div> <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Clinical First</h4> <p class="text-text-dim text-sm">Every feature starts with understanding the clinical need, not the technical possibility.</p> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center"> <div class="text-3xl mb-3">&#9889;</div> <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Rapid Iteration</h4> <p class="text-text-dim text-sm">Build, test with actual clinicians, refine. No solution survives first contact with a busy unit.</p> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center"> <div class="text-3xl mb-3">&#9881;</div> <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Bulletproof</h4> <p class="text-text-dim text-sm">If it doesn't work at 3 AM with stressed staff, it doesn't work.</p> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center"> <div class="text-3xl mb-3">&#9881;</div> <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Zero Friction</h4> <p class="text-text-dim text-sm">No servers. No logins. No IT approval. Open the file and it works.</p> </div> </div> </div> </section> <div class="section-line max-w-6xl mx-auto"></div>  <section id="contact" class="py-20 px-6"> <div class="max-w-4xl mx-auto text-center"> <h2 class="font-mono text-sm text-green-term mb-2"> <span class="text-text-muted">$</span> ./contact.sh
+</h2> <h3 class="text-3xl font-bold mb-6 glow-text">Let's Build Something Better</h3> <p class="text-text-dim text-lg max-w-2xl mx-auto mb-10">
+I bridge clinical and technical teams. Whether you need someone who understands
+        both the workflow and the code, let's talk.
+</p> <div class="flex flex-col sm:flex-row gap-4 justify-center"> <a href="mailto:arturo@serize.dev" class="px-8 py-4 bg-purple-deep hover:bg-purple-soft text-white font-mono text-sm rounded-lg transition-all hover:shadow-lg hover:shadow-purple-glow/20">
+arturo@serize.dev
+</a> <a href="https://linkedin.com/in/arturo-serize-mph-pa-c/" target="_blank" rel="noopener" class="px-8 py-4 border border-crt-border hover:border-purple-soft text-text-dim hover:text-purple-bright font-mono text-sm rounded-lg transition-all">
+LinkedIn
+</a> <a href="https://github.com/serize-dev" target="_blank" rel="noopener" class="px-8 py-4 border border-crt-border hover:border-purple-soft text-text-dim hover:text-purple-bright font-mono text-sm rounded-lg transition-all">
+GitHub
+</a> </div> <p class="font-mono text-text-muted text-xs mt-8">
+English & Spanish (native) &#183; Portuguese (fluent)
+</p> </div> </section>  </main> <!-- Footer --> <footer class="border-t border-crt-border py-8 mt-20"> <div class="max-w-6xl mx-auto px-6 text-center"> <p class="font-mono text-text-muted text-xs"> <span class="text-green-term">$</span> echo "Built from the bedside. &copy; 2026 Arturo Serize."
+</p> <p class="font-mono text-text-muted/50 text-xs mt-2">
+process exited with code 0
+</p> </div> </footer> </body></html>
