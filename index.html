@@ -1,108 +1,1803 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="From bedside to code. Twenty years in critical care and clinical research, building the healthcare tools that should already exist."><meta name="generator" content="Astro v5.18.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"><title>Arturo Serize | Clinical Systems Builder</title><link rel="stylesheet" href="/_astro/index.DPwkXuhu.css"></head> <body class="min-h-screen antialiased"> <div id="splash" class="fixed inset-0 z-[10000] bg-void flex items-center justify-center" data-astro-cid-mlbag6b5> <div class="w-full max-w-2xl px-8" data-astro-cid-mlbag6b5> <!-- CRT phosphor warmup glow --> <div id="phosphor" class="absolute inset-0 bg-purple-glow/0 transition-opacity duration-1000 pointer-events-none" data-astro-cid-mlbag6b5></div> <div class="font-mono text-sm leading-relaxed" data-astro-cid-mlbag6b5> <!-- BIOS-style header --> <div id="boot-header" class="text-text-muted mb-6 opacity-0" data-astro-cid-mlbag6b5> <span class="text-purple-bright" data-astro-cid-mlbag6b5>SERIZE SYSTEMS</span> BIOS v3.05<br data-astro-cid-mlbag6b5>
-Copyright (C) 2010-2026 Arturo Serize, MPH, PA-C<br data-astro-cid-mlbag6b5> <span class="text-text-muted/50" data-astro-cid-mlbag6b5>All clinical workflows reserved.</span> </div> <!-- Boot lines --> <div id="boot-lines" class="space-y-1" data-astro-cid-mlbag6b5> <!-- Lines will be added by JS --> </div> <!-- Final prompt --> <div id="boot-prompt" class="mt-6 opacity-0" data-astro-cid-mlbag6b5> <span class="text-green-term" data-astro-cid-mlbag6b5>serize@dev</span><span class="text-text-muted" data-astro-cid-mlbag6b5>:</span><span class="text-purple-bright" data-astro-cid-mlbag6b5>~</span><span class="text-text-muted" data-astro-cid-mlbag6b5>$</span> <span id="boot-cmd" class="text-text-bright" data-astro-cid-mlbag6b5></span> <span id="boot-cursor" class="text-purple-glow animate-pulse" data-astro-cid-mlbag6b5>_</span> </div> </div> </div> <!-- Skip button --> <button id="skip-boot" class="absolute bottom-8 right-8 font-mono text-sm px-4 py-2 border border-crt-border rounded-lg text-text-muted hover:text-purple-bright hover:border-purple-soft transition-all opacity-0" data-astro-cid-mlbag6b5>
+<!DOCTYPE html><html lang="en">
+  <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="From bedside to code. Twenty years in critical care and clinical research, building the healthcare tools that should already exist."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"><title>Arturo Serize | Clinical Systems Builder</title><style>
+/* ============================================================
+   Compiled stylesheet (Tailwind v4 output, inlined 2026-08-01).
+   This file IS the source — edit here, push, done. No build step.
+   ============================================================ */
+/*! tailwindcss v4.2.1 | MIT License | https://tailwindcss.com */@layer properties {
+  @supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))) {
+    *,:before,:after,::backdrop {
+      --tw-translate-x:0;
+      --tw-translate-y:0;
+      --tw-translate-z:0;
+      --tw-rotate-x:initial;
+      --tw-rotate-y:initial;
+      --tw-rotate-z:initial;
+      --tw-skew-x:initial;
+      --tw-skew-y:initial;
+      --tw-space-y-reverse:0;
+      --tw-border-style:solid;
+      --tw-leading:initial;
+      --tw-font-weight:initial;
+      --tw-tracking:initial;
+      --tw-backdrop-blur:initial;
+      --tw-backdrop-brightness:initial;
+      --tw-backdrop-contrast:initial;
+      --tw-backdrop-grayscale:initial;
+      --tw-backdrop-hue-rotate:initial;
+      --tw-backdrop-invert:initial;
+      --tw-backdrop-opacity:initial;
+      --tw-backdrop-saturate:initial;
+      --tw-backdrop-sepia:initial;
+      --tw-duration:initial;
+      --tw-ease:initial;
+      --tw-shadow:0 0 #0000;
+      --tw-shadow-color:initial;
+      --tw-shadow-alpha:100%;
+      --tw-inset-shadow:0 0 #0000;
+      --tw-inset-shadow-color:initial;
+      --tw-inset-shadow-alpha:100%;
+      --tw-ring-color:initial;
+      --tw-ring-shadow:0 0 #0000;
+      --tw-inset-ring-color:initial;
+      --tw-inset-ring-shadow:0 0 #0000;
+      --tw-ring-inset:initial;
+      --tw-ring-offset-width:0px;
+      --tw-ring-offset-color:#fff;
+      --tw-ring-offset-shadow:0 0 #0000
+    }
+  }
+}
+@layer theme {
+  :root,:host {
+    --font-sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono:"JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas", monospace;
+    --color-green-400:oklch(79.2% .209 151.711);
+    --color-white:#fff;
+    --spacing:.25rem;
+    --container-2xl:42rem;
+    --container-3xl:48rem;
+    --container-4xl:56rem;
+    --container-5xl:64rem;
+    --container-6xl:72rem;
+    --text-xs:.75rem;
+    --text-xs--line-height:calc(1 / .75);
+    --text-sm:.875rem;
+    --text-sm--line-height:calc(1.25 / .875);
+    --text-lg:1.125rem;
+    --text-lg--line-height:calc(1.75 / 1.125);
+    --text-xl:1.25rem;
+    --text-xl--line-height:calc(1.75 / 1.25);
+    --text-2xl:1.5rem;
+    --text-2xl--line-height:calc(2 / 1.5);
+    --text-3xl:1.875rem;
+    --text-3xl--line-height: 1.2;
+    --text-5xl:3rem;
+    --text-5xl--line-height:1;
+    --text-6xl:3.75rem;
+    --text-6xl--line-height:1;
+    --font-weight-normal:400;
+    --font-weight-bold:700;
+    --tracking-wider:.05em;
+    --leading-tight:1.25;
+    --leading-relaxed:1.625;
+    --radius-lg:.5rem;
+    --radius-xl:.75rem;
+    --ease-in-out:cubic-bezier(.4, 0, .2, 1);
+    --animate-pulse:pulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
+    --blur-md:12px;
+    --default-transition-duration:.15s;
+    --default-transition-timing-function:cubic-bezier(.4, 0, .2, 1);
+    --default-font-family:var(--font-sans);
+    --default-mono-font-family:var(--font-mono);
+    --color-void:#0a0a0f;
+    --color-crt-black:#0d0d14;
+    --color-crt-dark:#12121e;
+    --color-crt-panel:#16162a;
+    --color-crt-border:#1e1e3a;
+    --color-purple-glow:#a855f7;
+    --color-purple-bright:#c084fc;
+    --color-purple-soft:#7c3aed;
+    --color-purple-deep:#6d28d9;
+    --color-purple-muted:#4c1d95;
+    --color-green-term:#4ade80;
+    --color-amber-term:#fbbf24;
+    --color-cyan-term:#22d3ee;
+    --color-text-bright:#e2e8f0;
+    --color-text-dim:#94a3b8;
+    --color-text-muted:#64748b
+  }
+}
+@layer base {
+  *,:after,:before,::backdrop {
+    box-sizing:border-box;
+    border:0 solid;
+    margin:0;
+    padding:0
+  }
+  ::file-selector-button {
+    box-sizing:border-box;
+    border:0 solid;
+    margin:0;
+    padding:0
+  }
+  html,:host {
+    -webkit-text-size-adjust:100%;
+    tab-size:4;
+    line-height:1.5;
+    font-family:var(--default-font-family,ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+    font-feature-settings:var(--default-font-feature-settings,normal);
+    font-variation-settings:var(--default-font-variation-settings,normal);
+    -webkit-tap-highlight-color:transparent
+  }
+  hr {
+    height:0;
+    color:inherit;
+    border-top-width:1px
+  }
+  abbr:where([title]) {
+    -webkit-text-decoration:underline dotted;
+    text-decoration:underline dotted
+  }
+  h1,h2,h3,h4,h5,h6 {
+    font-size:inherit;
+    font-weight:inherit
+  }
+  a {
+    color:inherit;
+    -webkit-text-decoration:inherit;
+    text-decoration:inherit
+  }
+  b,strong {
+    font-weight:bolder
+  }
+  code,kbd,samp,pre {
+    font-family:var(--default-mono-font-family,ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+    font-feature-settings:var(--default-mono-font-feature-settings,normal);
+    font-variation-settings:var(--default-mono-font-variation-settings,normal);
+    font-size:1em
+  }
+  small {
+    font-size:80%
+  }
+  sub,sup {
+    vertical-align:baseline;
+    font-size:75%;
+    line-height:0;
+    position:relative
+  }
+  sub {
+    bottom:-.25em
+  }
+  sup {
+    top:-.5em
+  }
+  table {
+    text-indent:0;
+    border-color:inherit;
+    border-collapse:collapse
+  }
+  :-moz-focusring {
+    outline:auto
+  }
+  progress {
+    vertical-align:baseline
+  }
+  summary {
+    display:list-item
+  }
+  ol,ul,menu {
+    list-style:none
+  }
+  img,svg,video,canvas,audio,iframe,embed,object {
+    vertical-align:middle;
+    display:block
+  }
+  img,video {
+    max-width:100%;
+    height:auto
+  }
+  button,input,select,optgroup,textarea {
+    font:inherit;
+    font-feature-settings:inherit;
+    font-variation-settings:inherit;
+    letter-spacing:inherit;
+    color:inherit;
+    opacity:1;
+    background-color:#0000;
+    border-radius:0
+  }
+  ::file-selector-button {
+    font:inherit;
+    font-feature-settings:inherit;
+    font-variation-settings:inherit;
+    letter-spacing:inherit;
+    color:inherit;
+    opacity:1;
+    background-color:#0000;
+    border-radius:0
+  }
+  :where(select:is([multiple],[size])) optgroup {
+    font-weight:bolder
+  }
+  :where(select:is([multiple],[size])) optgroup option {
+    padding-inline-start:20px
+  }
+  ::file-selector-button {
+    margin-inline-end:4px
+  }
+  ::placeholder {
+    opacity:1
+  }
+  @supports (not ((-webkit-appearance:-apple-pay-button))) or (contain-intrinsic-size:1px) {
+    ::placeholder {
+      color:currentColor
+    }
+    @supports (color:color-mix(in lab,red,red)) {
+      ::placeholder {
+        color:color-mix(in oklab,currentcolor 50%,transparent)
+      }
+    }
+  }
+  textarea {
+    resize:vertical
+  }
+  ::-webkit-search-decoration {
+    -webkit-appearance:none
+  }
+  ::-webkit-date-and-time-value {
+    min-height:1lh;
+    text-align:inherit
+  }
+  ::-webkit-datetime-edit {
+    display:inline-flex
+  }
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding:0
+  }
+  ::-webkit-datetime-edit {
+    padding-block:0
+  }
+  ::-webkit-datetime-edit-year-field {
+    padding-block:0
+  }
+  ::-webkit-datetime-edit-month-field {
+    padding-block:0
+  }
+  ::-webkit-datetime-edit-day-field {
+    padding-block:0
+  }
+  ::-webkit-datetime-edit-hour-field {
+    padding-block:0
+  }
+  ::-webkit-datetime-edit-minute-field {
+    padding-block:0
+  }
+  ::-webkit-datetime-edit-second-field {
+    padding-block:0
+  }
+  ::-webkit-datetime-edit-millisecond-field {
+    padding-block:0
+  }
+  ::-webkit-datetime-edit-meridiem-field {
+    padding-block:0
+  }
+  ::-webkit-calendar-picker-indicator {
+    line-height:1
+  }
+  :-moz-ui-invalid {
+    box-shadow:none
+  }
+  button,input:where([type=button],[type=reset],[type=submit]) {
+    appearance:button
+  }
+  ::file-selector-button {
+    appearance:button
+  }
+  ::-webkit-inner-spin-button {
+    height:auto
+  }
+  ::-webkit-outer-spin-button {
+    height:auto
+  }
+  [hidden]:where(:not([hidden=until-found])) {
+    display:none!important
+  }
+}
+@layer components;
+@layer utilities {
+  .pointer-events-none {
+    pointer-events:none
+  }
+  .visible {
+    visibility:visible
+  }
+  .absolute {
+    position:absolute
+  }
+  .fixed {
+    position:fixed
+  }
+  .relative {
+    position:relative
+  }
+  .static {
+    position:static
+  }
+  .inset-0 {
+    inset:calc(var(--spacing) * 0)
+  }
+  .end {
+    inset-inline-end:var(--spacing)
+  }
+  .-top-px {
+    top:-1px
+  }
+  .top-0 {
+    top:calc(var(--spacing) * 0)
+  }
+  .top-1\/2 {
+    top:50%
+  }
+  .right-2 {
+    right:calc(var(--spacing) * 2)
+  }
+  .right-6 {
+    right:calc(var(--spacing) * 6)
+  }
+  .right-8 {
+    right:calc(var(--spacing) * 8)
+  }
+  .bottom-8 {
+    bottom:calc(var(--spacing) * 8)
+  }
+  .left-2 {
+    left:calc(var(--spacing) * 2)
+  }
+  .z-50 {
+    z-index:50
+  }
+  .z-\[10000\] {
+    z-index:10000
+  }
+  .mx-2 {
+    margin-inline:calc(var(--spacing) * 2)
+  }
+  .mx-auto {
+    margin-inline:auto
+  }
+  .mt-1 {
+    margin-top:calc(var(--spacing) * 1)
+  }
+  .mt-2 {
+    margin-top:calc(var(--spacing) * 2)
+  }
+  .mt-3 {
+    margin-top:calc(var(--spacing) * 3)
+  }
+  .mt-6 {
+    margin-top:calc(var(--spacing) * 6)
+  }
+  .mt-8 {
+    margin-top:calc(var(--spacing) * 8)
+  }
+  .mt-10 {
+    margin-top:calc(var(--spacing) * 10)
+  }
+  .mt-12 {
+    margin-top:calc(var(--spacing) * 12)
+  }
+  .mt-20 {
+    margin-top:calc(var(--spacing) * 20)
+  }
+  .mr-2 {
+    margin-right:calc(var(--spacing) * 2)
+  }
+  .mb-2 {
+    margin-bottom:calc(var(--spacing) * 2)
+  }
+  .mb-3 {
+    margin-bottom:calc(var(--spacing) * 3)
+  }
+  .mb-4 {
+    margin-bottom:calc(var(--spacing) * 4)
+  }
+  .mb-6 {
+    margin-bottom:calc(var(--spacing) * 6)
+  }
+  .mb-8 {
+    margin-bottom:calc(var(--spacing) * 8)
+  }
+  .mb-10 {
+    margin-bottom:calc(var(--spacing) * 10)
+  }
+  .mb-12 {
+    margin-bottom:calc(var(--spacing) * 12)
+  }
+  .block {
+    display:block
+  }
+  .flex {
+    display:flex
+  }
+  .grid {
+    display:grid
+  }
+  .h-2 {
+    height:calc(var(--spacing) * 2)
+  }
+  .h-8 {
+    height:calc(var(--spacing) * 8)
+  }
+  .min-h-screen {
+    min-height:100vh
+  }
+  .w-2 {
+    width:calc(var(--spacing) * 2)
+  }
+  .w-8 {
+    width:calc(var(--spacing) * 8)
+  }
+  .w-full {
+    width:100%
+  }
+  .max-w-2xl {
+    max-width:var(--container-2xl)
+  }
+  .max-w-3xl {
+    max-width:var(--container-3xl)
+  }
+  .max-w-4xl {
+    max-width:var(--container-4xl)
+  }
+  .max-w-5xl {
+    max-width:var(--container-5xl)
+  }
+  .max-w-6xl {
+    max-width:var(--container-6xl)
+  }
+  .flex-shrink-0 {
+    flex-shrink:0
+  }
+  .-translate-y-1\/2 {
+    --tw-translate-y: -50%;
+    translate:var(--tw-translate-x) var(--tw-translate-y)
+  }
+  .transform {
+    transform:var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,)
+  }
+  .animate-pulse {
+    animation:var(--animate-pulse)
+  }
+  .grid-cols-1 {
+    grid-template-columns:repeat(1,minmax(0,1fr))
+  }
+  .grid-cols-2 {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+  .flex-col {
+    flex-direction:column
+  }
+  .flex-wrap {
+    flex-wrap:wrap
+  }
+  .items-center {
+    align-items:center
+  }
+  .items-start {
+    align-items:flex-start
+  }
+  .justify-between {
+    justify-content:space-between
+  }
+  .justify-center {
+    justify-content:center
+  }
+  .gap-2 {
+    gap:calc(var(--spacing) * 2)
+  }
+  .gap-3 {
+    gap:calc(var(--spacing) * 3)
+  }
+  .gap-4 {
+    gap:calc(var(--spacing) * 4)
+  }
+  .gap-6 {
+    gap:calc(var(--spacing) * 6)
+  }
+  :where(.space-y-1>:not(:last-child)) {
+    --tw-space-y-reverse:0;
+    margin-block-start:calc(calc(var(--spacing) * 1) * var(--tw-space-y-reverse));
+    margin-block-end:calc(calc(var(--spacing) * 1) * calc(1 - var(--tw-space-y-reverse)))
+  }
+  :where(.space-y-2>:not(:last-child)) {
+    --tw-space-y-reverse:0;
+    margin-block-start:calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));
+    margin-block-end:calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)))
+  }
+  :where(.space-y-4>:not(:last-child)) {
+    --tw-space-y-reverse:0;
+    margin-block-start:calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
+    margin-block-end:calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)))
+  }
+  :where(.space-y-6>:not(:last-child)) {
+    --tw-space-y-reverse:0;
+    margin-block-start:calc(calc(var(--spacing) * 6) * var(--tw-space-y-reverse));
+    margin-block-end:calc(calc(var(--spacing) * 6) * calc(1 - var(--tw-space-y-reverse)))
+  }
+  :where(.space-y-8>:not(:last-child)) {
+    --tw-space-y-reverse:0;
+    margin-block-start:calc(calc(var(--spacing) * 8) * var(--tw-space-y-reverse));
+    margin-block-end:calc(calc(var(--spacing) * 8) * calc(1 - var(--tw-space-y-reverse)))
+  }
+  .overflow-hidden {
+    overflow:hidden
+  }
+  .rounded-full {
+    border-radius:3.40282e38px
+  }
+  .rounded-lg {
+    border-radius:var(--radius-lg)
+  }
+  .rounded-xl {
+    border-radius:var(--radius-xl)
+  }
+  .border {
+    border-style:var(--tw-border-style);
+    border-width:1px
+  }
+  .border-t {
+    border-top-style:var(--tw-border-style);
+    border-top-width:1px
+  }
+  .border-b {
+    border-bottom-style:var(--tw-border-style);
+    border-bottom-width:1px
+  }
+  .border-crt-border {
+    border-color:var(--color-crt-border)
+  }
+  .border-crt-border\/50 {
+    border-color:#1e1e3a80
+  }
+  @supports (color:color-mix(in lab,red,red)) {
+    .border-crt-border\/50 {
+      border-color:color-mix(in oklab,var(--color-crt-border) 50%,transparent)
+    }
+  }
+  .border-purple-soft\/50 {
+    border-color:#7c3aed80
+  }
+  @supports (color:color-mix(in lab,red,red)) {
+    .border-purple-soft\/50 {
+      border-color:color-mix(in oklab,var(--color-purple-soft) 50%,transparent)
+    }
+  }
+  .bg-crt-border {
+    background-color:var(--color-crt-border)
+  }
+  .bg-crt-dark\/60 {
+    background-color:#12121e99
+  }
+  @supports (color:color-mix(in lab,red,red)) {
+    .bg-crt-dark\/60 {
+      background-color:color-mix(in oklab,var(--color-crt-dark) 60%,transparent)
+    }
+  }
+  .bg-crt-panel {
+    background-color:var(--color-crt-panel)
+  }
+  .bg-purple-deep {
+    background-color:var(--color-purple-deep)
+  }
+  .bg-purple-glow {
+    background-color:var(--color-purple-glow)
+  }
+  .bg-purple-glow\/0 {
+    background-color:#0000
+  }
+  @supports (color:color-mix(in lab,red,red)) {
+    .bg-purple-glow\/0 {
+      background-color:color-mix(in oklab,var(--color-purple-glow) 0%,transparent)
+    }
+  }
+  .bg-void {
+    background-color:var(--color-void)
+  }
+  .bg-void\/80 {
+    background-color:#0a0a0fcc
+  }
+  @supports (color:color-mix(in lab,red,red)) {
+    .bg-void\/80 {
+      background-color:color-mix(in oklab,var(--color-void) 80%,transparent)
+    }
+  }
+  .p-3 {
+    padding:calc(var(--spacing) * 3)
+  }
+  .p-4 {
+    padding:calc(var(--spacing) * 4)
+  }
+  .p-5 {
+    padding:calc(var(--spacing) * 5)
+  }
+  .p-6 {
+    padding:calc(var(--spacing) * 6)
+  }
+  .px-3 {
+    padding-inline:calc(var(--spacing) * 3)
+  }
+  .px-4 {
+    padding-inline:calc(var(--spacing) * 4)
+  }
+  .px-6 {
+    padding-inline:calc(var(--spacing) * 6)
+  }
+  .px-8 {
+    padding-inline:calc(var(--spacing) * 8)
+  }
+  .py-1 {
+    padding-block:calc(var(--spacing) * 1)
+  }
+  .py-2 {
+    padding-block:calc(var(--spacing) * 2)
+  }
+  .py-3 {
+    padding-block:calc(var(--spacing) * 3)
+  }
+  .py-4 {
+    padding-block:calc(var(--spacing) * 4)
+  }
+  .py-8 {
+    padding-block:calc(var(--spacing) * 8)
+  }
+  .py-20 {
+    padding-block:calc(var(--spacing) * 20)
+  }
+  .pt-32 {
+    padding-top:calc(var(--spacing) * 32)
+  }
+  .pb-1 {
+    padding-bottom:calc(var(--spacing) * 1)
+  }
+  .pb-20 {
+    padding-bottom:calc(var(--spacing) * 20)
+  }
+  .text-center {
+    text-align:center
+  }
+  .font-mono {
+    font-family:var(--font-mono)
+  }
+  .text-2xl {
+    font-size:var(--text-2xl);
+    line-height:var(--tw-leading,var(--text-2xl--line-height))
+  }
+  .text-3xl {
+    font-size:var(--text-3xl);
+    line-height:var(--tw-leading,var(--text-3xl--line-height))
+  }
+  .text-5xl {
+    font-size:var(--text-5xl);
+    line-height:var(--tw-leading,var(--text-5xl--line-height))
+  }
+  .text-lg {
+    font-size:var(--text-lg);
+    line-height:var(--tw-leading,var(--text-lg--line-height))
+  }
+  .text-sm {
+    font-size:var(--text-sm);
+    line-height:var(--tw-leading,var(--text-sm--line-height))
+  }
+  .text-xl {
+    font-size:var(--text-xl);
+    line-height:var(--tw-leading,var(--text-xl--line-height))
+  }
+  .text-xs {
+    font-size:var(--text-xs);
+    line-height:var(--tw-leading,var(--text-xs--line-height))
+  }
+  .leading-relaxed {
+    --tw-leading:var(--leading-relaxed);
+    line-height:var(--leading-relaxed)
+  }
+  .leading-tight {
+    --tw-leading:var(--leading-tight);
+    line-height:var(--leading-tight)
+  }
+  .font-bold {
+    --tw-font-weight:var(--font-weight-bold);
+    font-weight:var(--font-weight-bold)
+  }
+  .font-normal {
+    --tw-font-weight:var(--font-weight-normal);
+    font-weight:var(--font-weight-normal)
+  }
+  .tracking-wider {
+    --tw-tracking:var(--tracking-wider);
+    letter-spacing:var(--tracking-wider)
+  }
+  .whitespace-nowrap {
+    white-space:nowrap
+  }
+  .text-amber-term {
+    color:var(--color-amber-term)
+  }
+  .text-cyan-term {
+    color:var(--color-cyan-term)
+  }
+  .text-green-term {
+    color:var(--color-green-term)
+  }
+  .text-purple-bright {
+    color:var(--color-purple-bright)
+  }
+  .text-purple-glow {
+    color:var(--color-purple-glow)
+  }
+  .text-text-bright {
+    color:var(--color-text-bright)
+  }
+  .text-text-dim {
+    color:var(--color-text-dim)
+  }
+  .text-text-muted {
+    color:var(--color-text-muted)
+  }
+  .text-text-muted\/50 {
+    color:#64748b80
+  }
+  @supports (color:color-mix(in lab,red,red)) {
+    .text-text-muted\/50 {
+      color:color-mix(in oklab,var(--color-text-muted) 50%,transparent)
+    }
+  }
+  .text-white {
+    color:var(--color-white)
+  }
+  .uppercase {
+    text-transform:uppercase
+  }
+  .antialiased {
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale
+  }
+  .opacity-0 {
+    opacity:0
+  }
+  .backdrop-blur-md {
+    --tw-backdrop-blur:blur(var(--blur-md));
+    -webkit-backdrop-filter:var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+    backdrop-filter:var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,)
+  }
+  .transition {
+    transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,--tw-gradient-from,--tw-gradient-via,--tw-gradient-to,opacity,box-shadow,transform,translate,scale,rotate,filter,-webkit-backdrop-filter,backdrop-filter,display,content-visibility,overlay,pointer-events;
+    transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));
+    transition-duration:var(--tw-duration,var(--default-transition-duration))
+  }
+  .transition-all {
+    transition-property:all;
+    transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));
+    transition-duration:var(--tw-duration,var(--default-transition-duration))
+  }
+  .transition-colors {
+    transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,--tw-gradient-from,--tw-gradient-via,--tw-gradient-to;
+    transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));
+    transition-duration:var(--tw-duration,var(--default-transition-duration))
+  }
+  .transition-opacity {
+    transition-property:opacity;
+    transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));
+    transition-duration:var(--tw-duration,var(--default-transition-duration))
+  }
+  .transition-transform {
+    transition-property:transform,translate,scale,rotate;
+    transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));
+    transition-duration:var(--tw-duration,var(--default-transition-duration))
+  }
+  .duration-300 {
+    --tw-duration:.3s;
+    transition-duration:.3s
+  }
+  .duration-1000 {
+    --tw-duration:1s;
+    transition-duration:1s
+  }
+  .ease-in-out {
+    --tw-ease:var(--ease-in-out);
+    transition-timing-function:var(--ease-in-out)
+  }
+  @media(hover:hover) {
+    .hover\:border-purple-soft:hover {
+      border-color:var(--color-purple-soft)
+    }
+    .hover\:bg-purple-muted:hover {
+      background-color:var(--color-purple-muted)
+    }
+    .hover\:bg-purple-soft:hover {
+      background-color:var(--color-purple-soft)
+    }
+    .hover\:text-green-400:hover {
+      color:var(--color-green-400)
+    }
+    .hover\:text-purple-bright:hover {
+      color:var(--color-purple-bright)
+    }
+    .hover\:text-purple-glow:hover {
+      color:var(--color-purple-glow)
+    }
+    .hover\:shadow-lg:hover {
+      --tw-shadow:0 10px 15px -3px var(--tw-shadow-color,#0000001a), 0 4px 6px -4px var(--tw-shadow-color,#0000001a);
+      box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)
+    }
+    .hover\:shadow-purple-glow\/20:hover {
+      --tw-shadow-color:#a855f733
+    }
+    @supports (color:color-mix(in lab,red,red)) {
+      .hover\:shadow-purple-glow\/20:hover {
+        --tw-shadow-color:color-mix(in oklab, color-mix(in oklab, var(--color-purple-glow) 20%, transparent) var(--tw-shadow-alpha), transparent)
+      }
+    }
+  }
+  @media(min-width:40rem) {
+    .sm\:grid-cols-3 {
+      grid-template-columns:repeat(3,minmax(0,1fr))
+    }
+    .sm\:flex-row {
+      flex-direction:row
+    }
+  }
+  @media(min-width:48rem) {
+    .md\:grid-cols-2 {
+      grid-template-columns:repeat(2,minmax(0,1fr))
+    }
+    .md\:grid-cols-4 {
+      grid-template-columns:repeat(4,minmax(0,1fr))
+    }
+    .md\:text-2xl {
+      font-size:var(--text-2xl);
+      line-height:var(--tw-leading,var(--text-2xl--line-height))
+    }
+    .md\:text-3xl {
+      font-size:var(--text-3xl);
+      line-height:var(--tw-leading,var(--text-3xl--line-height))
+    }
+    .md\:text-6xl {
+      font-size:var(--text-6xl);
+      line-height:var(--tw-leading,var(--text-6xl--line-height))
+    }
+  }
+  @media(min-width:64rem) {
+    .lg\:grid-cols-4 {
+      grid-template-columns:repeat(4,minmax(0,1fr))
+    }
+  }
+}
+html {
+  scroll-behavior:smooth
+}
+body {
+  background-color:var(--color-void);
+  color:var(--color-text-bright);
+  font-family:var(--font-sans)
+}
+.crt-overlay {
+  pointer-events:none;
+  z-index:9999;
+  opacity:.4;
+  background:repeating-linear-gradient(0deg,#0000,#0000 2px,#00000008 2px 4px);
+  position:fixed;
+  inset:0
+}
+@keyframes blink {
+  0%,to {
+    opacity:1
+  }
+  50% {
+    opacity:0
+  }
+}
+.cursor-blink:after {
+  content:"█";
+  color:var(--color-purple-glow);
+  animation:1s step-end infinite blink
+}
+.glow-text {
+  text-shadow:0 0 10px #a855f780,0 0 40px #a855f733
+}
+.glow-border {
+  box-shadow:0 0 15px #a855f726,inset 0 0 15px #a855f70d
+}
+.prompt:before {
+  content:"> ";
+  color:var(--color-green-term);
+  font-family:var(--font-mono);
+  font-weight:700
+}
+.project-card {
+  background:linear-gradient(135deg,var(--color-crt-panel),var(--color-crt-dark));
+  border:1px solid var(--color-crt-border);
+  transition:all .3s
+}
+.project-card:hover {
+  border-color:var(--color-purple-soft);
+  transform:translateY(-4px);
+  box-shadow:0 0 20px #a855f726,0 8px 32px #0006
+}
+.tag {
+  color:var(--color-purple-bright);
+  font-family:var(--font-mono);
+  background:#a855f71f;
+  border:1px solid #a855f740;
+  border-radius:4px;
+  padding:.2rem .6rem;
+  font-size:.75rem
+}
+.section-line {
+  background:linear-gradient(90deg,transparent,var(--color-purple-muted),transparent);
+  height:1px
+}
+::-webkit-scrollbar {
+  width:6px
+}
+::-webkit-scrollbar-track {
+  background:var(--color-crt-black)
+}
+::-webkit-scrollbar-thumb {
+  background:var(--color-purple-muted);
+  border-radius:3px
+}
+::-webkit-scrollbar-thumb:hover {
+  background:var(--color-purple-soft)
+}
+.nav-link {
+  color:var(--color-text-dim);
+  transition:color .2s;
+  position:relative
+}
+.nav-link:hover {
+  color:var(--color-purple-bright)
+}
+.nav-link:after {
+  content:"";
+  background:var(--color-purple-glow);
+  width:0;
+  height:2px;
+  transition:width .3s;
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  box-shadow:0 0 8px #a855f780
+}
+.nav-link:hover:after {
+  width:100%
+}
+@keyframes fadeUp {
+  0% {
+    opacity:0;
+    transform:translateY(20px)
+  }
+  to {
+    opacity:1;
+    transform:translateY(0)
+  }
+}
+.animate-in {
+  animation:.6s ease-out both fadeUp
+}
+.badge-flagship {
+  background:linear-gradient(135deg,var(--color-purple-soft),var(--color-purple-deep));
+  color:#fff;
+  font-family:var(--font-mono);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  border-radius:0 0 6px 6px;
+  padding:.2rem .75rem;
+  font-size:.65rem
+}
+.status-active {
+  color:var(--color-green-term);
+  background:#4ade801f;
+  border:1px solid #4ade804d
+}
+.status-proto {
+  color:var(--color-amber-term);
+  background:#fbbf241f;
+  border:1px solid #fbbf244d
+}
+.status-research {
+  color:var(--color-cyan-term);
+  background:#22d3ee1f;
+  border:1px solid #22d3ee4d
+}
+@property --tw-translate-x {
+  syntax:"*";
+  inherits:false;
+  initial-value:0
+}
+@property --tw-translate-y {
+  syntax:"*";
+  inherits:false;
+  initial-value:0
+}
+@property --tw-translate-z {
+  syntax:"*";
+  inherits:false;
+  initial-value:0
+}
+@property --tw-rotate-x {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-rotate-y {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-rotate-z {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-skew-x {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-skew-y {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-space-y-reverse {
+  syntax:"*";
+  inherits:false;
+  initial-value:0
+}
+@property --tw-border-style {
+  syntax:"*";
+  inherits:false;
+  initial-value:solid
+}
+@property --tw-leading {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-font-weight {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-tracking {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-backdrop-blur {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-backdrop-brightness {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-backdrop-contrast {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-backdrop-grayscale {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-backdrop-hue-rotate {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-backdrop-invert {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-backdrop-opacity {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-backdrop-saturate {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-backdrop-sepia {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-duration {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-ease {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-shadow {
+  syntax:"*";
+  inherits:false;
+  initial-value:0 0 #0000
+}
+@property --tw-shadow-color {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-shadow-alpha {
+  syntax:"<percentage>";
+  inherits:false;
+  initial-value:100%
+}
+@property --tw-inset-shadow {
+  syntax:"*";
+  inherits:false;
+  initial-value:0 0 #0000
+}
+@property --tw-inset-shadow-color {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-inset-shadow-alpha {
+  syntax:"<percentage>";
+  inherits:false;
+  initial-value:100%
+}
+@property --tw-ring-color {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-ring-shadow {
+  syntax:"*";
+  inherits:false;
+  initial-value:0 0 #0000
+}
+@property --tw-inset-ring-color {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-inset-ring-shadow {
+  syntax:"*";
+  inherits:false;
+  initial-value:0 0 #0000
+}
+@property --tw-ring-inset {
+  syntax:"*";
+  inherits:false
+}
+@property --tw-ring-offset-width {
+  syntax:"<length>";
+  inherits:false;
+  initial-value:0
+}
+@property --tw-ring-offset-color {
+  syntax:"*";
+  inherits:false;
+  initial-value:#fff
+}
+@property --tw-ring-offset-shadow {
+  syntax:"*";
+  inherits:false;
+  initial-value:0 0 #0000
+}
+@keyframes pulse {
+  50% {
+    opacity:.5
+  }
+}
+@keyframes phosphorWarm {
+  0% {
+    background-color:#a855f700
+  }
+  50% {
+    background-color:#a855f708
+  }
+  to {
+    background-color:#a855f700
+  }
+}
+#splash {
+  transition:opacity .8s ease-out
+}
+#splash.fade-out {
+  opacity:0;
+  pointer-events:none
+}
+.boot-line {
+  opacity:0;
+  transition:opacity .15s ease
+}
+.boot-line.visible {
+  opacity:1
+}
+</style></head>
+  <body class="min-h-screen antialiased">
+    <div id="splash" class="fixed inset-0 z-[10000] bg-void flex items-center justify-center">
+      <div class="w-full max-w-2xl px-8">
+        <!-- CRT phosphor warmup glow -->
+        <div id="phosphor" class="absolute inset-0 bg-purple-glow/0 transition-opacity duration-1000 pointer-events-none"></div>
+        <div class="font-mono text-sm leading-relaxed">
+          <!-- BIOS-style header -->
+          <div id="boot-header" class="text-text-muted mb-6 opacity-0">
+            <span class="text-purple-bright">SERIZE SYSTEMS</span> BIOS v3.05<br>
+Copyright (C) 2010-2026 Arturo Serize, MPH, PA-C<br>
+            <span class="text-text-muted/50">All clinical workflows reserved.</span>
+          </div>
+          <!-- Boot lines -->
+          <div id="boot-lines" class="space-y-1">
+            <!-- Lines will be added by JS -->
+          </div>
+          <!-- Final prompt -->
+          <div id="boot-prompt" class="mt-6 opacity-0">
+            <span class="text-green-term">serize@dev</span><span class="text-text-muted">:</span><span class="text-purple-bright">~</span><span class="text-text-muted">$</span>
+            <span id="boot-cmd" class="text-text-bright"></span>
+            <span id="boot-cursor" class="text-purple-glow animate-pulse">_</span>
+          </div>
+        </div>
+      </div>
+      <!-- Skip button -->
+      <button id="skip-boot" class="absolute bottom-8 right-8 font-mono text-sm px-4 py-2 border border-crt-border rounded-lg text-text-muted hover:text-purple-bright hover:border-purple-soft transition-all opacity-0">
 [skip &raquo;]
-</button> <!-- Scanlines on splash too --> <div class="pointer-events-none absolute inset-0" style="background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px); opacity: 0.5;" data-astro-cid-mlbag6b5></div> </div>  <script type="module">const u=[{text:"POST check...",color:"text-muted",delay:200},{text:"RAM: 20 years clinical experience .......... OK",color:"dim",delay:300},{text:"ROM: 12 peer-reviewed publications ......... OK",color:"dim",delay:250},{text:"I/O: Epic, Cerner, REDCap, FHIR ........... OK",color:"dim",delay:200},{text:"",color:"dim",delay:150},{text:"Loading clinical modules:",color:"muted",delay:300},{text:"  SCOUT    .... Trials BD Terminal            [LOADED]",color:"green",delay:180},{text:"  ATLAS    .... Trial Operations Suite        [LOADED]",color:"green",delay:160},{text:"  PRISM    .... Biomarker Intelligence        [LOADED]",color:"green",delay:150},{text:"  NANO     .... Nanopore HSV Detection        [LOADED]",color:"green",delay:140},{text:"  BUG      .... Sepsis Decision Support       [LOADED]",color:"green",delay:130},{text:"  HAL      .... Antimicrobial Logic           [LOADED]",color:"green",delay:130},{text:"  NICSTEM  .... EHR Interface                 [LOADED]",color:"green",delay:120},{text:"  NICSPORT .... Transport Documentation       [LOADED]",color:"green",delay:120},{text:"  SAGE     .... Vitals Visualization          [LOADED]",color:"green",delay:110},{text:"  NEC Tool .... Perez-Serize Predictive        [LOADED]",color:"green",delay:100},{text:"",color:"dim",delay:100},{text:"10 systems loaded. 0 critical deviations.",color:"purple",delay:400},{text:"",color:"dim",delay:100},{text:"All systems nominal.",color:"green-bright",delay:500}],s={muted:"color: #64748b",dim:"color: #94a3b8",green:"color: #4ade80","green-bright":"color: #4ade80; text-shadow: 0 0 8px rgba(74, 222, 128, 0.5)",purple:"color: #c084fc; text-shadow: 0 0 8px rgba(192, 132, 252, 0.4)"},c="startx ./portfolio";async function t(e){return new Promise(l=>setTimeout(l,e))}let a=!1;function g(){a=!0;const e=document.getElementById("splash");e&&(e.classList.add("fade-out"),sessionStorage.setItem("splash-seen","1"),setTimeout(()=>e.remove(),400))}async function d(){const e=document.getElementById("splash"),l=document.getElementById("boot-header"),m=document.getElementById("boot-lines"),r=document.getElementById("boot-prompt"),y=document.getElementById("boot-cmd"),p=document.getElementById("boot-cursor"),i=document.getElementById("skip-boot");if(sessionStorage.getItem("splash-seen")){e.remove();return}if(i.addEventListener("click",g),setTimeout(()=>{i.style.opacity="1",i.style.transition="opacity 0.5s ease"},800),await t(400),!a&&(l.style.opacity="1",l.style.transition="opacity 0.3s ease",await t(600),!a)){for(const o of u){if(a)return;const n=document.createElement("div");n.className="boot-line",n.style.cssText=s[o.color]||s.dim,n.style.fontFamily="var(--font-mono)",n.style.fontSize="0.8rem",n.textContent=o.text||" ",m.appendChild(n),await t(o.delay),n.classList.add("visible")}if(!a&&(await t(400),r.style.opacity="1",r.style.transition="opacity 0.2s ease",await t(300),!a)){for(let o=0;o<c.length;o++){if(a)return;y.textContent=c.slice(0,o+1),await t(45)}await t(300),p.style.display="none",await t(500),e.classList.add("fade-out"),sessionStorage.setItem("splash-seen","1"),await t(800),e.remove()}}}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",d):d();</script> <div class="crt-overlay"></div> <!-- Navigation --> <nav class="fixed top-0 w-full z-50 bg-void/80 backdrop-blur-md border-b border-crt-border"> <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"> <a href="/" class="font-mono text-purple-glow font-bold tracking-wider text-sm">
-serize<span class="text-green-term">@</span>dev<span class="text-text-muted">:~$</span> </a> <div class="flex gap-6 text-sm"> <a href="#about" class="nav-link">about</a> <a href="#projects" class="nav-link">projects</a> <a href="#stack" class="nav-link">stack</a> <a href="#publications" class="nav-link">publications</a> <a href="#contact" class="nav-link">contact</a> </div> </div> </nav> <main>   <section class="pt-32 pb-20 px-6"> <div class="max-w-4xl mx-auto"> <div class="font-mono text-sm text-green-term mb-6 animate-in"> <span class="text-text-muted">$</span> whoami
-</div> <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-in glow-text leading-tight">
+      </button>
+      <!-- Scanlines on splash too -->
+      <div class="pointer-events-none absolute inset-0" style="background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px); opacity: 0.5;"></div>
+    </div>
+    <script type="module">const u=[{text:"POST check...",color:"text-muted",delay:200},{text:"RAM: 20 years clinical experience .......... OK",color:"dim",delay:300},{text:"ROM: 12 peer-reviewed publications ......... OK",color:"dim",delay:250},{text:"I/O: Epic, Cerner, REDCap, FHIR ........... OK",color:"dim",delay:200},{text:"",color:"dim",delay:150},{text:"Loading clinical modules:",color:"muted",delay:300},{text:"  SCOUT    .... Trials BD Terminal            [LOADED]",color:"green",delay:180},{text:"  ATLAS    .... Trial Operations Suite        [LOADED]",color:"green",delay:160},{text:"  PRISM    .... Biomarker Intelligence        [LOADED]",color:"green",delay:150},{text:"  NANO     .... Nanopore HSV Detection        [LOADED]",color:"green",delay:140},{text:"  BUG      .... Sepsis Decision Support       [LOADED]",color:"green",delay:130},{text:"  HAL      .... Antimicrobial Logic           [LOADED]",color:"green",delay:130},{text:"  NICSTEM  .... EHR Interface                 [LOADED]",color:"green",delay:120},{text:"  NICSPORT .... Transport Documentation       [LOADED]",color:"green",delay:120},{text:"  SAGE     .... Vitals Visualization          [LOADED]",color:"green",delay:110},{text:"  NEC Tool .... Perez-Serize Predictive        [LOADED]",color:"green",delay:100},{text:"",color:"dim",delay:100},{text:"10 systems loaded. 0 critical deviations.",color:"purple",delay:400},{text:"",color:"dim",delay:100},{text:"All systems nominal.",color:"green-bright",delay:500}],s={muted:"color: #64748b",dim:"color: #94a3b8",green:"color: #4ade80","green-bright":"color: #4ade80; text-shadow: 0 0 8px rgba(74, 222, 128, 0.5)",purple:"color: #c084fc; text-shadow: 0 0 8px rgba(192, 132, 252, 0.4)"},c="startx ./portfolio";async function t(e){return new Promise(l=>setTimeout(l,e))}let a=!1;function g(){a=!0;const e=document.getElementById("splash");e&&(e.classList.add("fade-out"),sessionStorage.setItem("splash-seen","1"),setTimeout(()=>e.remove(),400))}async function d(){const e=document.getElementById("splash"),l=document.getElementById("boot-header"),m=document.getElementById("boot-lines"),r=document.getElementById("boot-prompt"),y=document.getElementById("boot-cmd"),p=document.getElementById("boot-cursor"),i=document.getElementById("skip-boot");if(sessionStorage.getItem("splash-seen")){e.remove();return}if(i.addEventListener("click",g),setTimeout(()=>{i.style.opacity="1",i.style.transition="opacity 0.5s ease"},800),await t(400),!a&&(l.style.opacity="1",l.style.transition="opacity 0.3s ease",await t(600),!a)){for(const o of u){if(a)return;const n=document.createElement("div");n.className="boot-line",n.style.cssText=s[o.color]||s.dim,n.style.fontFamily="var(--font-mono)",n.style.fontSize="0.8rem",n.textContent=o.text||" ",m.appendChild(n),await t(o.delay),n.classList.add("visible")}if(!a&&(await t(400),r.style.opacity="1",r.style.transition="opacity 0.2s ease",await t(300),!a)){for(let o=0;o<c.length;o++){if(a)return;y.textContent=c.slice(0,o+1),await t(45)}await t(300),p.style.display="none",await t(500),e.classList.add("fade-out"),sessionStorage.setItem("splash-seen","1"),await t(800),e.remove()}}}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",d):d();</script>
+    <div class="crt-overlay"></div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-void/80 backdrop-blur-md border-b border-crt-border">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="/" class="font-mono text-purple-glow font-bold tracking-wider text-sm">
+serize<span class="text-green-term">@</span>dev<span class="text-text-muted">:~$</span>
+        </a>
+        <div class="flex gap-6 text-sm">
+          <a href="#about" class="nav-link">about</a>
+          <a href="#projects" class="nav-link">projects</a>
+          <a href="#stack" class="nav-link">stack</a>
+          <a href="#publications" class="nav-link">publications</a>
+          <a href="#contact" class="nav-link">contact</a>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <section class="pt-32 pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="font-mono text-sm text-green-term mb-6 animate-in">
+            <span class="text-text-muted">$</span> whoami
+          </div>
+          <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-in glow-text leading-tight">
 Arturo Serize
-<span class="block text-2xl md:text-3xl text-text-dim font-normal mt-3">
+            <span class="block text-2xl md:text-3xl text-text-dim font-normal mt-3">
 MPH, PA-C
-</span> </h1> <p class="text-xl md:text-2xl text-text-dim leading-relaxed max-w-3xl animate-in mb-8">
+            </span>
+          </h1>
+          <p class="text-xl md:text-2xl text-text-dim leading-relaxed max-w-3xl animate-in mb-8">
 A clinical systems builder who happens to have 20 years of bedside experience.
-</p> <div class="font-mono text-sm text-text-muted animate-in"> <span class="text-green-term">$</span> cat /etc/motd<br> <span class="text-purple-bright">Clinician &amp; PA-C</span> &#183;
-<span class="text-purple-bright">Published clinical researcher</span> &#183;
-<span class="text-purple-bright">Trial operations</span> &#183;
-<span class="text-purple-bright">Builds the tools the bedside actually needs</span> </div> <div class="mt-10 flex gap-4 animate-in"> <a href="#projects" class="px-6 py-3 bg-purple-deep hover:bg-purple-soft text-white font-mono text-sm rounded-lg transition-all hover:shadow-lg hover:shadow-purple-glow/20">
+          </p>
+          <div class="font-mono text-sm text-text-muted animate-in">
+            <span class="text-green-term">$</span> cat /etc/motd<br>
+            <span class="text-purple-bright">Clinician &amp; PA-C</span> &#183;
+            <span class="text-purple-bright">Published clinical researcher</span> &#183;
+            <span class="text-purple-bright">Trial operations</span> &#183;
+            <span class="text-purple-bright">Builds the tools the bedside actually needs</span>
+          </div>
+          <div class="mt-10 flex gap-4 animate-in">
+            <a href="#projects" class="px-6 py-3 bg-purple-deep hover:bg-purple-soft text-white font-mono text-sm rounded-lg transition-all hover:shadow-lg hover:shadow-purple-glow/20">
 ls ./projects
-</a> <a href="#contact" class="px-6 py-3 border border-crt-border hover:border-purple-soft text-text-dim hover:text-purple-bright font-mono text-sm rounded-lg transition-all">
+            </a>
+            <a href="#contact" class="px-6 py-3 border border-crt-border hover:border-purple-soft text-text-dim hover:text-purple-bright font-mono text-sm rounded-lg transition-all">
 ./contact.sh
-</a> </div> </div> </section> <div class="section-line max-w-6xl mx-auto"></div>  <section id="about" class="py-20 px-6"> <div class="max-w-4xl mx-auto"> <h2 class="font-mono text-sm text-green-term mb-2"> <span class="text-text-muted">$</span> cat about.md
-</h2> <h3 class="text-3xl font-bold mb-8 glow-text">From Clinical Frustration to Technical Innovation</h3> <div class="space-y-6 text-text-dim leading-relaxed"> <p>
+            </a>
+          </div>
+        </div>
+      </section>
+      <div class="section-line max-w-6xl mx-auto"></div>
+      <section id="about" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="font-mono text-sm text-green-term mb-2">
+            <span class="text-text-muted">$</span> cat about.md
+          </h2>
+          <h3 class="text-3xl font-bold mb-8 glow-text">From Clinical Frustration to Technical Innovation</h3>
+          <div class="space-y-6 text-text-dim leading-relaxed">
+            <p>
 Two decades at the bedside &mdash; critical care, neonatology, infectious disease, and now
           clinical research operations. Different units, different specialties, same pattern every
           time: clinicians working against their own tools, every single shift.
-</p> <p>
+            </p>
+            <p>
 Every system I build comes from a real problem I've lived. I don't design from a
           spec sheet &mdash; I design from the bedside, where a bad interface costs
           minutes you don't have.
-</p> <p>
+            </p>
+            <p>
 My approach: identify the broken workflow, design the fix, build a working prototype,
           and prove it works. No committee. No 18-month sprint. Some of it is single-file HTML you
           carry in on a thumb drive; some of it is packaged software with a test suite and a manual.
           The through-line is the same &mdash; a real problem, fixed end to end.
-</p> </div> <!-- Stats --> <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12"> <div class="bg-crt-panel rounded-xl p-5 text-center glow-border"> <div class="text-3xl font-bold text-purple-glow font-mono">20</div> <div class="text-text-muted text-sm mt-1">Years Clinical</div> </div> <div class="bg-crt-panel rounded-xl p-5 text-center glow-border"> <div class="text-3xl font-bold text-purple-glow font-mono">15+</div> <div class="text-text-muted text-sm mt-1">Systems Built</div> </div> <div class="bg-crt-panel rounded-xl p-5 text-center glow-border"> <div class="text-3xl font-bold text-purple-glow font-mono">12</div> <div class="text-text-muted text-sm mt-1">Publications</div> </div> <div class="bg-crt-panel rounded-xl p-5 text-center glow-border"> <div class="text-3xl font-bold text-purple-glow font-mono">0</div> <div class="text-text-muted text-sm mt-1">Critical Deviations</div> </div> </div> </div> </section> <div class="section-line max-w-6xl mx-auto"></div>  <section id="projects" class="py-20 px-6"> <div class="max-w-5xl mx-auto"> <h2 class="font-mono text-sm text-green-term mb-2"> <span class="text-text-muted">$</span> ls -la ./projects/
-</h2> <h3 class="text-3xl font-bold mb-12 glow-text">Clinical Systems</h3> <div class="space-y-8"> <div class="project-card rounded-xl p-6 border-purple-soft/50 relative"> <div class="absolute -top-px right-6"> <span class="badge-flagship">FLAGSHIP</span> </div> <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">STUDY//SCOUT</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Clinical-Trials Business Development Terminal</span> </h3> <span class="status-active font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Active Development </span> </div> <img src="/images/studyscout-dossier.png" alt="STUDY//SCOUT sponsor dossier view" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Packaged terminal application for research-site business development. Hunts the ClinicalTrials.gov v2 API, then regroups every result into <em>one dossier per sponsor</em> &mdash; their whole book of trials, contacts deduped across NCT numbers, pipeline history and notes in a single view. Kanban pipeline board, morning briefing of what changed overnight, follow-up clocks, and an AI consigliere that drafts consolidated outreach and researches sponsors on the live web. Ships as a real <code>.rpm</code>/<code>.deb</code> with a test suite, a self-diagnostic <code>doctor</code>, owner-only backups of the pipeline, and a manual.</p> <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Site BD is relationship work, but every tool on the market treats it as listing-search. This one changes the unit of work from the study to the sponsor &mdash; and deliberately refuses to compute a fit score, because that judgment belongs to the person making the call.</p> <div class="flex flex-wrap gap-2 mb-4"><span class="tag">Python</span><span class="tag">Textual TUI</span><span class="tag">SQLite</span><span class="tag">LLM Integration</span><span class="tag">ClinicalTrials.gov v2</span><span class="tag">RPM / DEB Packaging</span><span class="tag">Test Suite</span></div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/studyscout" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+            </p>
+          </div>
+          <!-- Stats -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+            <div class="bg-crt-panel rounded-xl p-5 text-center glow-border">
+              <div class="text-3xl font-bold text-purple-glow font-mono">20</div>
+              <div class="text-text-muted text-sm mt-1">Years Clinical</div>
+            </div>
+            <div class="bg-crt-panel rounded-xl p-5 text-center glow-border">
+              <div class="text-3xl font-bold text-purple-glow font-mono">15+</div>
+              <div class="text-text-muted text-sm mt-1">Systems Built</div>
+            </div>
+            <div class="bg-crt-panel rounded-xl p-5 text-center glow-border">
+              <div class="text-3xl font-bold text-purple-glow font-mono">12</div>
+              <div class="text-text-muted text-sm mt-1">Publications</div>
+            </div>
+            <div class="bg-crt-panel rounded-xl p-5 text-center glow-border">
+              <div class="text-3xl font-bold text-purple-glow font-mono">0</div>
+              <div class="text-text-muted text-sm mt-1">Critical Deviations</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="section-line max-w-6xl mx-auto"></div>
+      <section id="projects" class="py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+          <h2 class="font-mono text-sm text-green-term mb-2">
+            <span class="text-text-muted">$</span> ls -la ./projects/
+          </h2>
+          <h3 class="text-3xl font-bold mb-12 glow-text">Clinical Systems</h3>
+          <div class="space-y-8">
+            <div class="project-card rounded-xl p-6 border-purple-soft/50 relative">
+              <div class="absolute -top-px right-6">
+                <span class="badge-flagship">FLAGSHIP</span>
+              </div>
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <h3 class="text-xl font-bold text-text-bright">
+                  <span class="text-purple-glow">STUDY//SCOUT</span>
+                  <span class="text-text-muted mx-2">&mdash;</span>
+                  <span>Clinical-Trials Business Development Terminal</span>
+                </h3>
+                <span class="status-active font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Active Development
+                </span>
+              </div>
+              <img src="/images/studyscout-dossier.png" alt="STUDY//SCOUT sponsor dossier view" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy">
+              <p class="text-text-dim leading-relaxed mb-4">Packaged terminal application for research-site business development. Hunts the ClinicalTrials.gov v2 API, then regroups every result into
+                <em>one dossier per sponsor</em> &mdash; their whole book of trials, contacts deduped across NCT numbers, pipeline history and notes in a single view. Kanban pipeline board, morning briefing of what changed overnight, follow-up clocks, and an AI consigliere that drafts consolidated outreach and researches sponsors on the live web. Ships as a real
+                <code>.rpm</code>/<code>.deb</code> with a test suite, a self-diagnostic
+                <code>doctor</code>, owner-only backups of the pipeline, and a manual.</p>
+              <p class="text-sm text-text-dim mb-4">
+                <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Site BD is relationship work, but every tool on the market treats it as listing-search. This one changes the unit of work from the study to the sponsor &mdash; and deliberately refuses to compute a fit score, because that judgment belongs to the person making the call.</p>
+              <div class="flex flex-wrap gap-2 mb-4"><span class="tag">Python</span><span class="tag">Textual TUI</span><span class="tag">SQLite</span><span class="tag">LLM Integration</span><span class="tag">ClinicalTrials.gov v2</span><span class="tag">RPM / DEB Packaging</span><span class="tag">Test Suite</span></div>
+              <div class="flex gap-4 text-sm font-mono">
+                <a href="https://github.com/serize-dev/studyscout" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
 [source]
-</a> </div> </div> <div class="project-card rounded-xl p-6 relative"> <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">A.T.L.A.S.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Adaptive Trial Logistics &amp; Assessment System</span> </h3> <span class="status-active font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Active Development </span> </div> <div class="carousel relative mb-4" data-carousel="a-t-l-a-s-"><div class="overflow-hidden rounded-lg border border-crt-border"><div class="carousel-track flex transition-transform duration-300 ease-in-out"><img src="/images/Atlas Main Menu.png" alt="ATLAS main landing — 12 modules, 0 PHI, 0 dependencies" class="w-full flex-shrink-0" loading="eager"><img src="/images/ATLAS - modal screen.png" alt="ATLAS module dashboard — operations, compliance, and team tools" class="w-full flex-shrink-0" loading="lazy"><img src="/images/ATLAS - CHART.png" alt="CHART — interactive Schedule of Activities with visit tracking" class="w-full flex-shrink-0" loading="lazy"><img src="/images/ATLAS - Bio-Buddy.png" alt="B.I.O. Buddy — biospecimen collection worksheet with source documents" class="w-full flex-shrink-0" loading="lazy"></div></div><!-- Controls --><button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-void/80 border border-crt-border text-purple-bright hover:border-purple-soft hover:text-purple-glow transition-all flex items-center justify-center text-sm font-mono" aria-label="Previous image">
+                </a>
+              </div>
+            </div>
+            <div class="project-card rounded-xl p-6 relative">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <h3 class="text-xl font-bold text-text-bright">
+                  <span class="text-purple-glow">A.T.L.A.S.</span>
+                  <span class="text-text-muted mx-2">&mdash;</span>
+                  <span>Adaptive Trial Logistics &amp; Assessment System</span>
+                </h3>
+                <span class="status-active font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Active Development
+                </span>
+              </div>
+              <div class="carousel relative mb-4" data-carousel="a-t-l-a-s-"><div class="overflow-hidden rounded-lg border border-crt-border"><div class="carousel-track flex transition-transform duration-300 ease-in-out"><img src="/images/Atlas Main Menu.png" alt="ATLAS main landing — 12 modules, 0 PHI, 0 dependencies" class="w-full flex-shrink-0" loading="eager"><img src="/images/ATLAS - modal screen.png" alt="ATLAS module dashboard — operations, compliance, and team tools" class="w-full flex-shrink-0" loading="lazy"><img src="/images/ATLAS - CHART.png" alt="CHART — interactive Schedule of Activities with visit tracking" class="w-full flex-shrink-0" loading="lazy"><img src="/images/ATLAS - Bio-Buddy.png" alt="B.I.O. Buddy — biospecimen collection worksheet with source documents" class="w-full flex-shrink-0" loading="lazy"></div></div><!-- Controls --><button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-void/80 border border-crt-border text-purple-bright hover:border-purple-soft hover:text-purple-glow transition-all flex items-center justify-center text-sm font-mono" aria-label="Previous image">
 &lt;
-</button><button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-void/80 border border-crt-border text-purple-bright hover:border-purple-soft hover:text-purple-glow transition-all flex items-center justify-center text-sm font-mono" aria-label="Next image">
+                </button><button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-void/80 border border-crt-border text-purple-bright hover:border-purple-soft hover:text-purple-glow transition-all flex items-center justify-center text-sm font-mono" aria-label="Next image">
 &gt;
-</button><!-- Dots --><div class="flex justify-center gap-2 mt-3"><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-purple-glow" data-index="0" aria-label="Go to image 1"></button><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-crt-border hover:bg-purple-muted" data-index="1" aria-label="Go to image 2"></button><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-crt-border hover:bg-purple-muted" data-index="2" aria-label="Go to image 3"></button><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-crt-border hover:bg-purple-muted" data-index="3" aria-label="Go to image 4"></button></div></div><script type="module">document.querySelectorAll("[data-carousel]").forEach(r=>{const o=r.querySelector(".carousel-track"),l=r.querySelectorAll(".carousel-dot"),d=r.querySelector(".carousel-prev"),u=r.querySelector(".carousel-next"),s=(o?.querySelectorAll("img")||[]).length;let t=0;function n(e){o&&(t=(e+s)%s,o.style.transform=`translateX(-${t*100}%)`,l.forEach((c,i)=>{c.classList.toggle("bg-purple-glow",i===t),c.classList.toggle("bg-crt-border",i!==t)}))}d?.addEventListener("click",()=>n(t-1)),u?.addEventListener("click",()=>n(t+1)),l.forEach((e,c)=>{e.addEventListener("click",()=>n(c))});let a=0;r.addEventListener("touchstart",e=>{a=e.touches[0].clientX}),r.addEventListener("touchend",e=>{const c=a-e.changedTouches[0].clientX;Math.abs(c)>50&&n(c>0?t+1:t-1)})});</script> <p class="text-text-dim leading-relaxed mb-4">Modular clinical trial operations suite built as single-file HTML applications. No server, no database, no PHI, no IT department required. Each module is a self-contained .html file — open it in a browser and it works.</p> <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4"> <div class="bg-crt-dark/60 rounded-lg p-3 border border-crt-border/50"> <h4 class="font-mono text-purple-bright text-xs uppercase tracking-wider mb-2 pb-1 border-b border-crt-border/50"> Enrollment &amp; Screening </h4> <ul class="space-y-1"> <li class="text-xs text-text-dim">SHERLO — Screening &amp; History Eligibility Review Log</li><li class="text-xs text-text-dim">HIET — NICHD Modified Sarnat Examination Tool</li> </ul> </div><div class="bg-crt-dark/60 rounded-lg p-3 border border-crt-border/50"> <h4 class="font-mono text-purple-bright text-xs uppercase tracking-wider mb-2 pb-1 border-b border-crt-border/50"> Operations </h4> <ul class="space-y-1"> <li class="text-xs text-text-dim">GATE — Gated Assessment &amp; Trial Eligibility</li><li class="text-xs text-text-dim">CHART — Clinical Activity Resource Tracker</li><li class="text-xs text-text-dim">VISTA — Visit Interval Scheduling &amp; Timeline Advisor</li><li class="text-xs text-text-dim">DRIFT — Deviation Recording &amp; Follow-up Tracker</li><li class="text-xs text-text-dim">KITS — Kit Inventory Tracking System</li><li class="text-xs text-text-dim">B.I.O. Buddy — Biospecimen Input &amp; Output</li> </ul> </div><div class="bg-crt-dark/60 rounded-lg p-3 border border-crt-border/50"> <h4 class="font-mono text-purple-bright text-xs uppercase tracking-wider mb-2 pb-1 border-b border-crt-border/50"> Compliance &amp; Team </h4> <ul class="space-y-1"> <li class="text-xs text-text-dim">PREP — Protocol Readiness &amp; Execution Planner</li><li class="text-xs text-text-dim">ROLES — Research Operations Lineup &amp; Expertise System</li><li class="text-xs text-text-dim">WATSON — Workflow Assistance Tool for Study Operations</li><li class="text-xs text-text-dim">Portal — Sponsor Monitoring Dashboard</li> </ul> </div> </div> <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>&quot;Sneakerware&quot; — walk it in on a thumb drive. No IT integration, no network access, no institutional approval. Zero dependencies. Zero PHI. Just open the file. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">Vanilla JavaScript</span><span class="tag">Single-File Architecture</span><span class="tag">localStorage</span><span class="tag">Zero Dependencies</span><span class="tag">CSV Export</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/ATLAS" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+                </button><!-- Dots --><div class="flex justify-center gap-2 mt-3"><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-purple-glow" data-index="0" aria-label="Go to image 1"></button><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-crt-border hover:bg-purple-muted" data-index="1" aria-label="Go to image 2"></button><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-crt-border hover:bg-purple-muted" data-index="2" aria-label="Go to image 3"></button><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-crt-border hover:bg-purple-muted" data-index="3" aria-label="Go to image 4"></button></div></div><script type="module">document.querySelectorAll("[data-carousel]").forEach(r=>{const o=r.querySelector(".carousel-track"),l=r.querySelectorAll(".carousel-dot"),d=r.querySelector(".carousel-prev"),u=r.querySelector(".carousel-next"),s=(o?.querySelectorAll("img")||[]).length;let t=0;function n(e){o&&(t=(e+s)%s,o.style.transform=`translateX(-${t*100}%)`,l.forEach((c,i)=>{c.classList.toggle("bg-purple-glow",i===t),c.classList.toggle("bg-crt-border",i!==t)}))}d?.addEventListener("click",()=>n(t-1)),u?.addEventListener("click",()=>n(t+1)),l.forEach((e,c)=>{e.addEventListener("click",()=>n(c))});let a=0;r.addEventListener("touchstart",e=>{a=e.touches[0].clientX}),r.addEventListener("touchend",e=>{const c=a-e.changedTouches[0].clientX;Math.abs(c)>50&&n(c>0?t+1:t-1)})});</script>
+              <p class="text-text-dim leading-relaxed mb-4">Modular clinical trial operations suite built as single-file HTML applications. No server, no database, no PHI, no IT department required. Each module is a self-contained .html file — open it in a browser and it works.</p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                <div class="bg-crt-dark/60 rounded-lg p-3 border border-crt-border/50">
+                  <h4 class="font-mono text-purple-bright text-xs uppercase tracking-wider mb-2 pb-1 border-b border-crt-border/50"> Enrollment &amp; Screening
+                  </h4>
+                  <ul class="space-y-1">
+                    <li class="text-xs text-text-dim">SHERLO — Screening &amp; History Eligibility Review Log</li><li class="text-xs text-text-dim">HIET — NICHD Modified Sarnat Examination Tool</li>
+                  </ul>
+                </div><div class="bg-crt-dark/60 rounded-lg p-3 border border-crt-border/50">
+                  <h4 class="font-mono text-purple-bright text-xs uppercase tracking-wider mb-2 pb-1 border-b border-crt-border/50"> Operations
+                  </h4>
+                  <ul class="space-y-1">
+                    <li class="text-xs text-text-dim">GATE — Gated Assessment &amp; Trial Eligibility</li><li class="text-xs text-text-dim">CHART — Clinical Activity Resource Tracker</li><li class="text-xs text-text-dim">VISTA — Visit Interval Scheduling &amp; Timeline Advisor</li><li class="text-xs text-text-dim">DRIFT — Deviation Recording &amp; Follow-up Tracker</li><li class="text-xs text-text-dim">KITS — Kit Inventory Tracking System</li><li class="text-xs text-text-dim">B.I.O. Buddy — Biospecimen Input &amp; Output</li>
+                  </ul>
+                </div><div class="bg-crt-dark/60 rounded-lg p-3 border border-crt-border/50">
+                  <h4 class="font-mono text-purple-bright text-xs uppercase tracking-wider mb-2 pb-1 border-b border-crt-border/50"> Compliance &amp; Team
+                  </h4>
+                  <ul class="space-y-1">
+                    <li class="text-xs text-text-dim">PREP — Protocol Readiness &amp; Execution Planner</li><li class="text-xs text-text-dim">ROLES — Research Operations Lineup &amp; Expertise System</li><li class="text-xs text-text-dim">WATSON — Workflow Assistance Tool for Study Operations</li><li class="text-xs text-text-dim">Portal — Sponsor Monitoring Dashboard</li>
+                  </ul>
+                </div>
+              </div>
+              <p class="text-sm text-text-dim mb-4">
+                <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>&quot;Sneakerware&quot; — walk it in on a thumb drive. No IT integration, no network access, no institutional approval. Zero dependencies. Zero PHI. Just open the file.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tag">Vanilla JavaScript</span><span class="tag">Single-File Architecture</span><span class="tag">localStorage</span><span class="tag">Zero Dependencies</span><span class="tag">CSV Export</span>
+              </div>
+              <div class="flex gap-4 text-sm font-mono">
+                <a href="https://github.com/serize-dev/ATLAS" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
 [source]
-</a> <a href="https://serize-dev.github.io/ATLAS/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+                </a>
+                <a href="https://serize-dev.github.io/ATLAS/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
 [live demo]
-</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">PRISM</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Pipeline for Real-time Infection Signal Mining</span> </h3> <span class="status-active font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Active Development </span> </div> <div class="carousel relative mb-4" data-carousel="prism"><div class="overflow-hidden rounded-lg border border-crt-border"><div class="carousel-track flex transition-transform duration-300 ease-in-out"><img src="/images/PRISM main.png" alt="PRISM — literature and API data integration panel" class="w-full flex-shrink-0" loading="eager"><img src="/images/PRISM Bay.png" alt="PRISM — Bayesian probability engine with ROC analysis" class="w-full flex-shrink-0" loading="lazy"></div></div><!-- Controls --><button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-void/80 border border-crt-border text-purple-bright hover:border-purple-soft hover:text-purple-glow transition-all flex items-center justify-center text-sm font-mono" aria-label="Previous image">
+                </a>
+              </div>
+            </div>
+            <div class="project-card rounded-xl p-6 ">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <h3 class="text-xl font-bold text-text-bright">
+                  <span class="text-purple-glow">PRISM</span>
+                  <span class="text-text-muted mx-2">&mdash;</span>
+                  <span>Pipeline for Real-time Infection Signal Mining</span>
+                </h3>
+                <span class="status-active font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Active Development
+                </span>
+              </div>
+              <div class="carousel relative mb-4" data-carousel="prism"><div class="overflow-hidden rounded-lg border border-crt-border"><div class="carousel-track flex transition-transform duration-300 ease-in-out"><img src="/images/PRISM main.png" alt="PRISM — literature and API data integration panel" class="w-full flex-shrink-0" loading="eager"><img src="/images/PRISM Bay.png" alt="PRISM — Bayesian probability engine with ROC analysis" class="w-full flex-shrink-0" loading="lazy"></div></div><!-- Controls --><button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-void/80 border border-crt-border text-purple-bright hover:border-purple-soft hover:text-purple-glow transition-all flex items-center justify-center text-sm font-mono" aria-label="Previous image">
 &lt;
-</button><button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-void/80 border border-crt-border text-purple-bright hover:border-purple-soft hover:text-purple-glow transition-all flex items-center justify-center text-sm font-mono" aria-label="Next image">
+                </button><button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-void/80 border border-crt-border text-purple-bright hover:border-purple-soft hover:text-purple-glow transition-all flex items-center justify-center text-sm font-mono" aria-label="Next image">
 &gt;
-</button><!-- Dots --><div class="flex justify-center gap-2 mt-3"><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-purple-glow" data-index="0" aria-label="Go to image 1"></button><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-crt-border hover:bg-purple-muted" data-index="1" aria-label="Go to image 2"></button></div></div> <p class="text-text-dim leading-relaxed mb-4">Multi-API biomarker intelligence platform. Pulls from PubMed, ClinicalTrials.gov, UniProt, KEGG, and STRING, then runs Bayesian probability analysis with composite ROC curve generation. Embeds a full R runtime in the browser via WebR.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Bayesian diagnostic probability engine with real-time API integration and embedded R statistical computing — all client-side, zero backend. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">WebR</span><span class="tag">Bayesian Analysis</span><span class="tag">ROC Curves</span><span class="tag">REST APIs</span><span class="tag">PubMed</span><span class="tag">d-prime</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/PRISM" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+                </button><!-- Dots --><div class="flex justify-center gap-2 mt-3"><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-purple-glow" data-index="0" aria-label="Go to image 1"></button><button class="carousel-dot w-2 h-2 rounded-full transition-all bg-crt-border hover:bg-purple-muted" data-index="1" aria-label="Go to image 2"></button></div></div>
+              <p class="text-text-dim leading-relaxed mb-4">Multi-API biomarker intelligence platform. Pulls from PubMed, ClinicalTrials.gov, UniProt, KEGG, and STRING, then runs Bayesian probability analysis with composite ROC curve generation. Embeds a full R runtime in the browser via WebR.</p>
+              <p class="text-sm text-text-dim mb-4">
+                <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Bayesian diagnostic probability engine with real-time API integration and embedded R statistical computing — all client-side, zero backend.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tag">WebR</span><span class="tag">Bayesian Analysis</span><span class="tag">ROC Curves</span><span class="tag">REST APIs</span><span class="tag">PubMed</span><span class="tag">d-prime</span>
+              </div>
+              <div class="flex gap-4 text-sm font-mono">
+                <a href="https://github.com/serize-dev/PRISM" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
 [source]
-</a> <a href="https://serize-dev.github.io/PRISM/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+                </a>
+                <a href="https://serize-dev.github.io/PRISM/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
 [live demo]
-</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">NEC Tool</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Perez-Serize NEC Predictive Tool</span> </h3> <span class="status-research font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Research / Validation </span> </div> <img src="/images/NEC tool.png" alt="NEC Tool interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Dual-component clinical prediction engine for necrotizing enterocolitis. Monitors 9 biomarkers (ANC, WBC, platelets, CRP, fecal calprotectin, pH, lactate, base deficit, eosinophils), scoring both absolute abnormality and temporal trajectory to detect NEC 24-48 hours before clinical deterioration. Evidence-based thresholds from published literature with clinical pattern bonuses for multi-system co-occurring abnormalities. 5,900+ lines with animated demo walkthrough, algorithm explainer, and validation dashboard.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>No single biomarker diagnoses NEC. This tool combines 9 markers across time — trajectory analysis that creates a synergistic risk assessment where three high-priority markers dropping simultaneously is more predictive than any marker alone. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">Predictive Analytics</span><span class="tag">Temporal Trajectory Analysis</span><span class="tag">9-Biomarker Engine</span><span class="tag">Chart.js</span><span class="tag">Evidence-Based Thresholds</span><span class="tag">Clinical Validation</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/NEC-Tool" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+                </a>
+              </div>
+            </div>
+            <div class="project-card rounded-xl p-6 ">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <h3 class="text-xl font-bold text-text-bright">
+                  <span class="text-purple-glow">NEC Tool</span>
+                  <span class="text-text-muted mx-2">&mdash;</span>
+                  <span>Perez-Serize NEC Predictive Tool</span>
+                </h3>
+                <span class="status-research font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Research / Validation
+                </span>
+              </div>
+              <img src="/images/NEC tool.png" alt="NEC Tool interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy">
+              <p class="text-text-dim leading-relaxed mb-4">Dual-component clinical prediction engine for necrotizing enterocolitis. Monitors 9 biomarkers (ANC, WBC, platelets, CRP, fecal calprotectin, pH, lactate, base deficit, eosinophils), scoring both absolute abnormality and temporal trajectory to detect NEC 24-48 hours before clinical deterioration. Evidence-based thresholds from published literature with clinical pattern bonuses for multi-system co-occurring abnormalities. 5,900+ lines with animated demo walkthrough, algorithm explainer, and validation dashboard.</p>
+              <p class="text-sm text-text-dim mb-4">
+                <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>No single biomarker diagnoses NEC. This tool combines 9 markers across time — trajectory analysis that creates a synergistic risk assessment where three high-priority markers dropping simultaneously is more predictive than any marker alone.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tag">Predictive Analytics</span><span class="tag">Temporal Trajectory Analysis</span><span class="tag">9-Biomarker Engine</span><span class="tag">Chart.js</span><span class="tag">Evidence-Based Thresholds</span><span class="tag">Clinical Validation</span>
+              </div>
+              <div class="flex gap-4 text-sm font-mono">
+                <a href="https://github.com/serize-dev/NEC-Tool" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
 [source]
-</a> <a href="https://serize-dev.github.io/NEC-Tool/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+                </a>
+                <a href="https://serize-dev.github.io/NEC-Tool/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
 [live demo]
-</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">NICSTEM</span> <span class="text-text-muted mx-2">&mdash;</span> <span>NICU-Centric EHR Interface</span> </h3> <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype </span> </div> <img src="/images/NICSTEM.png" alt="NICSTEM interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Redesigned electronic health record interface. Replaced complex menu navigation with an intuitive visual approach using anatomical diagrams and drag-and-drop charting. Runs on top of existing EHR backends without vendor lock-in. 4,700+ lines.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Matches interface design to natural clinical thought patterns, dramatically reducing documentation time. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">React</span><span class="tag">Real-time Data</span><span class="tag">Clinical Workflow Optimization</span><span class="tag">FHIR Integration</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/NICSTEM" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+                </a>
+              </div>
+            </div>
+            <div class="project-card rounded-xl p-6 ">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <h3 class="text-xl font-bold text-text-bright">
+                  <span class="text-purple-glow">NICSTEM</span>
+                  <span class="text-text-muted mx-2">&mdash;</span>
+                  <span>NICU-Centric EHR Interface</span>
+                </h3>
+                <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype
+                </span>
+              </div>
+              <img src="/images/NICSTEM.png" alt="NICSTEM interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy">
+              <p class="text-text-dim leading-relaxed mb-4">Redesigned electronic health record interface. Replaced complex menu navigation with an intuitive visual approach using anatomical diagrams and drag-and-drop charting. Runs on top of existing EHR backends without vendor lock-in. 4,700+ lines.</p>
+              <p class="text-sm text-text-dim mb-4">
+                <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Matches interface design to natural clinical thought patterns, dramatically reducing documentation time.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tag">React</span><span class="tag">Real-time Data</span><span class="tag">Clinical Workflow Optimization</span><span class="tag">FHIR Integration</span>
+              </div>
+              <div class="flex gap-4 text-sm font-mono">
+                <a href="https://github.com/serize-dev/NICSTEM" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
 [source]
-</a> <a href="https://serize-dev.github.io/NICSTEM/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+                </a>
+                <a href="https://serize-dev.github.io/NICSTEM/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
 [live demo]
-</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">N.A.N.O.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Nanopore Assay for Neonatal Organism Detection</span> </h3> <span class="status-research font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Research / Validation </span> </div> <img src="/images/NANO.png" alt="N.A.N.O. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Prospective concordance study comparing Oxford Nanopore MinION metagenomic sequencing to standard PCR and viral culture for rapid neonatal HSV detection. Full clinical protocol with custom 1,300+ line tracking dashboard: enrollment management, specimen workflow, sequencing QC metrics, turnaround time analytics, and concordance reporting.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Clinician-designed translational research — wrote the science AND built the operational tooling. From clinical question to protocol to dashboard, end to end. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">Nanopore Sequencing</span><span class="tag">Translational Research</span><span class="tag">Clinical Protocol</span><span class="tag">Study Dashboard</span><span class="tag">Metagenomics</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/NANO" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+                </a>
+              </div>
+            </div>
+            <div class="project-card rounded-xl p-6 ">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <h3 class="text-xl font-bold text-text-bright">
+                  <span class="text-purple-glow">N.A.N.O.</span>
+                  <span class="text-text-muted mx-2">&mdash;</span>
+                  <span>Nanopore Assay for Neonatal Organism Detection</span>
+                </h3>
+                <span class="status-research font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Research / Validation
+                </span>
+              </div>
+              <img src="/images/NANO.png" alt="N.A.N.O. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy">
+              <p class="text-text-dim leading-relaxed mb-4">Prospective concordance study comparing Oxford Nanopore MinION metagenomic sequencing to standard PCR and viral culture for rapid neonatal HSV detection. Full clinical protocol with custom 1,300+ line tracking dashboard: enrollment management, specimen workflow, sequencing QC metrics, turnaround time analytics, and concordance reporting.</p>
+              <p class="text-sm text-text-dim mb-4">
+                <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Clinician-designed translational research — wrote the science AND built the operational tooling. From clinical question to protocol to dashboard, end to end.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tag">Nanopore Sequencing</span><span class="tag">Translational Research</span><span class="tag">Clinical Protocol</span><span class="tag">Study Dashboard</span><span class="tag">Metagenomics</span>
+              </div>
+              <div class="flex gap-4 text-sm font-mono">
+                <a href="https://github.com/serize-dev/NANO" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
 [source]
-</a> <a href="https://serize-dev.github.io/NANO/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+                </a>
+                <a href="https://serize-dev.github.io/NANO/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
 [live demo]
-</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">B.U.G.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>MYCIN-Style Neonatal Sepsis Advisor</span> </h3> <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype </span> </div> <img src="/images/BUG.png" alt="B.U.G. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Clinical decision support tool inspired by the original MYCIN expert system. Guides clinicians through neonatal sepsis evaluation using rule-based reasoning, incorporating patient-specific factors to generate antibiotic recommendations with transparent confidence scoring.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Brings the rigor of expert system reasoning to bedside sepsis decisions, making the clinical logic visible and auditable. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">React</span><span class="tag">Expert Systems</span><span class="tag">Clinical Decision Support</span><span class="tag">Neonatal ID</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/BUG" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+                </a>
+              </div>
+            </div>
+            <div class="project-card rounded-xl p-6 ">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <h3 class="text-xl font-bold text-text-bright">
+                  <span class="text-purple-glow">B.U.G.</span>
+                  <span class="text-text-muted mx-2">&mdash;</span>
+                  <span>MYCIN-Style Neonatal Sepsis Advisor</span>
+                </h3>
+                <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype
+                </span>
+              </div>
+              <img src="/images/BUG.png" alt="B.U.G. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy">
+              <p class="text-text-dim leading-relaxed mb-4">Clinical decision support tool inspired by the original MYCIN expert system. Guides clinicians through neonatal sepsis evaluation using rule-based reasoning, incorporating patient-specific factors to generate antibiotic recommendations with transparent confidence scoring.</p>
+              <p class="text-sm text-text-dim mb-4">
+                <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Brings the rigor of expert system reasoning to bedside sepsis decisions, making the clinical logic visible and auditable.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tag">React</span><span class="tag">Expert Systems</span><span class="tag">Clinical Decision Support</span><span class="tag">Neonatal ID</span>
+              </div>
+              <div class="flex gap-4 text-sm font-mono">
+                <a href="https://github.com/serize-dev/BUG" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
 [source]
-</a> <a href="https://serize-dev.github.io/BUG/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+                </a>
+                <a href="https://serize-dev.github.io/BUG/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
 [live demo]
-</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">H.A.L.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Heuristic Antimicrobial Logic</span> </h3> <span class="status-active font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Active Development </span> </div> <img src="/images/HAL.png" alt="H.A.L. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Antimicrobial stewardship engine with a retro terminal aesthetic. Evidence-based antimicrobial selection guidance, dosing calculations, and spectrum analysis to support institutional stewardship programs.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Encodes institutional antibiogram data and stewardship protocols into an interactive decision engine that clinicians actually want to use. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">JavaScript</span><span class="tag">Antimicrobial Stewardship</span><span class="tag">Clinical Algorithms</span><span class="tag">Retro CRT Interface</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/HAL" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+                </a>
+              </div>
+            </div>
+            <div class="project-card rounded-xl p-6 ">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <h3 class="text-xl font-bold text-text-bright">
+                  <span class="text-purple-glow">H.A.L.</span>
+                  <span class="text-text-muted mx-2">&mdash;</span>
+                  <span>Heuristic Antimicrobial Logic</span>
+                </h3>
+                <span class="status-active font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Active Development
+                </span>
+              </div>
+              <img src="/images/HAL.png" alt="H.A.L. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy">
+              <p class="text-text-dim leading-relaxed mb-4">Antimicrobial stewardship engine with a retro terminal aesthetic. Evidence-based antimicrobial selection guidance, dosing calculations, and spectrum analysis to support institutional stewardship programs.</p>
+              <p class="text-sm text-text-dim mb-4">
+                <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Encodes institutional antibiogram data and stewardship protocols into an interactive decision engine that clinicians actually want to use.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tag">JavaScript</span><span class="tag">Antimicrobial Stewardship</span><span class="tag">Clinical Algorithms</span><span class="tag">Retro CRT Interface</span>
+              </div>
+              <div class="flex gap-4 text-sm font-mono">
+                <a href="https://github.com/serize-dev/HAL" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
 [source]
-</a> <a href="https://serize-dev.github.io/HAL/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+                </a>
+                <a href="https://serize-dev.github.io/HAL/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
 [live demo]
-</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">NICSPORT</span> <span class="text-text-muted mx-2">&mdash;</span> <span>Neonatal Transport Documentation System</span> </h3> <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype </span> </div> <img src="/images/NICSPORT.png" alt="NICSPORT interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Mobile documentation platform for high-pressure transport. Offline persistence, smart exam toggles, vitals reminders, digital consent. 3,200+ lines. Designed by someone who&#39;s actually been in the back of a transport unit at 3 AM.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>First transport documentation system designed by a clinician who does the transports. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">Offline-First PWA</span><span class="tag">JavaScript</span><span class="tag">localStorage</span><span class="tag">PDF Generation</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/NICSPORT" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+                </a>
+              </div>
+            </div>
+            <div class="project-card rounded-xl p-6 ">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <h3 class="text-xl font-bold text-text-bright">
+                  <span class="text-purple-glow">NICSPORT</span>
+                  <span class="text-text-muted mx-2">&mdash;</span>
+                  <span>Neonatal Transport Documentation System</span>
+                </h3>
+                <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype
+                </span>
+              </div>
+              <img src="/images/NICSPORT.png" alt="NICSPORT interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy">
+              <p class="text-text-dim leading-relaxed mb-4">Mobile documentation platform for high-pressure transport. Offline persistence, smart exam toggles, vitals reminders, digital consent. 3,200+ lines. Designed by someone who&#39;s actually been in the back of a transport unit at 3 AM.</p>
+              <p class="text-sm text-text-dim mb-4">
+                <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>First transport documentation system designed by a clinician who does the transports.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tag">Offline-First PWA</span><span class="tag">JavaScript</span><span class="tag">localStorage</span><span class="tag">PDF Generation</span>
+              </div>
+              <div class="flex gap-4 text-sm font-mono">
+                <a href="https://github.com/serize-dev/NICSPORT" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
 [source]
-</a> <a href="https://serize-dev.github.io/NICSPORT/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+                </a>
+                <a href="https://serize-dev.github.io/NICSPORT/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
 [live demo]
-</a> </div> </div> <div class="project-card rounded-xl p-6 ">  <div class="flex items-start justify-between gap-4 mb-3"> <h3 class="text-xl font-bold text-text-bright"> <span class="text-purple-glow">S.A.G.E.</span> <span class="text-text-muted mx-2">&mdash;</span> <span>System for Algorithmic Generation of Evaluations</span> </h3> <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype </span> </div> <img src="/images/SAGE.png" alt="S.A.G.E. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy"> <p class="text-text-dim leading-relaxed mb-4">Visual monitoring system that transforms complex vital signs into intuitive patterns using a retro-style interface. Converts traditional measurements into dynamic visual displays that make patient status immediately clear.</p>  <p class="text-sm text-text-dim mb-4"> <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Makes complex vital sign patterns immediately recognizable through intuitive visual displays. </p> <div class="flex flex-wrap gap-2 mb-4"> <span class="tag">JavaScript Canvas</span><span class="tag">Real-time Visualization</span><span class="tag">Pattern Recognition</span><span class="tag">Retro Gaming UI</span> </div> <div class="flex gap-4 text-sm font-mono"> <a href="https://github.com/serize-dev/SAGE" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+                </a>
+              </div>
+            </div>
+            <div class="project-card rounded-xl p-6 ">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <h3 class="text-xl font-bold text-text-bright">
+                  <span class="text-purple-glow">S.A.G.E.</span>
+                  <span class="text-text-muted mx-2">&mdash;</span>
+                  <span>System for Algorithmic Generation of Evaluations</span>
+                </h3>
+                <span class="status-proto font-mono text-xs px-3 py-1 rounded-full whitespace-nowrap"> Functional Prototype
+                </span>
+              </div>
+              <img src="/images/SAGE.png" alt="S.A.G.E. interface" class="w-full rounded-lg border border-crt-border mb-4" loading="lazy">
+              <p class="text-text-dim leading-relaxed mb-4">Visual monitoring system that transforms complex vital signs into intuitive patterns using a retro-style interface. Converts traditional measurements into dynamic visual displays that make patient status immediately clear.</p>
+              <p class="text-sm text-text-dim mb-4">
+                <span class="font-mono text-amber-term text-xs mr-2">KEY:</span>Makes complex vital sign patterns immediately recognizable through intuitive visual displays.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tag">JavaScript Canvas</span><span class="tag">Real-time Visualization</span><span class="tag">Pattern Recognition</span><span class="tag">Retro Gaming UI</span>
+              </div>
+              <div class="flex gap-4 text-sm font-mono">
+                <a href="https://github.com/serize-dev/SAGE" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
 [source]
-</a> <a href="https://serize-dev.github.io/SAGE/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
+                </a>
+                <a href="https://serize-dev.github.io/SAGE/" target="_blank" rel="noopener" class="text-green-term hover:text-green-400 transition-colors">
 [live demo]
-</a> </div> </div> </div> </div> </section> <div class="section-line max-w-6xl mx-auto"></div>  <section id="stack" class="py-20 px-6"> <div class="max-w-5xl mx-auto"> <h2 class="font-mono text-sm text-green-term mb-2"> <span class="text-text-muted">$</span> cat /proc/stack
-</h2> <h3 class="text-3xl font-bold mb-12 glow-text">Technology Stack</h3> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border glow-border"> <h4 class="font-mono text-purple-bright text-sm uppercase tracking-wider mb-4">Clinical Systems</h4> <ul class="space-y-2 text-text-dim text-sm"> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Epic & Cerner</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> REDCap Administration</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> EDC Platforms (Rave, Medrio)</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> HL7 / FHIR Standards</li> </ul> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border glow-border"> <h4 class="font-mono text-purple-bright text-sm uppercase tracking-wider mb-4">Research Operations</h4> <ul class="space-y-2 text-text-dim text-sm"> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Protocol Development</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Trial Operations & Site BD</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Screening & Enrollment Workflows</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Published Clinical Research</li> </ul> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border glow-border"> <h4 class="font-mono text-purple-bright text-sm uppercase tracking-wider mb-4">The Build</h4> <ul class="space-y-2 text-text-dim text-sm"> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Designed &amp; specified at the bedside</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Verified against the real workflow</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Offline-first, zero-dependency tools</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Test suites &amp; packaged releases</li> </ul> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border glow-border"> <h4 class="font-mono text-purple-bright text-sm uppercase tracking-wider mb-4">Environment</h4> <ul class="space-y-2 text-text-dim text-sm"> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Linux (daily driver)</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> CLI-first workflow</li> <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> cool-retro-term</li> </ul> </div> </div> </div> </section> <div class="section-line max-w-6xl mx-auto"></div>  <section id="publications" class="py-20 px-6"> <div class="max-w-4xl mx-auto"> <h2 class="font-mono text-sm text-green-term mb-2"> <span class="text-text-muted">$</span> grep -r "Serize" /pubmed/
-</h2> <h3 class="text-3xl font-bold mb-8 glow-text">Select Publications</h3> <div class="space-y-4"> <div class="bg-crt-panel rounded-lg p-4 border border-crt-border"> <p class="text-text-dim text-sm"> <span class="font-mono text-amber-term mr-2">Named Author</span> <a href="https://pubmed.ncbi.nlm.nih.gov/30340932/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">PDA-TOLERATE Trial &mdash; J Pediatr (2019)</a> &bull;
-<a href="https://pubmed.ncbi.nlm.nih.gov/38843839/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">Am J Hum Genet (2024)</a> &bull;
-<a href="https://pubmed.ncbi.nlm.nih.gov/40195116/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">HGG Advances (2025)</a> &bull;
-<a href="https://pubmed.ncbi.nlm.nih.gov/33484699/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">J Pediatr (2021)</a> &bull;
-<a href="https://pubmed.ncbi.nlm.nih.gov/30850756/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">J Perinatol (2019)</a> </p> </div> <div class="bg-crt-panel rounded-lg p-4 border border-crt-border"> <p class="text-text-dim text-sm"> <span class="font-mono text-cyan-term mr-2">Consortium</span> <a href="https://pubmed.ncbi.nlm.nih.gov/31940698/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">PENUT Trial &mdash; N Engl J Med (2020)</a> &bull;
-<a href="https://pubmed.ncbi.nlm.nih.gov/35129596/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">JAMA Netw Open (2022)</a> &bull;
-<a href="https://pubmed.ncbi.nlm.nih.gov/35725917/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">Pediatr Res (2023)</a> &bull;
-<a href="https://pubmed.ncbi.nlm.nih.gov/37926336/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">Am J Kidney Dis (2024)</a> </p> </div> </div> <p class="font-mono text-text-dim text-sm mt-6"> <span class="text-green-term">$</span> open
-<a href="https://pubmed.ncbi.nlm.nih.gov/?term=Serize" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="section-line max-w-6xl mx-auto"></div>
+      <section id="stack" class="py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+          <h2 class="font-mono text-sm text-green-term mb-2">
+            <span class="text-text-muted">$</span> cat /proc/stack
+          </h2>
+          <h3 class="text-3xl font-bold mb-12 glow-text">Technology Stack</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-crt-panel rounded-xl p-6 border border-crt-border glow-border">
+              <h4 class="font-mono text-purple-bright text-sm uppercase tracking-wider mb-4">Clinical Systems</h4>
+              <ul class="space-y-2 text-text-dim text-sm">
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Epic & Cerner</li>
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> REDCap Administration</li>
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> EDC Platforms (Rave, Medrio)</li>
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> HL7 / FHIR Standards</li>
+              </ul>
+            </div>
+            <div class="bg-crt-panel rounded-xl p-6 border border-crt-border glow-border">
+              <h4 class="font-mono text-purple-bright text-sm uppercase tracking-wider mb-4">Research Operations</h4>
+              <ul class="space-y-2 text-text-dim text-sm">
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Protocol Development</li>
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Trial Operations & Site BD</li>
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Screening & Enrollment Workflows</li>
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Published Clinical Research</li>
+              </ul>
+            </div>
+            <div class="bg-crt-panel rounded-xl p-6 border border-crt-border glow-border">
+              <h4 class="font-mono text-purple-bright text-sm uppercase tracking-wider mb-4">The Build</h4>
+              <ul class="space-y-2 text-text-dim text-sm">
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Designed &amp; specified at the bedside</li>
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Verified against the real workflow</li>
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Offline-first, zero-dependency tools</li>
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Test suites &amp; packaged releases</li>
+              </ul>
+            </div>
+            <div class="bg-crt-panel rounded-xl p-6 border border-crt-border glow-border">
+              <h4 class="font-mono text-purple-bright text-sm uppercase tracking-wider mb-4">Environment</h4>
+              <ul class="space-y-2 text-text-dim text-sm">
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> Linux (daily driver)</li>
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> CLI-first workflow</li>
+                <li class="flex items-center gap-2"><span class="text-purple-glow">&#9656;</span> cool-retro-term</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="section-line max-w-6xl mx-auto"></div>
+      <section id="publications" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="font-mono text-sm text-green-term mb-2">
+            <span class="text-text-muted">$</span> grep -r "Serize" /pubmed/
+          </h2>
+          <h3 class="text-3xl font-bold mb-8 glow-text">Select Publications</h3>
+          <div class="space-y-4">
+            <div class="bg-crt-panel rounded-lg p-4 border border-crt-border">
+              <p class="text-text-dim text-sm">
+                <span class="font-mono text-amber-term mr-2">Named Author</span>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/30340932/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">PDA-TOLERATE Trial &mdash; J Pediatr (2019)</a> &bull;
+                <a href="https://pubmed.ncbi.nlm.nih.gov/38843839/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">Am J Hum Genet (2024)</a> &bull;
+                <a href="https://pubmed.ncbi.nlm.nih.gov/40195116/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">HGG Advances (2025)</a> &bull;
+                <a href="https://pubmed.ncbi.nlm.nih.gov/33484699/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">J Pediatr (2021)</a> &bull;
+                <a href="https://pubmed.ncbi.nlm.nih.gov/30850756/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">J Perinatol (2019)</a>
+              </p>
+            </div>
+            <div class="bg-crt-panel rounded-lg p-4 border border-crt-border">
+              <p class="text-text-dim text-sm">
+                <span class="font-mono text-cyan-term mr-2">Consortium</span>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/31940698/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">PENUT Trial &mdash; N Engl J Med (2020)</a> &bull;
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35129596/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">JAMA Netw Open (2022)</a> &bull;
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35725917/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">Pediatr Res (2023)</a> &bull;
+                <a href="https://pubmed.ncbi.nlm.nih.gov/37926336/" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">Am J Kidney Dis (2024)</a>
+              </p>
+            </div>
+          </div>
+          <p class="font-mono text-text-dim text-sm mt-6">
+            <span class="text-green-term">$</span> open
+            <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Serize" target="_blank" rel="noopener" class="text-purple-bright hover:text-purple-glow transition-colors">
 pubmed.ncbi.nlm.nih.gov/?term=Serize
-</a> </p> </div> </section> <div class="section-line max-w-6xl mx-auto"></div>  <section class="py-20 px-6"> <div class="max-w-5xl mx-auto"> <h2 class="font-mono text-sm text-green-term mb-2"> <span class="text-text-muted">$</span> cat philosophy.md
-</h2> <h3 class="text-3xl font-bold mb-12 glow-text">Development Approach</h3> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center"> <div class="text-3xl mb-3">&#9764;</div> <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Clinical First</h4> <p class="text-text-dim text-sm">Every feature starts with understanding the clinical need, not the technical possibility.</p> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center"> <div class="text-3xl mb-3">&#9889;</div> <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Rapid Iteration</h4> <p class="text-text-dim text-sm">Build, test with actual clinicians, refine. No solution survives first contact with a busy unit.</p> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center"> <div class="text-3xl mb-3">&#9881;</div> <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Bulletproof</h4> <p class="text-text-dim text-sm">If it doesn't work at 3 AM with stressed staff, it doesn't work.</p> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center"> <div class="text-3xl mb-3">&#9878;</div> <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Model Proposes, Code Verifies</h4> <p class="text-text-dim text-sm">Any AI in these tools is on a leash: eligibility logic, dosing windows and scoring are ordinary auditable code, never a generated guess. A model may draft the email &mdash; it never decides who qualifies.</p> </div> <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center"> <div class="text-3xl mb-3">&#9881;</div> <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Zero Friction</h4> <p class="text-text-dim text-sm">No servers. No logins. No IT approval. Open the file and it works.</p> </div> </div> </div> </section> <div class="section-line max-w-6xl mx-auto"></div>  <section id="contact" class="py-20 px-6"> <div class="max-w-4xl mx-auto text-center"> <h2 class="font-mono text-sm text-green-term mb-2"> <span class="text-text-muted">$</span> ./contact.sh
-</h2> <h3 class="text-3xl font-bold mb-6 glow-text">Let's Build Something Better</h3> <p class="text-text-dim text-lg max-w-2xl mx-auto mb-10">
+            </a>
+          </p>
+        </div>
+      </section>
+      <div class="section-line max-w-6xl mx-auto"></div>
+      <section class="py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+          <h2 class="font-mono text-sm text-green-term mb-2">
+            <span class="text-text-muted">$</span> cat philosophy.md
+          </h2>
+          <h3 class="text-3xl font-bold mb-12 glow-text">Development Approach</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center">
+              <div class="text-3xl mb-3">&#9764;</div>
+              <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Clinical First</h4>
+              <p class="text-text-dim text-sm">Every feature starts with understanding the clinical need, not the technical possibility.</p>
+            </div>
+            <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center">
+              <div class="text-3xl mb-3">&#9889;</div>
+              <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Rapid Iteration</h4>
+              <p class="text-text-dim text-sm">Build, test with actual clinicians, refine. No solution survives first contact with a busy unit.</p>
+            </div>
+            <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center">
+              <div class="text-3xl mb-3">&#9881;</div>
+              <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Bulletproof</h4>
+              <p class="text-text-dim text-sm">If it doesn't work at 3 AM with stressed staff, it doesn't work.</p>
+            </div>
+            <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center">
+              <div class="text-3xl mb-3">&#9878;</div>
+              <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Model Proposes, Code Verifies</h4>
+              <p class="text-text-dim text-sm">Any AI in these tools is on a leash: eligibility logic, dosing windows and scoring are ordinary auditable code, never a generated guess. A model may draft the email &mdash; it never decides who qualifies.</p>
+            </div>
+            <div class="bg-crt-panel rounded-xl p-6 border border-crt-border text-center">
+              <div class="text-3xl mb-3">&#9881;</div>
+              <h4 class="font-mono text-purple-bright text-sm font-bold mb-2">Zero Friction</h4>
+              <p class="text-text-dim text-sm">No servers. No logins. No IT approval. Open the file and it works.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="section-line max-w-6xl mx-auto"></div>
+      <section id="contact" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="font-mono text-sm text-green-term mb-2">
+            <span class="text-text-muted">$</span> ./contact.sh
+          </h2>
+          <h3 class="text-3xl font-bold mb-6 glow-text">Let's Build Something Better</h3>
+          <p class="text-text-dim text-lg max-w-2xl mx-auto mb-10">
 I bridge clinical and technical teams. Whether you need someone who understands
         both the workflow and the code, let's talk.
-</p> <div class="flex flex-col sm:flex-row gap-4 justify-center"> <a href="mailto:arturo@serize.dev" class="px-8 py-4 bg-purple-deep hover:bg-purple-soft text-white font-mono text-sm rounded-lg transition-all hover:shadow-lg hover:shadow-purple-glow/20">
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="mailto:arturo@serize.dev" class="px-8 py-4 bg-purple-deep hover:bg-purple-soft text-white font-mono text-sm rounded-lg transition-all hover:shadow-lg hover:shadow-purple-glow/20">
 arturo@serize.dev
-</a> <a href="https://linkedin.com/in/arturo-serize-mph-pa-c/" target="_blank" rel="noopener" class="px-8 py-4 border border-crt-border hover:border-purple-soft text-text-dim hover:text-purple-bright font-mono text-sm rounded-lg transition-all">
+            </a>
+            <a href="https://linkedin.com/in/arturo-serize-mph-pa-c/" target="_blank" rel="noopener" class="px-8 py-4 border border-crt-border hover:border-purple-soft text-text-dim hover:text-purple-bright font-mono text-sm rounded-lg transition-all">
 LinkedIn
-</a> <a href="https://github.com/serize-dev" target="_blank" rel="noopener" class="px-8 py-4 border border-crt-border hover:border-purple-soft text-text-dim hover:text-purple-bright font-mono text-sm rounded-lg transition-all">
+            </a>
+            <a href="https://github.com/serize-dev" target="_blank" rel="noopener" class="px-8 py-4 border border-crt-border hover:border-purple-soft text-text-dim hover:text-purple-bright font-mono text-sm rounded-lg transition-all">
 GitHub
-</a> </div> <p class="font-mono text-text-muted text-xs mt-8">
+            </a>
+          </div>
+          <p class="font-mono text-text-muted text-xs mt-8">
 English & Spanish (native) &#183; Portuguese (fluent)
-</p> </div> </section>  </main> <!-- Footer --> <footer class="border-t border-crt-border py-8 mt-20"> <div class="max-w-6xl mx-auto px-6 text-center"> <p class="font-mono text-text-muted text-xs"> <span class="text-green-term">$</span> echo "Built from the bedside. &copy; 2026 Arturo Serize."
-</p> <p class="font-mono text-text-muted/50 text-xs mt-2">
+          </p>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="border-t border-crt-border py-8 mt-20">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <p class="font-mono text-text-muted text-xs">
+          <span class="text-green-term">$</span> echo "Built from the bedside. &copy; 2026 Arturo Serize."
+        </p>
+        <p class="font-mono text-text-muted/50 text-xs mt-2">
 process exited with code 0
-</p> </div> </footer> </body></html>
+        </p>
+      </div>
+    </footer>
+  </body></html>
